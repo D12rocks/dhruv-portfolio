@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhruv Arora — AI & Systems Architect</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #050505;
+            --text: #e0e0e0;
+            --accent: #00ff9d;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html, body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Space Mono', monospace;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        h1, h2, h3, .syne { font-family: 'Syne', sans-serif; letter-spacing: -0.02em; }
+
+        /* Cinematic Noise Overlay */
+        .noise-overlay {
+            position: fixed; top: -50%; left: -50%; width: 200%; height: 200%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.04; pointer-events: none; z-index: 9999;
+            animation: noise 0.2s infinite step-start;
+        }
+        @keyframes noise {
+            0% { transform: translate(0, 0); } 10% { transform: translate(-5%, -5%); }
+            20% { transform: translate(-10%, 5%); } 30% { transform: translate(5%, -10%); }
+            40% { transform: translate(-5%, 15%); } 50% { transform: translate(-10%, 5%); }
+            60% { transform: translate(15%, 0); } 70% { transform: translate(0, 10%); }
+            80% { transform: translate(-15%, 0); } 90% { transform: translate(10, 5%); }
+            100% { transform: translate(5%, 0); }
+        }
+
+        /* METALLIC SLIME SVG CURSOR */
+        #metal-cursor-svg {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: 10002;
+            mix-blend-mode: difference; 
+            transition: opacity 0.3s ease;
+        }
+        
+        /* APPLE LIQUID GLASS CURSOR (Ultra Clear & Refractive) */
+        #glass-container {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: 10003;
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+        .glass-orb {
+            position: absolute; border-radius: 50%;
+            background: rgba(255, 255, 255, 0.01); 
+            border: 1px solid rgba(255, 255, 255, 0.2); 
+            box-shadow: 
+                inset 0 0 20px rgba(255,255,255,0.1), 
+                inset 0 0 2px rgba(255,255,255,0.8),
+                0 5px 15px rgba(0,0,0,0.2);
+            backdrop-filter: blur(1px) brightness(1.2) contrast(3) saturate(2.5);
+            -webkit-backdrop-filter: blur(1px) brightness(1.2) contrast(3) saturate(2.5);
+            will-change: transform, width, height;
+        }
+
+        .mercury-label {
+            position: fixed; top: 0; left: 0;
+            font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700;
+            color: #000; background: rgba(255,255,255,0.9); padding: 4px 8px; border-radius: 2px;
+            pointer-events: none; z-index: 10004; transform: translate(-50%, -50%);
+            opacity: 0; transition: opacity 0.2s; text-transform: uppercase;
+        }
+
+        /* Loader */
+        #loader {
+            position: fixed; inset: 0; background: var(--bg); z-index: 10005;
+            display: flex; justify-content: center; align-items: center; flex-direction: column;
+        }
+        .loader-text { font-family: 'Syne', sans-serif; font-size: 8vw; font-weight: 800; color: var(--text); }
+
+        .container { width: 90%; max-width: 1400px; margin: 0 auto; }
+
+        /* Nav */
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 2rem 5%;
+            display: flex; justify-content: space-between; align-items: center; z-index: 100; mix-blend-mode: difference;
+        }
+        nav a { color: #fff; text-decoration: none; text-transform: uppercase; font-size: 12px; letter-spacing: 2px; position: relative; display: inline-block; }
+        nav a::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -4px; left: 0; background: #fff; transition: width 0.3s; }
+        nav a:hover::after { width: 100%; }
+
+        /* Hero */
+        #hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; position: relative; perspective: 1000px; }
+        .hero-title { font-size: 16vw; line-height: 0.8; font-weight: 800; mix-blend-mode: difference; color: #fff; transform-style: preserve-3d; }
+        .hero-title.outline { color: transparent; -webkit-text-stroke: 1px #333; }
+        .hero-subtitle { position: absolute; bottom: 15%; left: 5%; text-align: left; max-width: 350px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #888; }
+        .hero-status { position: absolute; top: 20%; right: 5%; font-size: 12px; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); padding: 0.5rem 1rem; border-radius: 4px; }
+
+        /* Marquee */
+        .marquee { overflow: hidden; padding: 4rem 0; border-top: 1px solid #222; border-bottom: 1px solid #222; white-space: nowrap; }
+        .marquee-inner { display: inline-block; animation: marquee 20s linear infinite; }
+        .marquee span { font-family: 'Syne', sans-serif; font-size: 6vw; font-weight: 700; margin-right: 4rem; color: transparent; -webkit-text-stroke: 1px #333; }
+        .marquee span:nth-child(odd) { color: var(--accent); -webkit-text-stroke: 0; }
+        @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        /* About Section */
+        #about { padding: 15rem 5%; position: relative; }
+        .about-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; }
+        .about-label { font-size: 12px; text-transform: uppercase; color: #666; letter-spacing: 2px; }
+        .manifesto { font-family: 'Syne', sans-serif; font-size: 2.5vw; line-height: 1.2; font-weight: 400; }
+        .manifesto span { color: #333; transition: color 0.3s; }
+        .manifesto span.active { color: var(--accent); }
+
+        /* Capabilities */
+        #capabilities { padding: 10rem 5%; border-top: 1px solid #222; }
+        .cap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem; }
+        .cap-card { padding: 2rem; border: 1px solid #222; transition: background 0.3s, border 0.3s; transform-style: preserve-3d; }
+        .cap-card:hover { background: #111; border-color: var(--accent); }
+        .cap-num { font-size: 12px; color: var(--accent); margin-bottom: 2rem; transform: translateZ(40px); }
+        .cap-title { font-family: 'Syne', sans-serif; font-size: 24px; margin-bottom: 1rem; transform: translateZ(60px); }
+
+        /* WORK SECTION */
+        #work { padding: 10rem 5%; }
+        .section-header { font-family: 'Syne', sans-serif; font-size: 4vw; margin-bottom: 4rem; color: #333; }
+        .project { display: flex; justify-content: space-between; align-items: center; padding: 3rem 0; border-bottom: 1px solid #222; position: relative; }
+        .project-name { font-family: 'Syne', sans-serif; font-size: 4vw; font-weight: 600; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s; z-index: 2; }
+        .project:hover .project-name { transform: translateX(50px); color: var(--accent); }
+        .project-meta { font-size: 12px; text-transform: uppercase; color: #666; z-index: 2; text-align: right; }
+        .project-tags { margin-top: 0.5rem; color: var(--accent); opacity: 0.7; }
+        .project-preview { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.8); width: 500px; height: 300px; background-size: cover; background-position: center; opacity: 0; pointer-events: none; transition: opacity 0.3s, transform 0.3s; z-index: 1; filter: grayscale(20%) contrast(1.1); }
+        .project:hover .project-preview { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+
+        /* Experience Timeline */
+        #experience { padding: 10rem 5%; border-top: 1px solid #222; }
+        .timeline-item { display: grid; grid-template-columns: 1fr 3fr; gap: 4rem; padding: 3rem 0; border-bottom: 1px solid #1a1a1a; transform-style: preserve-3d; transition: background 0.3s; }
+        .timeline-item:hover { background: #0a0a0a; }
+        .timeline-year { font-family: 'Syne', sans-serif; font-size: 2rem; color: #444; transition: color 0.3s; transform: translateZ(30px); }
+        .timeline-item:hover .timeline-year { color: var(--accent); }
+        .timeline-content h3 { font-size: 1.8rem; margin-bottom: 0.5rem; transform: translateZ(50px); }
+        .timeline-content p { color: #888; max-width: 600px; transform: translateZ(20px); }
+
+        /* Footer/Contact */
+        #contact { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 5rem; position: relative; }
+        .contact-title { font-family: 'Syne', sans-serif; font-size: 12vw; font-weight: 800; mix-blend-mode: difference; color: #fff; }
+        .magnetic-btn { position: relative; padding: 2rem 4rem; border: 1px solid #333; background: transparent; color: #fff; font-family: 'Syne', sans-serif; font-size: 2rem; text-transform: uppercase; cursor: none; transition: background 0.3s, color 0.3s; margin-top: 4rem; }
+        .magnetic-btn:hover { background: var(--accent); color: #000; border-color: var(--accent); }
+        .footer-bottom { position: absolute; bottom: 2rem; width: 90%; display: flex; justify-content: space-between; font-size: 12px; color: #555; text-transform: uppercase; letter-spacing: 2px; }
+    </style>
+</head>
+<body>
+
+    <div class="noise-overlay"></div>
+    
+    <!-- METALLIC LIQUID SVG -->
+    <svg id="metal-cursor-svg" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <filter id="metalGoo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="7" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 28 -14" result="goo" />
+            </filter>
+            <radialGradient id="chromeGrad" cx="30%" cy="30%" r="70%">
+                <stop offset="0%" stop-color="#ffffff" />
+                <stop offset="15%" stop-color="#f0f0f0" />
+                <stop offset="40%" stop-color="#888888" />
+                <stop offset="70%" stop-color="#222222" />
+                <stop offset="95%" stop-color="#111111" />
+                <stop offset="100%" stop-color="#666666" />
+            </radialGradient>
+        </defs>
+        <g filter="url(#metalGoo)" id="metalGroup"></g>
+        <g filter="url(#metalGoo)" id="mainGroup">
+            <ellipse id="mainBlob" cx="-100" cy="-100" rx="15" ry="15" fill="url(#chromeGrad)"/>
+            <ellipse id="innerBlob" cx="-100" cy="-100" rx="5" ry="5" fill="#ffffff"/>
+        </g>
+    </svg>
+
+    <!-- APPLE LIQUID GLASS CONTAINER -->
+    <div id="glass-container">
+        <div class="glass-orb" id="glass-main" style="width: 160px; height: 160px; transform: translate(-50%, -50%);"></div>
+        <div class="glass-orb" id="glass-mid" style="width: 80px; height: 80px; transform: translate(-50%, -50%);"></div>
+        <div class="glass-orb" id="glass-trail" style="width: 40px; height: 40px; transform: translate(-50%, -50%);"></div>
+    </div>
+
+    <div class="mercury-label" id="mercuryLabel">View</div>
+
+    <div id="loader">
+        <div class="loader-text">0</div>
+    </div>
+
+    <nav>
+        <div class="syne font-bold text-white tracking-tight">DHRUV ARORA©</div>
+        <div class="flex gap-8">
+            <a href="#about" data-cursor="link">About</a>
+            <a href="#work" data-cursor="link">Work</a>
+            <a href="#experience" data-cursor="link">Experience</a>
+            <a href="#contact" data-cursor="link">Contact</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero" class="container">
+        <div class="hero-status" data-depth="0.2">Available for Work</div>
+        <h1 class="hero-title" data-depth="0.1">DHRUV</h1>
+        <h1 class="hero-title outline" style="margin-left: 10%;" data-depth="0.3">ARORA</h1>
+        <div class="hero-subtitle" data-depth="0.5">
+            Architecting the future of AI, Spatial Computing, and Autonomous Systems. Bridging business intelligence with cutting-edge tech.
+        </div>
+    </section>
+
+    <div class="marquee">
+        <div class="marquee-inner">
+            <span>AI ENGINEER</span><span>●</span><span>AR/VR DEV</span><span>●</span><span>ROBOTICS</span><span>●</span><span>AI ENGINEER</span><span>●</span><span>AR/VR DEV</span><span>●</span><span>ROBOTICS</span><span>●</span>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about" class="container">
+        <div class="about-grid">
+            <div class="about-label">(About Me)<br>01 / Identity</div>
+            <div class="manifesto">
+                <span class="reveal-word">Bridging business intelligence</span> 
+                <span class="reveal-word">with cutting-edge AI technology.</span> 
+                <span class="reveal-word">Currently pursuing MBA Tech at NMIMS Mumbai,</span>
+                <span class="reveal-word">I focus on AI & Agentic Systems—</span>
+                <span class="reveal-word">building intelligent agents capable of</span>
+                <span class="reveal-word">executing complex tasks autonomously,</span>
+                <span class="reveal-word">alongside pioneering AR/VR & Voice Systems.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- CAPABILITIES -->
+    <section id="capabilities">
+        <div class="container">
+            <h2 class="section-header reveal-text">CAPABILITIES</h2>
+            <div class="cap-grid">
+                <div class="cap-card hover-tilt" data-cursor="tilt">
+                    <div class="cap-num">01</div>
+                    <div class="cap-title">AI & Agentic Systems</div>
+                    <p class="text-sm text-gray-500">Python, TensorFlow, LangChain, GPT. Building CNNs, voice agents, and autonomous task-executing AI systems.</p>
+                </div>
+                <div class="cap-card hover-tilt" data-cursor="tilt">
+                    <div class="cap-num">02</div>
+                    <div class="cap-title">AR/VR & Gaming</div>
+                    <p class="text-sm text-gray-500">Unity, ARKit, C#, OpenCV. Crafting interactive 3D visualizations, AR study assistants, and gesture-based interfaces.</p>
+                </div>
+                <div class="cap-card hover-tilt" data-cursor="tilt">
+                    <div class="cap-num">03</div>
+                    <div class="cap-title">Business Intelligence</div>
+                    <p class="text-sm text-gray-500">Data Analytics, ERP Automation, Finance. Merging technical infrastructure with strategic business solutions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORK -->
+    <section id="work">
+        <div class="container">
+            <h2 class="section-header reveal-text">SELECTED ARCHITECTURE</h2>
+            
+            <div class="project" data-cursor="expand" data-img="https://z-cdn-media.chatglm.cn/files/4d143ce3-498e-4a7a-96b1-13d769656d70.png?auth_key=1882216815-604f16ec3bc04564a265c41731c249c1-0-68a7e9870c8aa73e8ad800e606eade93">
+                <div class="project-name">MentAR</div>
+                <div class="project-meta">
+                    <div>AR AI AVATAR TUTOR</div>
+                    <div class="project-tags">UNITY / ARKIT / CONVERSATIONAL AI</div>
+                </div>
+                <div class="project-preview"></div>
+            </div>
+
+            <div class="project" data-cursor="expand" data-img="https://z-cdn-media.chatglm.cn/files/05f199ae-aace-4cfc-b57b-cb26c4c4a87a.png?auth_key=1882216815-f84225ea34dd4385b55aecd084a67e04-0-86ec0cdc77ac2e624ea59f820f80f666">
+                <div class="project-name">Neo-Bistro Voice Agent</div>
+                <div class="project-meta">
+                    <div>VOICE AI RESTAURANT SYSTEM</div>
+                    <div class="project-tags">REACT / FLASK / LANGCHAIN / GPT</div>
+                </div>
+                <div class="project-preview"></div>
+            </div>
+
+            <div class="project" data-cursor="expand" data-img="https://z-cdn-media.chatglm.cn/files/4e50c0c3-3b8a-4545-b456-a002f513f69a.png?auth_key=1882216815-f1e7725871b348eebb297117c6d999d3-0-05f267b43cf067228641416a7efe5556">
+                <div class="project-name">Speech Emotion Recognition</div>
+                <div class="project-meta">
+                    <div>NLP / DEEP LEARNING</div>
+                    <div class="project-tags">PYTHON / CNN / TENSORFLOW / NLP</div>
+                </div>
+                <div class="project-preview"></div>
+            </div>
+
+            <!-- UPDATED HAND GESTURE CONTROLLER IMAGE -->
+            <div class="project" data-cursor="expand" data-img="https://z-cdn-media.chatglm.cn/files/a9259f21-f0e2-4466-84c9-f3ee0b0b281c.png?auth_key=1882321216-f5b2707e11dd4650affb519db92b0150-0-308fda57cd9bdd3e96dc021ddff33a07">
+                <div class="project-name">Hand Gesture Controller</div>
+                <div class="project-meta">
+                    <div>COMPUTER VISION GAMING</div>
+                    <div class="project-tags">PYTHON / OPENCV / GAMING</div>
+                </div>
+                <div class="project-preview"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-header reveal-text">EXPERIENCE & AWARDS</h2>
+            <div class="timeline-item hover-tilt" data-cursor="tilt">
+                <div class="timeline-year">2023</div>
+                <div class="timeline-content">
+                    <h3 class="syne">NASA Engineering & Inspiration Award</h3>
+                    <p>Awarded by FIRST Robotics for innovative robotics solutions, technical excellence, and team leadership.</p>
+                </div>
+            </div>
+            <div class="timeline-item hover-tilt" data-cursor="tilt">
+                <div class="timeline-year">2025</div>
+                <div class="timeline-content">
+                    <h3 class="syne">AI Engineer — Bizwy (Mumbai)</h3>
+                    <p>Developed advanced AI systems and ERP automation solutions to streamline business operations.</p>
+                </div>
+            </div>
+            <div class="timeline-item hover-tilt" data-cursor="tilt">
+                <div class="timeline-year">2024</div>
+                <div class="timeline-content">
+                    <h3 class="syne">Unity Game Developer (Remote)</h3>
+                    <p>Created engaging mobile games using the Unity engine, focusing on popular game mechanics and UX optimization.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <h2 class="contact-title">LET'S TALK</h2>
+        <button class="magnetic-btn" data-cursor="expand">Get in Touch</button>
+        <div class="footer-bottom">
+            <div>© 2024 DHRUV ARORA</div>
+            <div>BUILT IN THE FUTURE</div>
+        </div>
+    </section>
+
+    <script>
+        // 1. Smooth Scroll
+        const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+        gsap.ticker.lagSmoothing(0);
+
+        // 2. Loader
+        const loaderText = document.querySelector('.loader-text');
+        let counter = 0;
+        const loaderInterval = setInterval(() => {
+            counter += Math.floor(Math.random() * 10) + 1;
+            if (counter >= 100) {
+                counter = 100; clearInterval(loaderInterval);
+                gsap.to('#loader', { yPercent: -100, duration: 1.2, ease: "expo.inOut", delay: 0.3, onComplete: () => { document.getElementById('loader').style.display = 'none'; initAnimations(); } });
+            }
+            loaderText.textContent = counter;
+        }, 80);
+
+        function initAnimations() {
+            gsap.from('.hero-title', { yPercent: 100, opacity: 0, duration: 1.5, stagger: 0.1, ease: "expo.out" });
+            gsap.from('.hero-subtitle', { opacity: 0, duration: 1, delay: 0.8, ease: "power2.out" });
+            gsap.from('.hero-status', { opacity: 0, scale: 0.8, duration: 1, delay: 1, ease: "power2.out" });
+            
+            gsap.utils.toArray('.reveal-word').forEach((word, i) => {
+                gsap.to(word, { color: '#e0e0e0', duration: 0.1, scrollTrigger: { trigger: word, start: "top 85%" }, delay: i * 0.05 });
+            });
+
+            gsap.utils.toArray('.reveal-text').forEach(el => {
+                gsap.from(el, { y: 50, opacity: 0, duration: 1.2, scrollTrigger: { trigger: el, start: "top 80%" }, ease: "expo.out" });
+            });
+
+            gsap.from('.cap-card', { y: 50, opacity: 0, duration: 1, stagger: 0.15, scrollTrigger: { trigger: '#capabilities', start: "top 70%" } });
+            gsap.from('.timeline-item', { y: 50, opacity: 0, duration: 1, stagger: 0.1, scrollTrigger: { trigger: '#experience', start: "top 70%" } });
+        }
+
+        // 3. Mouse Parallax
+        const heroSection = document.getElementById('hero');
+        heroSection.addEventListener('mousemove', (e) => {
+            const { clientX, clientY } = e; const centerX = window.innerWidth / 2; const centerY = window.innerHeight / 2;
+            document.querySelectorAll('[data-depth]').forEach(el => {
+                const depth = parseFloat(el.dataset.depth);
+                gsap.to(el, { x: (clientX - centerX) * depth, y: (clientY - centerY) * depth, duration: 1, ease: "power2.out" });
+            });
+        });
+
+        // 4. HYBRID CURSOR ENGINE (Metal to Glass)
+        const metalSvg = document.getElementById('metal-cursor-svg');
+        const metalGroup = document.getElementById('metalGroup');
+        const mainBlob = document.getElementById('mainBlob');
+        const innerBlob = document.getElementById('innerBlob');
+        const glassContainer = document.getElementById('glass-container');
+        const label = document.getElementById('mercuryLabel');
+
+        // Metallic Trail Setup
+        const trailCount = 14;
+        const trailCircles = [];
+        const svgNS = "http://www.w3.org/2000/svg";
+        for(let i=0; i<trailCount; i++) {
+            const c = document.createElementNS(svgNS, 'circle');
+            c.setAttribute('cx', -100); c.setAttribute('cy', -100);
+            c.setAttribute('r', 8); c.setAttribute('fill', 'url(#chromeGrad)');
+            metalGroup.appendChild(c);
+            trailCircles.push({ el: c, x: -100, y: -100 });
+        }
+
+        // Liquid Glass Trail Setup
+        const glassMain = document.getElementById('glass-main');
+        const glassMid = document.getElementById('glass-mid');
+        const glassTrail = document.getElementById('glass-trail');
+        const glassOrbs = [
+            { el: glassMain, x: 0, y: 0, lerp: 0.2 },
+            { el: glassMid, x: 0, y: 0, lerp: 0.12 },
+            { el: glassTrail, x: 0, y: 0, lerp: 0.08 }
+        ];
+
+        let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+        let prevX = mouseX, prevY = mouseY;
+        let vx = 0, vy = 0;
+        let isHoveringExpand = false;
+        let isHoveringLink = false;
+        let isClicked = false;
+        let time = 0;
+
+        const xLabel = gsap.quickTo(label, "x", { duration: 0.5, ease: "power3" });
+        const yLabel = gsap.quickTo(label, "y", { duration: 0.5, ease: "power3" });
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX; mouseY = e.clientY;
+            xLabel(mouseX); yLabel(mouseY);
+        });
+
+        window.addEventListener('mousedown', () => isClicked = true);
+        window.addEventListener('mouseup', () => isClicked = false);
+
+        function updateCursor() {
+            time += 0.05;
+            vx = mouseX - prevX; vy = mouseY - prevY;
+            prevX = mouseX; prevY = mouseY;
+            const speed = Math.sqrt(vx*vx + vy*vy);
+
+            // Update Metallic Slow Trail (High Lag)
+            let leaderX = mouseX, leaderY = mouseY;
+            trailCircles.forEach((t, i) => {
+                t.x += (leaderX - t.x) * 0.06;
+                t.y += (leaderY - t.y) * 0.06;
+                t.el.setAttribute('cx', t.x);
+                t.el.setAttribute('cy', t.y);
+                let r = 10 - i * 0.4;
+                if(r < 2) r = 2;
+                t.el.setAttribute('r', r);
+                leaderX = t.x; leaderY = t.y;
+            });
+
+            // Main Metallic Blob Reactivity
+            let targetRx = 16, targetRy = 16;
+            if(isHoveringExpand) { targetRx = 0; targetRy = 0; } 
+            else if(isHoveringLink) { targetRx = 60; targetRy = 8; }
+            else if(isClicked) { targetRx = 40; targetRy = 6; }
+            else {
+                targetRx = Math.max(10, 18 + speed * 0.5);
+                targetRy = Math.max(10, 18 - speed * 0.3);
+                if(speed < 2) {
+                    targetRx += Math.sin(time * 2) * 2;
+                    targetRy += Math.cos(time * 2.5) * 2;
+                }
+            }
+
+            let currRx = parseFloat(mainBlob.getAttribute('rx'));
+            let currRy = parseFloat(mainBlob.getAttribute('ry'));
+            currRx += (targetRx - currRx) * 0.2;
+            currRy += (targetRy - currRy) * 0.2;
+
+            mainBlob.setAttribute('rx', currRx);
+            mainBlob.setAttribute('ry', currRy);
+            mainBlob.setAttribute('cx', mouseX);
+            mainBlob.setAttribute('cy', mouseY);
+            innerBlob.setAttribute('cx', mouseX - vx * 0.8);
+            innerBlob.setAttribute('cy', mouseY - vy * 0.8);
+            innerBlob.setAttribute('rx', currRx * 0.3);
+            innerBlob.setAttribute('ry', currRy * 0.3);
+
+            // Update Liquid Glass Trail (Chained Lag)
+            let glassLeaderX = mouseX, glassLeaderY = mouseY;
+            glassOrbs.forEach(g => {
+                g.x += (glassLeaderX - g.x) * g.lerp;
+                g.y += (glassLeaderY - g.y) * g.lerp;
+                g.el.style.transform = `translate(${g.x}px, ${g.y}px) translate(-50%, -50%)`;
+                glassLeaderX = g.x; glassLeaderY = g.y;
+            });
+
+            requestAnimationFrame(updateCursor);
+        }
+        updateCursor();
+
+        // Hover Interactions
+        document.querySelectorAll('[data-cursor]').forEach(el => {
+            const type = el.dataset.cursor;
+            
+            el.addEventListener('mouseenter', () => {
+                if (type === 'expand') {
+                    isHoveringExpand = true;
+                    label.textContent = 'VIEW';
+                    gsap.to(label, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" });
+                    
+                    // Transition to Glass
+                    gsap.to(metalSvg, { opacity: 0, duration: 0.3 });
+                    gsap.to(glassContainer, { opacity: 1, duration: 0.3 });
+                } else if (type === 'link') {
+                    isHoveringLink = true;
+                }
+            });
+
+            el.addEventListener('mouseleave', () => {
+                isHoveringExpand = false;
+                isHoveringLink = false;
+                gsap.to(label, { opacity: 0, scale: 0.8, duration: 0.2, ease: "power2.in" });
+                
+                // Revert to Metal
+                gsap.to(metalSvg, { opacity: 1, duration: 0.3 });
+                gsap.to(glassContainer, { opacity: 0, duration: 0.3 });
+            });
+        });
+
+        // Project Image Follow
+        document.querySelectorAll('.project').forEach(project => {
+            const preview = project.querySelector('.project-preview');
+            if(project.dataset.img) preview.style.backgroundImage = `url(${project.dataset.img})`;
+            
+            project.addEventListener('mousemove', (e) => {
+                const rect = project.getBoundingClientRect();
+                gsap.to(preview, { x: e.clientX - rect.left - 250, y: e.clientY - rect.top - 150, duration: 0.5 });
+            });
+        });
+
+        // 5. Magnetic Button
+        const magneticBtn = document.querySelector('.magnetic-btn');
+        magneticBtn.addEventListener('mousemove', (e) => {
+            const rect = magneticBtn.getBoundingClientRect();
+            gsap.to(magneticBtn, { x: (e.clientX - rect.left - rect.width / 2) * 0.3, y: (e.clientY - rect.top - rect.height / 2) * 0.3, duration: 0.4 });
+        });
+        magneticBtn.addEventListener('mouseleave', () => gsap.to(magneticBtn, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1, 0.3)" }));
+
+        // 6. 3D Tilt Physics
+        document.querySelectorAll('.hover-tilt').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -10;
+                const rotateY = ((x - centerX) / centerX) * 10;
+                gsap.to(card, { rotateX, rotateY, duration: 0.2, transformPerspective: 800 });
+            });
+            card.addEventListener('mouseleave', () => gsap.to(card, { rotateX: 0, rotateY: 0, duration: 0.6, ease: "elastic.out(1, 0.75)" }));
+        });
+
+        // 7. Magnetic Nav Links
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('mousemove', (e) => {
+                const rect = link.getBoundingClientRect();
+                gsap.to(link, { x: (e.clientX - rect.left - rect.width / 2) * 0.5, y: (e.clientY - rect.top - rect.height / 2) * 0.5, duration: 0.3 });
+            });
+            link.addEventListener('mouseleave', () => gsap.to(link, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1, 0.3)" }));
+        });
+    </script>
+</body>
+</html>
