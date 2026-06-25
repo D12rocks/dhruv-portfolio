@@ -57,7 +57,7 @@
             transition: opacity 0.3s ease;
         }
         
-        /* APPLE LIQUID GLASS CURSOR (Ultra Clear & Refractive) */
+        /* APPLE LIQUID GLASS CURSOR */
         #glass-container {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             pointer-events: none; z-index: 10003;
@@ -74,6 +74,7 @@
             backdrop-filter: blur(1px) brightness(1.2) contrast(3) saturate(2.5);
             -webkit-backdrop-filter: blur(1px) brightness(1.2) contrast(3) saturate(2.5);
             will-change: transform, width, height;
+            pointer-events: none;
         }
 
         .mercury-label {
@@ -101,6 +102,7 @@
         nav a { color: #fff; text-decoration: none; text-transform: uppercase; font-size: 12px; letter-spacing: 2px; position: relative; display: inline-block; }
         nav a::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -4px; left: 0; background: #fff; transition: width 0.3s; }
         nav a:hover::after { width: 100%; }
+        nav .resume-btn { border: 1px solid #fff; padding: 6px 12px; border-radius: 2px; }
 
         /* Hero */
         #hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; position: relative; perspective: 1000px; }
@@ -138,8 +140,11 @@
         .project { display: flex; justify-content: space-between; align-items: center; padding: 3rem 0; border-bottom: 1px solid #222; position: relative; }
         .project-name { font-family: 'Syne', sans-serif; font-size: 4vw; font-weight: 600; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s; z-index: 2; }
         .project:hover .project-name { transform: translateX(50px); color: var(--accent); }
-        .project-meta { font-size: 12px; text-transform: uppercase; color: #666; z-index: 2; text-align: right; }
+        .project-meta { font-size: 12px; text-transform: uppercase; color: #666; z-index: 2; text-align: right; display: flex; flex-direction: column; align-items: flex-end; }
         .project-tags { margin-top: 0.5rem; color: var(--accent); opacity: 0.7; }
+        .project-links { margin-top: 1rem; display: flex; gap: 1rem; }
+        .project-links a { font-size: 10px; color: #888; border: 1px solid #333; padding: 4px 8px; text-decoration: none; transition: all 0.3s; display: flex; align-items: center; gap: 4px; }
+        .project-links a:hover { color: var(--accent); border-color: var(--accent); }
         .project-preview { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.8); width: 500px; height: 300px; background-size: cover; background-position: center; opacity: 0; pointer-events: none; transition: opacity 0.3s, transform 0.3s; z-index: 1; filter: grayscale(20%) contrast(1.1); }
         .project:hover .project-preview { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 
@@ -157,14 +162,45 @@
         .contact-title { font-family: 'Syne', sans-serif; font-size: 12vw; font-weight: 800; mix-blend-mode: difference; color: #fff; }
         .magnetic-btn { position: relative; padding: 2rem 4rem; border: 1px solid #333; background: transparent; color: #fff; font-family: 'Syne', sans-serif; font-size: 2rem; text-transform: uppercase; cursor: none; transition: background 0.3s, color 0.3s; margin-top: 4rem; }
         .magnetic-btn:hover { background: var(--accent); color: #000; border-color: var(--accent); }
+        .socials { margin-top: 3rem; display: flex; gap: 2rem; }
+        .socials a { color: #888; text-decoration: none; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s; }
+        .socials a:hover { color: var(--accent); }
         .footer-bottom { position: absolute; bottom: 2rem; width: 90%; display: flex; justify-content: space-between; font-size: 12px; color: #555; text-transform: uppercase; letter-spacing: 2px; }
+
+        /* RESUME MODAL */
+        #resume-modal {
+            position: fixed; inset: 0; z-index: 10010;
+            background: rgba(0,0,0,0.85); backdrop-filter: blur(10px);
+            display: none; justify-content: center; align-items: flex-start;
+            padding: 5vh 5vw; overflow-y: auto;
+        }
+        .resume-paper {
+            background: #fff; color: #111; width: 100%; max-width: 800px;
+            padding: 4rem; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            font-family: 'Space Mono', monospace; position: relative;
+            margin-bottom: 5vh;
+        }
+        .resume-paper h1 { font-family: 'Syne', sans-serif; font-size: 3rem; margin-bottom: 0.5rem; color: #000; }
+        .resume-paper h2 { font-family: 'Syne', sans-serif; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; border-bottom: 2px solid #111; padding-bottom: 0.5rem; margin-top: 2rem; margin-bottom: 1rem; }
+        .resume-paper p { font-size: 0.9rem; line-height: 1.6; color: #333; margin-bottom: 1rem; }
+        .resume-paper ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+        .resume-paper li { font-size: 0.9rem; line-height: 1.6; color: #333; margin-bottom: 0.5rem; }
+        .resume-paper .contact-info { font-size: 0.8rem; color: #555; margin-bottom: 2rem; display: flex; flex-wrap: wrap; gap: 1rem; }
+        .resume-paper .exp-item { margin-bottom: 1.5rem; }
+        .resume-paper .exp-title { font-weight: 700; font-family: 'Syne', sans-serif; }
+        .close-modal-btn {
+            position: fixed; top: 20px; right: 20px; z-index: 10011;
+            background: #fff; color: #000; border: none; padding: 10px 20px;
+            font-family: 'Syne', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
+            cursor: pointer; transition: all 0.3s;
+        }
+        .close-modal-btn:hover { background: var(--accent); color: #000; }
     </style>
 </head>
 <body>
 
     <div class="noise-overlay"></div>
     
-    <!-- METALLIC LIQUID SVG -->
     <svg id="metal-cursor-svg" xmlns="http://www.w3.org/2000/svg">
         <defs>
             <filter id="metalGoo">
@@ -187,7 +223,6 @@
         </g>
     </svg>
 
-    <!-- APPLE LIQUID GLASS CONTAINER -->
     <div id="glass-container">
         <div class="glass-orb" id="glass-main" style="width: 160px; height: 160px; transform: translate(-50%, -50%);"></div>
         <div class="glass-orb" id="glass-mid" style="width: 80px; height: 80px; transform: translate(-50%, -50%);"></div>
@@ -202,15 +237,15 @@
 
     <nav>
         <div class="syne font-bold text-white tracking-tight">DHRUV ARORA©</div>
-        <div class="flex gap-8">
+        <div class="flex gap-8 items-center">
             <a href="#about" data-cursor="link">About</a>
             <a href="#work" data-cursor="link">Work</a>
             <a href="#experience" data-cursor="link">Experience</a>
             <a href="#contact" data-cursor="link">Contact</a>
+            <a href="#" id="open-resume" class="resume-btn" data-cursor="link">Resume</a>
         </div>
     </nav>
 
-    <!-- HERO -->
     <section id="hero" class="container">
         <div class="hero-status" data-depth="0.2">Available for Work</div>
         <h1 class="hero-title" data-depth="0.1">DHRUV</h1>
@@ -226,14 +261,14 @@
         </div>
     </div>
 
-    <!-- ABOUT -->
     <section id="about" class="container">
         <div class="about-grid">
             <div class="about-label">(About Me)<br>01 / Identity</div>
             <div class="manifesto">
                 <span class="reveal-word">Bridging business intelligence</span> 
                 <span class="reveal-word">with cutting-edge AI technology.</span> 
-                <span class="reveal-word">Currently pursuing MBA Tech at NMIMS Mumbai,</span>
+                <span class="reveal-word">Pursuing an MBA Tech at NMIMS Mumbai—</span>
+                <span class="reveal-word">a hybrid of engineering and strategic management—</span>
                 <span class="reveal-word">I focus on AI & Agentic Systems—</span>
                 <span class="reveal-word">building intelligent agents capable of</span>
                 <span class="reveal-word">executing complex tasks autonomously,</span>
@@ -242,7 +277,6 @@
         </div>
     </section>
 
-    <!-- CAPABILITIES -->
     <section id="capabilities">
         <div class="container">
             <h2 class="section-header reveal-text">CAPABILITIES</h2>
@@ -266,16 +300,32 @@
         </div>
     </section>
 
-    <!-- WORK -->
     <section id="work">
         <div class="container">
             <h2 class="section-header reveal-text">SELECTED ARCHITECTURE</h2>
             
+            <div class="project" data-cursor="expand" data-img="https://images.unsplash.com/photo-1642790106117-e829e14a795f?q=80&w=800&auto=format&fit=crop">
+                <div class="project-name">Nexus Alpha</div>
+                <div class="project-meta">
+                    <div>AGENTIC TRADING SYSTEM</div>
+                    <div class="project-tags">PYTHON / LANGCHAIN / XAI / NEURAL EXEC</div>
+                    <div class="project-links">
+                        <a href="https://github.com" target="_blank">[ GitHub ]</a>
+                        <a href="https://linkedin.com" target="_blank">[ Architecture ]</a>
+                    </div>
+                </div>
+                <div class="project-preview"></div>
+            </div>
+
             <div class="project" data-cursor="expand" data-img="https://z-cdn-media.chatglm.cn/files/4d143ce3-498e-4a7a-96b1-13d769656d70.png?auth_key=1882216815-604f16ec3bc04564a265c41731c249c1-0-68a7e9870c8aa73e8ad800e606eade93">
                 <div class="project-name">MentAR</div>
                 <div class="project-meta">
                     <div>AR AI AVATAR TUTOR</div>
                     <div class="project-tags">UNITY / ARKIT / CONVERSATIONAL AI</div>
+                    <div class="project-links">
+                        <a href="https://github.com" target="_blank">[ GitHub ]</a>
+                        <a href="https://youtube.com" target="_blank">[ Demo ]</a>
+                    </div>
                 </div>
                 <div class="project-preview"></div>
             </div>
@@ -285,6 +335,10 @@
                 <div class="project-meta">
                     <div>VOICE AI RESTAURANT SYSTEM</div>
                     <div class="project-tags">REACT / FLASK / LANGCHAIN / GPT</div>
+                    <div class="project-links">
+                        <a href="https://github.com" target="_blank">[ GitHub ]</a>
+                        <a href="https://youtube.com" target="_blank">[ Demo ]</a>
+                    </div>
                 </div>
                 <div class="project-preview"></div>
             </div>
@@ -294,23 +348,28 @@
                 <div class="project-meta">
                     <div>NLP / DEEP LEARNING</div>
                     <div class="project-tags">PYTHON / CNN / TENSORFLOW / NLP</div>
+                    <div class="project-links">
+                        <a href="https://github.com" target="_blank">[ GitHub ]</a>
+                    </div>
                 </div>
                 <div class="project-preview"></div>
             </div>
 
-            <!-- UPDATED HAND GESTURE CONTROLLER IMAGE -->
             <div class="project" data-cursor="expand" data-img="https://z-cdn-media.chatglm.cn/files/a9259f21-f0e2-4466-84c9-f3ee0b0b281c.png?auth_key=1882321216-f5b2707e11dd4650affb519db92b0150-0-308fda57cd9bdd3e96dc021ddff33a07">
                 <div class="project-name">Hand Gesture Controller</div>
                 <div class="project-meta">
                     <div>COMPUTER VISION GAMING</div>
                     <div class="project-tags">PYTHON / OPENCV / GAMING</div>
+                    <div class="project-links">
+                        <a href="https://github.com" target="_blank">[ GitHub ]</a>
+                        <a href="https://youtube.com" target="_blank">[ Demo ]</a>
+                    </div>
                 </div>
                 <div class="project-preview"></div>
             </div>
         </div>
     </section>
 
-    <!-- EXPERIENCE -->
     <section id="experience">
         <div class="container">
             <h2 class="section-header reveal-text">EXPERIENCE & AWARDS</h2>
@@ -338,15 +397,142 @@
         </div>
     </section>
 
-    <!-- CONTACT -->
     <section id="contact">
         <h2 class="contact-title">LET'S TALK</h2>
         <button class="magnetic-btn" data-cursor="expand">Get in Touch</button>
+        <div class="socials">
+            <a href="mailto:whizdhruv@gmail.com" data-cursor="link">Email</a>
+            <a href="https://linkedin.com/in/dhruv-arora-bb42602a9" target="_blank" data-cursor="link">LinkedIn</a>
+            <a href="https://github.com" target="_blank" data-cursor="link">GitHub</a>
+        </div>
         <div class="footer-bottom">
-            <div>© 2024 DHRUV ARORA</div>
+            <div>© 2026 DHRUV ARORA</div>
             <div>BUILT IN THE FUTURE</div>
         </div>
     </section>
+
+    <!-- RESUME MODAL -->
+    <div id="resume-modal">
+        <button class="close-modal-btn" id="close-resume">Close [X]</button>
+        <div class="resume-paper">
+            <h1>DHRUV ARORA</h1>
+            <p style="font-size: 1.2rem; color: #555; font-family: 'Syne', sans-serif;">Aspiring AI & Data Analyst</p>
+            <div class="contact-info">
+                <span>Mumbai, India</span>
+                <span>8104620845</span>
+                <span>whizdhruv@gmail.com</span>
+                <span>linkedin.com/in/dhruv-arora-bb42602a9</span>
+                <span>dhruvarora12.netlify.app</span>
+            </div>
+
+            <h2>Professional Summary</h2>
+            <p>Aspiring AI & Data Analyst pursuing an MBA Tech in Artificial Intelligence & Business Intelligence with hands-on experience in developing agentic AI systems, ERP-integrated analytics, and intelligent automation workflows. Skilled in Python, Tableau, REST APIs, and data-driven problem solving with practical exposure to full-stack AI solution development and business intelligence reporting.</p>
+
+            <h2>Skills</h2>
+            <p><strong>Technical:</strong> Python, SQL, C/C++/C#, Java, Machine Learning, Deep Learning & Generative AI, Agentic AI, REST APIs, Git/GitHub, DevOps & Deployment Pipelines, Full-Stack Development, RPA, ERP Integration</p>
+            <p><strong>Tools & Platforms:</strong> Power BI, Tableau, Business Intelligence, ARKit & Unity Development, Game Development, Intelligent Automation, Data Analytics</p>
+
+            <h2>Experience</h2>
+            <div class="exp-item">
+                <p class="exp-title">Data Solutions & AI Engineer Intern | May 2025 – Sep 2025</p>
+                <p>Bizwy Information Management India Pvt. Ltd., Hyderabad, India</p>
+                <ul>
+                    <li>Developed 3+ agentic AI workflows and ERP-integrated automation systems for intelligent analytics and business process optimization.</li>
+                    <li>Built REST APIs, AI interfaces, and backend automation pipelines, supporting real-time intelligent workflows.</li>
+                    <li>Designed 5+ Tableau and Power BI dashboards while integrating enterprise datasets to improve reporting and analytical efficiency.</li>
+                </ul>
+            </div>
+            <div class="exp-item">
+                <p class="exp-title">Game Development Intern | May 2024 – Jul 2024</p>
+                <p>Being Ambitious, Mumbai, India</p>
+                <ul>
+                    <li>Developed and optimized 5+ interactive game prototypes using Unity and C#, including Agar.io, Paper.io, and Hole.io clones.</li>
+                    <li>Implemented gameplay mechanics, UI systems, collision handling, and real-time player interaction features.</li>
+                    <li>Improved game performance and debugging efficiency through iterative testing and object-oriented development practices.</li>
+                </ul>
+            </div>
+            <div class="exp-item">
+                <p class="exp-title">Aeronautics & Simulation Intern | Apr 2024 – May 2024</p>
+                <p>DK Aviation, Mumbai, India</p>
+                <ul>
+                    <li>Assisted in 8+ aerodynamics and flight simulation sessions involving aircraft controls, navigation systems, and piloting principles.</li>
+                    <li>Contributed to RC aircraft and glider development, aerodynamic experiments, and aviation workshop demonstrations.</li>
+                    <li>Gained hands-on experience with flight simulators, aviation software tools, and applied aerodynamics concepts.</li>
+                </ul>
+            </div>
+
+            <h2>Education</h2>
+            <div class="exp-item">
+                <p class="exp-title">MBA Tech – Artificial Intelligence & Business Intelligence | 2026</p>
+                <p>NMIMS Mukesh Patel School of Technology Management and Engineering, Mumbai, India</p>
+            </div>
+            <div class="exp-item">
+                <p class="exp-title">International Baccalaureate Diploma Programme (IBDP) – Science & Business Studies | 2021</p>
+                <p>Podar International School, Mumbai, India</p>
+            </div>
+
+            <h2>Projects</h2>
+            <div class="exp-item">
+                <p class="exp-title">MENTAR: AI-Driven Augmented Reality Study Companion | ARKit, Unity, AI</p>
+                <ul>
+                    <li>Developed an AR-powered learning assistant using Unity, ARKit, and AI for personalized study experiences with voice-activated quizzes, 3D avatars, and interactive educational content.</li>
+                    <li>Integrated immersive AR visualization and adaptive AI-driven assistance to enhance student engagement and learning workflows.</li>
+                </ul>
+            </div>
+            <div class="exp-item">
+                <p class="exp-title">Speech Emotion Recognition System | Deep Learning, NLP, Python</p>
+                <ul>
+                    <li>Trained a CNN-based speech emotion recognition model using 500+ audio samples to classify emotions from voice inputs with high prediction accuracy.</li>
+                    <li>Applied NLP and audio feature extraction techniques for real-time emotion analysis and intelligent speech processing.</li>
+                </ul>
+            </div>
+            <div class="exp-item">
+                <p class="exp-title">Agentic AI Analytics System | Python, REST APIs, Tableau</p>
+                <ul>
+                    <li>Developed AI-driven workflows capable of processing natural language queries and executing ERP-integrated analytical tasks.</li>
+                    <li>Built REST APIs and intelligent automation pipelines while integrating Tableau dashboards for real-time business intelligence reporting.</li>
+                </ul>
+            </div>
+            <div class="exp-item">
+                <p class="exp-title">AI-Powered Algorithmic Trading System | Python, APIs, Machine Learning</p>
+                <ul>
+                    <li>Developed an AI-driven algorithmic trading system for real-time market analysis, automated trade signal generation, and strategy back testing using financial APIs and machine learning techniques.</li>
+                </ul>
+            </div>
+            <div class="exp-item">
+                <p class="exp-title">Google “Add Me” Image Stitching Model | Computer Vision, OpenCV</p>
+                <ul>
+                    <li>Developed a SIFT-based computer vision system for seamless image stitching, feature matching, and photorealistic image blending.</li>
+                </ul>
+            </div>
+
+            <h2>Certifications</h2>
+            <ul>
+                <li>ChatGPT Prompt Engineering for Developers – OpenAI, Jan 2026</li>
+                <li>GRAD 2.0 – Galderma | Semi-Finalist (Case Study Competition), Jan 2026</li>
+                <li>Ethical Hacking & Cyber Security – IIT Bombay, Jan 2026</li>
+                <li>Financial Markets, Investing & Trading – Udemy, Jan 2026</li>
+                <li>Robotics Boot Camp – Sirena Technologies, Jan 2026</li>
+            </ul>
+
+            <h2>Key Achievements</h2>
+            <ul>
+                <li>Represented India at BOEING's 2019 FIRST Robotics Finals; won NASA's Engineering & Inspiration Award for technical innovation and community outreach.</li>
+                <li>1st Runner-Up at Atharva College of Engineering's Projectathon – National Project Competition.</li>
+                <li>Conducted Robotics outreach across Mumbai colleges, educating students on STEM principles and FIRST Robotics Competition.</li>
+                <li>Sub-Head at Taqneeq, the official Tech Fest of NMIMS.</li>
+            </ul>
+
+            <h2>Publications</h2>
+            <ul>
+                <li>Sustainable Fashion Adoption Among Gen Z in Urban India. Ecology, Environment & Conservation, Oct 2025.</li>
+                <li>GoSolo – A Freelancer Portal. ISTE Journal, Feb 2024.</li>
+            </ul>
+
+            <h2>Languages</h2>
+            <p>English, Hindi, French, Spanish</p>
+        </div>
+    </div>
 
     <script>
         // 1. Smooth Scroll
@@ -375,7 +561,8 @@
             gsap.from('.hero-status', { opacity: 0, scale: 0.8, duration: 1, delay: 1, ease: "power2.out" });
             
             gsap.utils.toArray('.reveal-word').forEach((word, i) => {
-                gsap.to(word, { color: '#e0e0e0', duration: 0.1, scrollTrigger: { trigger: word, start: "top 85%" }, delay: i * 0.05 });
+                gsap.to(word, { color: '#e0e0e0', duration: 1.5, ease: "power2.out", scrollTrigger: { trigger: word, start: "top 85%" }, delay: i * 0.08 });
+                gsap.from(word, { opacity: 0.1, duration: 1.5, ease: "power2.out", scrollTrigger: { trigger: word, start: "top 85%" }, delay: i * 0.08 });
             });
 
             gsap.utils.toArray('.reveal-text').forEach(el => {
@@ -396,7 +583,7 @@
             });
         });
 
-        // 4. HYBRID CURSOR ENGINE (Metal to Glass)
+        // 4. HYBRID CURSOR ENGINE
         const metalSvg = document.getElementById('metal-cursor-svg');
         const metalGroup = document.getElementById('metalGroup');
         const mainBlob = document.getElementById('mainBlob');
@@ -404,7 +591,6 @@
         const glassContainer = document.getElementById('glass-container');
         const label = document.getElementById('mercuryLabel');
 
-        // Metallic Trail Setup
         const trailCount = 14;
         const trailCircles = [];
         const svgNS = "http://www.w3.org/2000/svg";
@@ -416,7 +602,6 @@
             trailCircles.push({ el: c, x: -100, y: -100 });
         }
 
-        // Liquid Glass Trail Setup
         const glassMain = document.getElementById('glass-main');
         const glassMid = document.getElementById('glass-mid');
         const glassTrail = document.getElementById('glass-trail');
@@ -451,7 +636,6 @@
             prevX = mouseX; prevY = mouseY;
             const speed = Math.sqrt(vx*vx + vy*vy);
 
-            // Update Metallic Slow Trail (High Lag)
             let leaderX = mouseX, leaderY = mouseY;
             trailCircles.forEach((t, i) => {
                 t.x += (leaderX - t.x) * 0.06;
@@ -464,7 +648,6 @@
                 leaderX = t.x; leaderY = t.y;
             });
 
-            // Main Metallic Blob Reactivity
             let targetRx = 16, targetRy = 16;
             if(isHoveringExpand) { targetRx = 0; targetRy = 0; } 
             else if(isHoveringLink) { targetRx = 60; targetRy = 8; }
@@ -492,7 +675,6 @@
             innerBlob.setAttribute('rx', currRx * 0.3);
             innerBlob.setAttribute('ry', currRy * 0.3);
 
-            // Update Liquid Glass Trail (Chained Lag)
             let glassLeaderX = mouseX, glassLeaderY = mouseY;
             glassOrbs.forEach(g => {
                 g.x += (glassLeaderX - g.x) * g.lerp;
@@ -505,7 +687,6 @@
         }
         updateCursor();
 
-        // Hover Interactions
         document.querySelectorAll('[data-cursor]').forEach(el => {
             const type = el.dataset.cursor;
             
@@ -514,8 +695,6 @@
                     isHoveringExpand = true;
                     label.textContent = 'VIEW';
                     gsap.to(label, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" });
-                    
-                    // Transition to Glass
                     gsap.to(metalSvg, { opacity: 0, duration: 0.3 });
                     gsap.to(glassContainer, { opacity: 1, duration: 0.3 });
                 } else if (type === 'link') {
@@ -527,14 +706,11 @@
                 isHoveringExpand = false;
                 isHoveringLink = false;
                 gsap.to(label, { opacity: 0, scale: 0.8, duration: 0.2, ease: "power2.in" });
-                
-                // Revert to Metal
                 gsap.to(metalSvg, { opacity: 1, duration: 0.3 });
                 gsap.to(glassContainer, { opacity: 0, duration: 0.3 });
             });
         });
 
-        // Project Image Follow
         document.querySelectorAll('.project').forEach(project => {
             const preview = project.querySelector('.project-preview');
             if(project.dataset.img) preview.style.backgroundImage = `url(${project.dataset.img})`;
@@ -545,7 +721,6 @@
             });
         });
 
-        // 5. Magnetic Button
         const magneticBtn = document.querySelector('.magnetic-btn');
         magneticBtn.addEventListener('mousemove', (e) => {
             const rect = magneticBtn.getBoundingClientRect();
@@ -553,7 +728,6 @@
         });
         magneticBtn.addEventListener('mouseleave', () => gsap.to(magneticBtn, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1, 0.3)" }));
 
-        // 6. 3D Tilt Physics
         document.querySelectorAll('.hover-tilt').forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
@@ -568,13 +742,28 @@
             card.addEventListener('mouseleave', () => gsap.to(card, { rotateX: 0, rotateY: 0, duration: 0.6, ease: "elastic.out(1, 0.75)" }));
         });
 
-        // 7. Magnetic Nav Links
         document.querySelectorAll('nav a').forEach(link => {
             link.addEventListener('mousemove', (e) => {
                 const rect = link.getBoundingClientRect();
                 gsap.to(link, { x: (e.clientX - rect.left - rect.width / 2) * 0.5, y: (e.clientY - rect.top - rect.height / 2) * 0.5, duration: 0.3 });
             });
             link.addEventListener('mouseleave', () => gsap.to(link, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1, 0.3)" }));
+        });
+
+        // 8. RESUME MODAL LOGIC
+        const resumeModal = document.getElementById('resume-modal');
+        const openResume = document.getElementById('open-resume');
+        const closeResume = document.getElementById('close-resume');
+
+        openResume.addEventListener('click', (e) => {
+            e.preventDefault();
+            resumeModal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent background scroll
+        });
+
+        closeResume.addEventListener('click', () => {
+            resumeModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
         });
     </script>
 </body>
