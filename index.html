@@ -3,7 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO & Meta Tags -->
     <title>Dhruv Arora — AI & Systems Architect</title>
+    <meta name="description" content="Architecting the future of AI, Spatial Computing, and Autonomous Systems. Bridging business intelligence with cutting-edge tech.">
+    
+    <!-- Custom Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%2300ff9d'/></svg>" />
+    
+    <!-- OpenGraph (OG) Tags -->
+    <meta property="og:title" content="Dhruv Arora — AI & Systems Architect" />
+    <meta property="og:description" content="Architecting the future of AI, Spatial Computing, and Autonomous Systems. Bridging business intelligence with cutting-edge tech." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dhruvarora12.netlify.app" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop" />
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -50,59 +63,30 @@
         }
 
         /* METALLIC SLIME SVG CURSOR */
-        #metal-cursor-svg {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            pointer-events: none; z-index: 10002;
-            mix-blend-mode: difference; 
-            transition: opacity 0.3s ease;
-        }
-        
-        /* APPLE LIQUID GLASS CURSOR */
-        #glass-container {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            pointer-events: none; z-index: 10003;
-            opacity: 0; transition: opacity 0.3s ease;
-        }
-        .glass-orb {
-            position: absolute; border-radius: 50%;
-            background: rgba(255, 255, 255, 0.01); 
-            border: 1px solid rgba(255, 255, 255, 0.2); 
-            box-shadow: 
-                inset 0 0 20px rgba(255,255,255,0.1), 
-                inset 0 0 2px rgba(255,255,255,0.8),
-                0 5px 15px rgba(0,0,0,0.2);
-            backdrop-filter: blur(1px) brightness(1.2) contrast(3) saturate(2.5);
-            -webkit-backdrop-filter: blur(1px) brightness(1.2) contrast(3) saturate(2.5);
-            will-change: transform, width, height;
-            pointer-events: none;
-        }
-
-        .mercury-label {
-            position: fixed; top: 0; left: 0;
-            font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700;
-            color: #000; background: rgba(255,255,255,0.9); padding: 4px 8px; border-radius: 2px;
-            pointer-events: none; z-index: 10004; transform: translate(-50%, -50%);
-            opacity: 0; transition: opacity 0.2s; text-transform: uppercase;
-        }
+        #metal-cursor-svg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 10002; display: block; mix-blend-mode: difference; transition: opacity 0.3s ease; }
+        #glass-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 10003; display: block; opacity: 0; transition: opacity 0.3s ease; }
+        .glass-orb { position: absolute; border-radius: 50%; background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: inset 0 0 20px rgba(255,255,255,0.1), inset 0 0 2px rgba(255,255,255,0.8), 0 5px 15px rgba(0,0,0,0.2); backdrop-filter: blur(1px) brightness(1.2) contrast(3) saturate(2.5); -webkit-backdrop-filter: blur(1px) brightness(1.2) contrast(3) saturate(2.5); will-change: transform, width, height; pointer-events: none; }
+        .mercury-label { display: block; position: fixed; top: 0; left: 0; font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; color: #000; background: rgba(255,255,255,0.9); padding: 4px 8px; border-radius: 2px; pointer-events: none; z-index: 10004; transform: translate(-50%, -50%); opacity: 0; transition: opacity 0.2s; text-transform: uppercase; }
 
         /* Loader */
-        #loader {
-            position: fixed; inset: 0; background: var(--bg); z-index: 10005;
-            display: flex; justify-content: center; align-items: center; flex-direction: column;
-        }
+        #loader { position: fixed; inset: 0; background: var(--bg); z-index: 10005; display: flex; justify-content: center; align-items: center; flex-direction: column; }
         .loader-text { font-family: 'Syne', sans-serif; font-size: 8vw; font-weight: 800; color: var(--text); }
 
         .container { width: 90%; max-width: 1400px; margin: 0 auto; }
 
-        /* Nav */
-        nav {
-            position: fixed; top: 0; width: 100%; padding: 2rem 5%;
-            display: flex; justify-content: space-between; align-items: center; z-index: 100; mix-blend-mode: difference;
-        }
-        nav a { color: #fff; text-decoration: none; text-transform: uppercase; font-size: 12px; letter-spacing: 2px; position: relative; display: inline-block; }
+        /* Nav & Guided Cues */
+        nav { position: fixed; top: 0; width: 100%; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; z-index: 100; mix-blend-mode: difference; backdrop-filter: blur(5px); }
+        nav a { color: #fff; text-decoration: none; text-transform: uppercase; font-size: 12px; letter-spacing: 2px; position: relative; display: inline-block; transition: color 0.3s; }
         nav a::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -4px; left: 0; background: #fff; transition: width 0.3s; }
-        nav a:hover::after { width: 100%; }
+        nav a:hover::after, nav a.active::after { width: 100%; }
+        nav a.active { color: var(--accent); }
         nav .resume-btn { border: 1px solid #fff; padding: 6px 12px; border-radius: 2px; }
+        nav .resume-btn.active { border-color: var(--accent); }
+
+        .section-tag { display: block; font-size: 12px; color: #444; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 3px; }
+        
+        .scroll-cue { position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%); font-size: 10px; color: #555; text-transform: uppercase; letter-spacing: 2px; display: flex; flex-direction: column; align-items: center; gap: 8px; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);} 40% {transform: translateX(-50%) translateY(-10px);} 60% {transform: translateX(-50%) translateY(-5px);} }
 
         /* Hero */
         #hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; position: relative; perspective: 1000px; }
@@ -119,15 +103,21 @@
         @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
         /* About Section */
-        #about { padding: 15rem 5%; position: relative; }
+        #about { padding: 15rem 5% 10rem; position: relative; }
         .about-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; }
         .about-label { font-size: 12px; text-transform: uppercase; color: #666; letter-spacing: 2px; }
         .manifesto { font-family: 'Syne', sans-serif; font-size: 2.5vw; line-height: 1.2; font-weight: 400; }
         .manifesto span { color: #333; transition: color 0.3s; }
         .manifesto span.active { color: var(--accent); }
 
+        /* Metrics Section */
+        #metrics { padding: 5rem 5%; border-top: 1px solid #222; border-bottom: 1px solid #222; background: #080808; }
+        .stats-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2rem; text-align: center; }
+        .stat-num { font-family: 'Syne', sans-serif; font-size: 4vw; font-weight: 800; color: var(--accent); margin-bottom: 0.5rem; }
+        .stat-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #888; }
+
         /* Capabilities */
-        #capabilities { padding: 10rem 5%; border-top: 1px solid #222; }
+        #capabilities { padding: 12rem 5%; border-top: 1px solid #222; }
         .cap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem; }
         .cap-card { padding: 2rem; border: 1px solid #222; transition: background 0.3s, border 0.3s; transform-style: preserve-3d; }
         .cap-card:hover { background: #111; border-color: var(--accent); }
@@ -135,21 +125,23 @@
         .cap-title { font-family: 'Syne', sans-serif; font-size: 24px; margin-bottom: 1rem; transform: translateZ(60px); }
 
         /* WORK SECTION */
-        #work { padding: 10rem 5%; }
+        #work { padding: 12rem 5%; }
         .section-header { font-family: 'Syne', sans-serif; font-size: 4vw; margin-bottom: 4rem; color: #333; }
-        .project { display: flex; justify-content: space-between; align-items: center; padding: 3rem 0; border-bottom: 1px solid #222; position: relative; }
-        .project-name { font-family: 'Syne', sans-serif; font-size: 4vw; font-weight: 600; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s; z-index: 2; }
+        .project { display: flex; justify-content: space-between; align-items: center; padding: 3rem 0; border-bottom: 1px solid #222; position: relative; cursor: pointer; }
+        .project-name { font-family: 'Syne', sans-serif; font-size: 4vw; font-weight: 600; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s; z-index: 2; display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+        .project-subtitle { font-family: 'Space Mono', monospace; font-size: 1rem; font-weight: 400; color: #555; text-transform: uppercase; letter-spacing: 1px; }
         .project:hover .project-name { transform: translateX(50px); color: var(--accent); }
+        .project:hover .project-subtitle { color: #aaa; }
         .project-meta { font-size: 12px; text-transform: uppercase; color: #666; z-index: 2; text-align: right; display: flex; flex-direction: column; align-items: flex-end; }
         .project-tags { margin-top: 0.5rem; color: var(--accent); opacity: 0.7; }
-        .project-links { margin-top: 1rem; display: flex; gap: 1rem; }
+        .project-links { margin-top: 1rem; display: flex; gap: 1rem; z-index: 5; }
         .project-links a { font-size: 10px; color: #888; border: 1px solid #333; padding: 4px 8px; text-decoration: none; transition: all 0.3s; display: flex; align-items: center; gap: 4px; }
         .project-links a:hover { color: var(--accent); border-color: var(--accent); }
         .project-preview { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.8); width: 500px; height: 300px; background-size: cover; background-position: center; opacity: 0; pointer-events: none; transition: opacity 0.3s, transform 0.3s; z-index: 1; filter: grayscale(20%) contrast(1.1); }
         .project:hover .project-preview { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 
         /* Experience Timeline */
-        #experience { padding: 10rem 5%; border-top: 1px solid #222; }
+        #experience { padding: 12rem 5%; border-top: 1px solid #222; }
         .timeline-item { display: grid; grid-template-columns: 1fr 3fr; gap: 4rem; padding: 3rem 0; border-bottom: 1px solid #1a1a1a; transform-style: preserve-3d; transition: background 0.3s; }
         .timeline-item:hover { background: #0a0a0a; }
         .timeline-year { font-family: 'Syne', sans-serif; font-size: 2rem; color: #444; transition: color 0.3s; transform: translateZ(30px); }
@@ -160,41 +152,65 @@
         /* Footer/Contact */
         #contact { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 5rem; position: relative; }
         .contact-title { font-family: 'Syne', sans-serif; font-size: 12vw; font-weight: 800; mix-blend-mode: difference; color: #fff; }
-        .magnetic-btn { position: relative; padding: 2rem 4rem; border: 1px solid #333; background: transparent; color: #fff; font-family: 'Syne', sans-serif; font-size: 2rem; text-transform: uppercase; cursor: none; transition: background 0.3s, color 0.3s; margin-top: 4rem; }
+        .magnetic-btn { position: relative; padding: 2rem 4rem; border: 1px solid #333; background: transparent; color: #fff; font-family: 'Syne', sans-serif; font-size: 2rem; text-transform: uppercase; cursor: pointer; transition: background 0.3s, color 0.3s; margin-top: 4rem; }
         .magnetic-btn:hover { background: var(--accent); color: #000; border-color: var(--accent); }
         .socials { margin-top: 3rem; display: flex; gap: 2rem; }
         .socials a { color: #888; text-decoration: none; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s; }
         .socials a:hover { color: var(--accent); }
         .footer-bottom { position: absolute; bottom: 2rem; width: 90%; display: flex; justify-content: space-between; font-size: 12px; color: #555; text-transform: uppercase; letter-spacing: 2px; }
 
-        /* RESUME MODAL */
-        #resume-modal {
-            position: fixed; inset: 0; z-index: 10010;
-            background: rgba(0,0,0,0.85); backdrop-filter: blur(10px);
-            display: none; justify-content: center; align-items: flex-start;
-            padding: 5vh 5vw; overflow-y: auto;
-        }
-        .resume-paper {
-            background: #fff; color: #111; width: 100%; max-width: 800px;
-            padding: 4rem; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            font-family: 'Space Mono', monospace; position: relative;
-            margin-bottom: 5vh;
-        }
-        .resume-paper h1 { font-family: 'Syne', sans-serif; font-size: 3rem; margin-bottom: 0.5rem; color: #000; }
-        .resume-paper h2 { font-family: 'Syne', sans-serif; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; border-bottom: 2px solid #111; padding-bottom: 0.5rem; margin-top: 2rem; margin-bottom: 1rem; }
-        .resume-paper p { font-size: 0.9rem; line-height: 1.6; color: #333; margin-bottom: 1rem; }
-        .resume-paper ul { padding-left: 1.5rem; margin-bottom: 1rem; }
-        .resume-paper li { font-size: 0.9rem; line-height: 1.6; color: #333; margin-bottom: 0.5rem; }
-        .resume-paper .contact-info { font-size: 0.8rem; color: #555; margin-bottom: 2rem; display: flex; flex-wrap: wrap; gap: 1rem; }
-        .resume-paper .exp-item { margin-bottom: 1.5rem; }
-        .resume-paper .exp-title { font-weight: 700; font-family: 'Syne', sans-serif; }
-        .close-modal-btn {
-            position: fixed; top: 20px; right: 20px; z-index: 10011;
-            background: #fff; color: #000; border: none; padding: 10px 20px;
-            font-family: 'Syne', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
-            cursor: pointer; transition: all 0.3s;
-        }
+        /* MODALS */
+        .modal-overlay { position: fixed; inset: 0; z-index: 10010; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); display: none; overflow-y: auto; padding: 5vh 0; }
+        .modal-paper { background: #fff; color: #111; width: 90%; max-width: 800px; margin: 0 auto; padding: 4rem; box-shadow: 0 20px 50px rgba(0,0,0,0.5); font-family: 'Space Mono', monospace; position: relative; min-height: 90vh; }
+        .close-modal-btn { position: fixed; top: 20px; right: 20px; z-index: 10011; background: #fff; color: #000; border: none; padding: 10px 20px; font-family: 'Syne', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: all 0.3s; }
         .close-modal-btn:hover { background: var(--accent); color: #000; }
+        .resume-header { text-align: center; margin-bottom: 2rem; }
+        .modal-paper h1 { font-family: 'Syne', sans-serif; font-size: 3rem; margin-bottom: 0.5rem; color: #000; }
+        .modal-paper h2 { font-family: 'Syne', sans-serif; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; border-bottom: 2px solid #111; padding-bottom: 0.5rem; margin-top: 2rem; margin-bottom: 1rem; }
+        .modal-paper p { font-size: 0.9rem; line-height: 1.6; color: #333; margin-bottom: 1rem; }
+        .modal-paper ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+        .modal-paper li { font-size: 0.9rem; line-height: 1.6; color: #333; margin-bottom: 0.5rem; }
+        .modal-paper .exp-item { margin-bottom: 1.5rem; }
+        .modal-paper .exp-title { font-weight: 700; font-family: 'Syne', sans-serif; }
+        .case-study-img { width: 100%; height: 300px; object-fit: cover; margin-bottom: 2rem; border: 1px solid #ccc; }
+        .arch-box { background: #f4f4f4; border-left: 4px solid var(--accent); padding: 1rem; margin: 1.5rem 0; }
+        .arch-box strong { color: #000; }
+        .contact-form { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group label { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 0.5rem; color: #555; }
+        .form-group input, .form-group textarea { padding: 1rem; border: 1px solid #ccc; font-family: 'Space Mono', monospace; font-size: 1rem; outline: none; transition: border 0.3s; }
+        .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
+        .submit-btn { background: #000; color: #fff; padding: 1.5rem; border: none; font-family: 'Syne', sans-serif; font-size: 1.2rem; text-transform: uppercase; cursor: pointer; transition: background 0.3s; margin-top: 1rem; }
+        .submit-btn:hover { background: var(--accent); color: #000; }
+
+        /* MOBILE TOUCH FALLBACK */
+        @media (hover: none) and (pointer: coarse) {
+            html, body { cursor: auto; }
+            #metal-cursor-svg, #glass-container, .mercury-label { display: none !important; }
+            .project:hover .project-name { transform: none; color: inherit; }
+            .project:hover .project-preview { display: none; }
+            .hero-title { font-size: 20vw; }
+            .hero-title.outline { margin-left: 5%; }
+            .hero-subtitle { position: relative; bottom: auto; left: auto; margin-top: 2rem; text-align: left; }
+            .hero-status { top: 10%; right: 5%; font-size: 10px; }
+            .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .manifesto { font-size: 5vw; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 3rem; }
+            .stat-num { font-size: 8vw; }
+            .cap-grid { grid-template-columns: 1fr; }
+            .project { flex-direction: column; align-items: flex-start; gap: 1rem; }
+            .project-name { font-size: 8vw; flex-direction: column; gap: 0.5rem; }
+            .project-subtitle { font-size: 0.8rem; }
+            .project-meta { text-align: left; align-items: flex-start; }
+            .section-header { font-size: 8vw; }
+            .timeline-item { grid-template-columns: 1fr; gap: 1rem; }
+            .contact-title { font-size: 18vw; }
+            .magnetic-btn { font-size: 1.2rem; padding: 1.5rem 3rem; }
+            nav { padding: 1rem 5%; }
+            nav .flex { gap: 1rem; flex-wrap: wrap; justify-content: flex-end; }
+            nav a { font-size: 10px; }
+            .modal-paper { padding: 2rem; }
+        }
     </style>
 </head>
 <body>
@@ -203,17 +219,10 @@
     
     <svg id="metal-cursor-svg" xmlns="http://www.w3.org/2000/svg">
         <defs>
-            <filter id="metalGoo">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="7" result="blur" />
-                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 28 -14" result="goo" />
-            </filter>
+            <filter id="metalGoo"><feGaussianBlur in="SourceGraphic" stdDeviation="7" result="blur" /><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 28 -14" result="goo" /></filter>
             <radialGradient id="chromeGrad" cx="30%" cy="30%" r="70%">
-                <stop offset="0%" stop-color="#ffffff" />
-                <stop offset="15%" stop-color="#f0f0f0" />
-                <stop offset="40%" stop-color="#888888" />
-                <stop offset="70%" stop-color="#222222" />
-                <stop offset="95%" stop-color="#111111" />
-                <stop offset="100%" stop-color="#666666" />
+                <stop offset="0%" stop-color="#ffffff" /><stop offset="15%" stop-color="#f0f0f0" /><stop offset="40%" stop-color="#888888" />
+                <stop offset="70%" stop-color="#222222" /><stop offset="95%" stop-color="#111111" /><stop offset="100%" stop-color="#666666" />
             </radialGradient>
         </defs>
         <g filter="url(#metalGoo)" id="metalGroup"></g>
@@ -231,14 +240,13 @@
 
     <div class="mercury-label" id="mercuryLabel">View</div>
 
-    <div id="loader">
-        <div class="loader-text">0</div>
-    </div>
+    <div id="loader"><div class="loader-text">0</div></div>
 
     <nav>
         <div class="syne font-bold text-white tracking-tight">DHRUV ARORA©</div>
         <div class="flex gap-8 items-center">
             <a href="#about" data-cursor="link">About</a>
+            <a href="#metrics" data-cursor="link">Metrics</a>
             <a href="#work" data-cursor="link">Work</a>
             <a href="#experience" data-cursor="link">Experience</a>
             <a href="#contact" data-cursor="link">Contact</a>
@@ -253,6 +261,7 @@
         <div class="hero-subtitle" data-depth="0.5">
             Architecting the future of AI, Spatial Computing, and Autonomous Systems. Bridging business intelligence with cutting-edge tech.
         </div>
+        <div class="scroll-cue">Scroll to Explore ↓</div>
     </section>
 
     <div class="marquee">
@@ -262,8 +271,9 @@
     </div>
 
     <section id="about" class="container">
+        <div class="section-tag">// 01. IDENTITY</div>
         <div class="about-grid">
-            <div class="about-label">(About Me)<br>01 / Identity</div>
+            <div class="about-label">(About Me)</div>
             <div class="manifesto">
                 <span class="reveal-word">Bridging business intelligence</span> 
                 <span class="reveal-word">with cutting-edge AI technology.</span> 
@@ -277,9 +287,24 @@
         </div>
     </section>
 
+    <!-- NEW: PROOF METRICS SECTION -->
+    <section id="metrics">
+        <div class="container">
+            <div class="section-tag">// 02. PROOF METRICS</div>
+            <div class="stats-grid">
+                <div class="stat-item"><div class="stat-num" data-target="10">0</div><div class="stat-label">Projects Built</div></div>
+                <div class="stat-item"><div class="stat-num" data-target="3">0</div><div class="stat-label">Agentic Workflows</div></div>
+                <div class="stat-item"><div class="stat-num" data-target="5">0</div><div class="stat-label">BI Dashboards</div></div>
+                <div class="stat-item"><div class="stat-num" data-target="2">0</div><div class="stat-label">Publications</div></div>
+                <div class="stat-item"><div class="stat-num" data-target="1">0</div><div class="stat-label">NASA Award</div></div>
+            </div>
+        </div>
+    </section>
+
     <section id="capabilities">
         <div class="container">
-            <h2 class="section-header reveal-text">CAPABILITIES</h2>
+            <div class="section-tag">// 03. CAPABILITIES</div>
+            <h2 class="section-header reveal-text">CORE STACK</h2>
             <div class="cap-grid">
                 <div class="cap-card hover-tilt" data-cursor="tilt">
                     <div class="cap-num">01</div>
@@ -302,13 +327,14 @@
 
     <section id="work">
         <div class="container">
-            <h2 class="section-header reveal-text">SELECTED ARCHITECTURE</h2>
+            <div class="section-tag">// 04. SELECTED ARCHITECTURE</div>
+            <h2 class="section-header reveal-text">FEATURED WORK</h2>
             
-            <div class="project" data-cursor="expand" data-img="https://images.unsplash.com/photo-1642790106117-e829e14a795f?q=80&w=800&auto=format&fit=crop">
-                <div class="project-name">Nexus Alpha</div>
+            <div class="project" data-cursor="expand" data-study="nexus" data-img="https://images.unsplash.com/photo-1642790106117-e829e14a795f?q=80&w=800&auto=format&fit=crop">
+                <div class="project-name">Nexus Alpha <span class="project-subtitle">— Agentic Trading System</span></div>
                 <div class="project-meta">
-                    <div>AGENTIC TRADING SYSTEM</div>
-                    <div class="project-tags">PYTHON / LANGCHAIN / XAI / NEURAL EXEC</div>
+                    <div>FINTECH / AI</div>
+                    <div class="project-tags">PYTHON / LANGCHAIN / XAI</div>
                     <div class="project-links">
                         <a href="https://github.com" target="_blank">[ GitHub ]</a>
                         <a href="https://linkedin.com" target="_blank">[ Architecture ]</a>
@@ -317,10 +343,10 @@
                 <div class="project-preview"></div>
             </div>
 
-            <div class="project" data-cursor="expand" data-img="https://z-cdn-media.chatglm.cn/files/4d143ce3-498e-4a7a-96b1-13d769656d70.png?auth_key=1882216815-604f16ec3bc04564a265c41731c249c1-0-68a7e9870c8aa73e8ad800e606eade93">
-                <div class="project-name">MentAR</div>
+            <div class="project" data-cursor="expand" data-study="mentar" data-img="https://z-cdn-media.chatglm.cn/files/4d143ce3-498e-4a7a-96b1-13d769656d70.png?auth_key=1882216815-604f16ec3bc04564a265c41731c249c1-0-68a7e9870c8aa73e8ad800e606eade93">
+                <div class="project-name">MentAR <span class="project-subtitle">— AR AI Study Companion</span></div>
                 <div class="project-meta">
-                    <div>AR AI AVATAR TUTOR</div>
+                    <div>EDTECH / SPATIAL</div>
                     <div class="project-tags">UNITY / ARKIT / CONVERSATIONAL AI</div>
                     <div class="project-links">
                         <a href="https://github.com" target="_blank">[ GitHub ]</a>
@@ -330,10 +356,10 @@
                 <div class="project-preview"></div>
             </div>
 
-            <div class="project" data-cursor="expand" data-img="https://z-cdn-media.chatglm.cn/files/05f199ae-aace-4cfc-b57b-cb26c4c4a87a.png?auth_key=1882216815-f84225ea34dd4385b55aecd084a67e04-0-86ec0cdc77ac2e624ea59f820f80f666">
-                <div class="project-name">Neo-Bistro Voice Agent</div>
+            <div class="project" data-cursor="expand" data-study="bistro" data-img="https://z-cdn-media.chatglm.cn/files/05f199ae-aace-4cfc-b57b-cb26c4c4a87a.png?auth_key=1882216815-f84225ea34dd4385b55aecd084a67e04-0-86ec0cdc77ac2e624ea59f820f80f666">
+                <div class="project-name">Neo-Bistro <span class="project-subtitle">— Voice AI Restaurant System</span></div>
                 <div class="project-meta">
-                    <div>VOICE AI RESTAURANT SYSTEM</div>
+                    <div>HOSPITALITY / VOICE AI</div>
                     <div class="project-tags">REACT / FLASK / LANGCHAIN / GPT</div>
                     <div class="project-links">
                         <a href="https://github.com" target="_blank">[ GitHub ]</a>
@@ -343,11 +369,11 @@
                 <div class="project-preview"></div>
             </div>
 
-            <div class="project" data-cursor="expand" data-img="https://z-cdn-media.chatglm.cn/files/4e50c0c3-3b8a-4545-b456-a002f513f69a.png?auth_key=1882216815-f1e7725871b348eebb297117c6d999d3-0-05f267b43cf067228641416a7efe5556">
-                <div class="project-name">Speech Emotion Recognition</div>
+            <div class="project" data-cursor="expand" data-study="emotion" data-img="https://z-cdn-media.chatglm.cn/files/4e50c0c3-3b8a-4545-b456-a002f513f69a.png?auth_key=1882216815-f1e7725871b348eebb297117c6d999d3-0-05f267b43cf067228641416a7efe5556">
+                <div class="project-name">EmotionAI <span class="project-subtitle">— Speech & Emotion Recognition</span></div>
                 <div class="project-meta">
                     <div>NLP / DEEP LEARNING</div>
-                    <div class="project-tags">PYTHON / CNN / TENSORFLOW / NLP</div>
+                    <div class="project-tags">PYTHON / CNN / TENSORFLOW</div>
                     <div class="project-links">
                         <a href="https://github.com" target="_blank">[ GitHub ]</a>
                     </div>
@@ -355,11 +381,11 @@
                 <div class="project-preview"></div>
             </div>
 
-            <div class="project" data-cursor="expand" data-img="https://z-cdn-media.chatglm.cn/files/a9259f21-f0e2-4466-84c9-f3ee0b0b281c.png?auth_key=1882321216-f5b2707e11dd4650affb519db92b0150-0-308fda57cd9bdd3e96dc021ddff33a07">
-                <div class="project-name">Hand Gesture Controller</div>
+            <div class="project" data-cursor="expand" data-study="gesture" data-img="https://z-cdn-media.chatglm.cn/files/a9259f21-f0e2-4466-84c9-f3ee0b0b281c.png?auth_key=1882321216-f5b2707e11dd4650affb519db92b0150-0-308fda57cd9bdd3e96dc021ddff33a07">
+                <div class="project-name">GestureCtrl <span class="project-subtitle">— Hand Gesture Gaming Interface</span></div>
                 <div class="project-meta">
-                    <div>COMPUTER VISION GAMING</div>
-                    <div class="project-tags">PYTHON / OPENCV / GAMING</div>
+                    <div>GAMING / COMPUTER VISION</div>
+                    <div class="project-tags">PYTHON / OPENCV</div>
                     <div class="project-links">
                         <a href="https://github.com" target="_blank">[ GitHub ]</a>
                         <a href="https://youtube.com" target="_blank">[ Demo ]</a>
@@ -372,7 +398,8 @@
 
     <section id="experience">
         <div class="container">
-            <h2 class="section-header reveal-text">EXPERIENCE & AWARDS</h2>
+            <div class="section-tag">// 05. EXPERIENCE & AWARDS</div>
+            <h2 class="section-header reveal-text">TIMELINE</h2>
             <div class="timeline-item hover-tilt" data-cursor="tilt">
                 <div class="timeline-year">2023</div>
                 <div class="timeline-content">
@@ -398,8 +425,9 @@
     </section>
 
     <section id="contact">
+        <div class="section-tag">// 06. CONTACT</div>
         <h2 class="contact-title">LET'S TALK</h2>
-        <button class="magnetic-btn" data-cursor="expand">Get in Touch</button>
+        <button class="magnetic-btn" id="open-contact" data-cursor="expand">Get in Touch</button>
         <div class="socials">
             <a href="mailto:whizdhruv@gmail.com" data-cursor="link">Email</a>
             <a href="https://linkedin.com/in/dhruv-arora-bb42602a9" target="_blank" data-cursor="link">LinkedIn</a>
@@ -412,125 +440,85 @@
     </section>
 
     <!-- RESUME MODAL -->
-    <div id="resume-modal">
-        <button class="close-modal-btn" id="close-resume">Close [X]</button>
-        <div class="resume-paper">
-            <h1>DHRUV ARORA</h1>
-            <p style="font-size: 1.2rem; color: #555; font-family: 'Syne', sans-serif;">Aspiring AI & Data Analyst</p>
-            <div class="contact-info">
-                <span>Mumbai, India</span>
-                <span>8104620845</span>
-                <span>whizdhruv@gmail.com</span>
-                <span>linkedin.com/in/dhruv-arora-bb42602a9</span>
-                <span>dhruvarora12.netlify.app</span>
+    <div id="resume-modal" class="modal-overlay" data-lenis-prevent>
+        <button class="close-modal-btn close-btn">Close [X]</button>
+        <div class="modal-paper">
+            <div class="resume-header">
+                <h1>DHRUV ARORA</h1>
+                <p style="font-size: 1.2rem; color: #555; font-family: 'Syne', sans-serif;">Aspiring AI & Data Analyst</p>
+                <div class="contact-info" style="font-size: 0.8rem; color: #555; margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+                    <span>Mumbai, India</span> | <span>8104620845</span> | <span>whizdhruv@gmail.com</span> | <span>linkedin.com/in/dhruv-arora-bb42602a9</span> | <span>dhruvarora12.netlify.app</span>
+                </div>
             </div>
-
             <h2>Professional Summary</h2>
             <p>Aspiring AI & Data Analyst pursuing an MBA Tech in Artificial Intelligence & Business Intelligence with hands-on experience in developing agentic AI systems, ERP-integrated analytics, and intelligent automation workflows. Skilled in Python, Tableau, REST APIs, and data-driven problem solving with practical exposure to full-stack AI solution development and business intelligence reporting.</p>
-
             <h2>Skills</h2>
             <p><strong>Technical:</strong> Python, SQL, C/C++/C#, Java, Machine Learning, Deep Learning & Generative AI, Agentic AI, REST APIs, Git/GitHub, DevOps & Deployment Pipelines, Full-Stack Development, RPA, ERP Integration</p>
             <p><strong>Tools & Platforms:</strong> Power BI, Tableau, Business Intelligence, ARKit & Unity Development, Game Development, Intelligent Automation, Data Analytics</p>
-
             <h2>Experience</h2>
             <div class="exp-item">
                 <p class="exp-title">Data Solutions & AI Engineer Intern | May 2025 – Sep 2025</p>
                 <p>Bizwy Information Management India Pvt. Ltd., Hyderabad, India</p>
-                <ul>
-                    <li>Developed 3+ agentic AI workflows and ERP-integrated automation systems for intelligent analytics and business process optimization.</li>
-                    <li>Built REST APIs, AI interfaces, and backend automation pipelines, supporting real-time intelligent workflows.</li>
-                    <li>Designed 5+ Tableau and Power BI dashboards while integrating enterprise datasets to improve reporting and analytical efficiency.</li>
-                </ul>
+                <ul><li>Developed 3+ agentic AI workflows and ERP-integrated automation systems for intelligent analytics and business process optimization.</li><li>Built REST APIs, AI interfaces, and backend automation pipelines, supporting real-time intelligent workflows.</li><li>Designed 5+ Tableau and Power BI dashboards while integrating enterprise datasets to improve reporting and analytical efficiency.</li></ul>
             </div>
             <div class="exp-item">
                 <p class="exp-title">Game Development Intern | May 2024 – Jul 2024</p>
                 <p>Being Ambitious, Mumbai, India</p>
-                <ul>
-                    <li>Developed and optimized 5+ interactive game prototypes using Unity and C#, including Agar.io, Paper.io, and Hole.io clones.</li>
-                    <li>Implemented gameplay mechanics, UI systems, collision handling, and real-time player interaction features.</li>
-                    <li>Improved game performance and debugging efficiency through iterative testing and object-oriented development practices.</li>
-                </ul>
+                <ul><li>Developed and optimized 5+ interactive game prototypes using Unity and C#, including Agar.io, Paper.io, and Hole.io clones.</li><li>Implemented gameplay mechanics, UI systems, collision handling, and real-time player interaction features.</li><li>Improved game performance and debugging efficiency through iterative testing and object-oriented development practices.</li></ul>
             </div>
             <div class="exp-item">
                 <p class="exp-title">Aeronautics & Simulation Intern | Apr 2024 – May 2024</p>
                 <p>DK Aviation, Mumbai, India</p>
-                <ul>
-                    <li>Assisted in 8+ aerodynamics and flight simulation sessions involving aircraft controls, navigation systems, and piloting principles.</li>
-                    <li>Contributed to RC aircraft and glider development, aerodynamic experiments, and aviation workshop demonstrations.</li>
-                    <li>Gained hands-on experience with flight simulators, aviation software tools, and applied aerodynamics concepts.</li>
-                </ul>
+                <ul><li>Assisted in 8+ aerodynamics and flight simulation sessions involving aircraft controls, navigation systems, and piloting principles.</li><li>Contributed to RC aircraft and glider development, aerodynamic experiments, and aviation workshop demonstrations.</li><li>Gained hands-on experience with flight simulators, aviation software tools, and applied aerodynamics concepts.</li></ul>
             </div>
-
             <h2>Education</h2>
-            <div class="exp-item">
-                <p class="exp-title">MBA Tech – Artificial Intelligence & Business Intelligence | 2026</p>
-                <p>NMIMS Mukesh Patel School of Technology Management and Engineering, Mumbai, India</p>
-            </div>
-            <div class="exp-item">
-                <p class="exp-title">International Baccalaureate Diploma Programme (IBDP) – Science & Business Studies | 2021</p>
-                <p>Podar International School, Mumbai, India</p>
-            </div>
-
+            <div class="exp-item"><p class="exp-title">MBA Tech – Artificial Intelligence & Business Intelligence | 2026</p><p>NMIMS Mukesh Patel School of Technology Management and Engineering, Mumbai, India</p></div>
+            <div class="exp-item"><p class="exp-title">International Baccalaureate Diploma Programme (IBDP) – Science & Business Studies | 2021</p><p>Podar International School, Mumbai, India</p></div>
             <h2>Projects</h2>
-            <div class="exp-item">
-                <p class="exp-title">MENTAR: AI-Driven Augmented Reality Study Companion | ARKit, Unity, AI</p>
-                <ul>
-                    <li>Developed an AR-powered learning assistant using Unity, ARKit, and AI for personalized study experiences with voice-activated quizzes, 3D avatars, and interactive educational content.</li>
-                    <li>Integrated immersive AR visualization and adaptive AI-driven assistance to enhance student engagement and learning workflows.</li>
-                </ul>
-            </div>
-            <div class="exp-item">
-                <p class="exp-title">Speech Emotion Recognition System | Deep Learning, NLP, Python</p>
-                <ul>
-                    <li>Trained a CNN-based speech emotion recognition model using 500+ audio samples to classify emotions from voice inputs with high prediction accuracy.</li>
-                    <li>Applied NLP and audio feature extraction techniques for real-time emotion analysis and intelligent speech processing.</li>
-                </ul>
-            </div>
-            <div class="exp-item">
-                <p class="exp-title">Agentic AI Analytics System | Python, REST APIs, Tableau</p>
-                <ul>
-                    <li>Developed AI-driven workflows capable of processing natural language queries and executing ERP-integrated analytical tasks.</li>
-                    <li>Built REST APIs and intelligent automation pipelines while integrating Tableau dashboards for real-time business intelligence reporting.</li>
-                </ul>
-            </div>
-            <div class="exp-item">
-                <p class="exp-title">AI-Powered Algorithmic Trading System | Python, APIs, Machine Learning</p>
-                <ul>
-                    <li>Developed an AI-driven algorithmic trading system for real-time market analysis, automated trade signal generation, and strategy back testing using financial APIs and machine learning techniques.</li>
-                </ul>
-            </div>
-            <div class="exp-item">
-                <p class="exp-title">Google “Add Me” Image Stitching Model | Computer Vision, OpenCV</p>
-                <ul>
-                    <li>Developed a SIFT-based computer vision system for seamless image stitching, feature matching, and photorealistic image blending.</li>
-                </ul>
-            </div>
-
+            <div class="exp-item"><p class="exp-title">MENTAR: AI-Driven Augmented Reality Study Companion | ARKit, Unity, AI</p><ul><li>Developed an AR-powered learning assistant using Unity, ARKit, and AI for personalized study experiences with voice-activated quizzes, 3D avatars, and interactive educational content.</li><li>Integrated immersive AR visualization and adaptive AI-driven assistance to enhance student engagement and learning workflows.</li></ul></div>
+            <div class="exp-item"><p class="exp-title">Speech Emotion Recognition System | Deep Learning, NLP, Python</p><ul><li>Trained a CNN-based speech emotion recognition model using 500+ audio samples to classify emotions from voice inputs with high prediction accuracy.</li><li>Applied NLP and audio feature extraction techniques for real-time emotion analysis and intelligent speech processing.</li></ul></div>
+            <div class="exp-item"><p class="exp-title">Agentic AI Analytics System | Python, REST APIs, Tableau</p><ul><li>Developed AI-driven workflows capable of processing natural language queries and executing ERP-integrated analytical tasks.</li><li>Built REST APIs and intelligent automation pipelines while integrating Tableau dashboards for real-time business intelligence reporting.</li></ul></div>
+            <div class="exp-item"><p class="exp-title">AI-Powered Algorithmic Trading System | Python, APIs, Machine Learning</p><ul><li>Developed an AI-driven algorithmic trading system for real-time market analysis, automated trade signal generation, and strategy back testing using financial APIs and machine learning techniques.</li></ul></div>
+            <div class="exp-item"><p class="exp-title">Google “Add Me” Image Stitching Model | Computer Vision, OpenCV</p><ul><li>Developed a SIFT-based computer vision system for seamless image stitching, feature matching, and photorealistic image blending.</li></ul></div>
             <h2>Certifications</h2>
-            <ul>
-                <li>ChatGPT Prompt Engineering for Developers – OpenAI, Jan 2026</li>
-                <li>GRAD 2.0 – Galderma | Semi-Finalist (Case Study Competition), Jan 2026</li>
-                <li>Ethical Hacking & Cyber Security – IIT Bombay, Jan 2026</li>
-                <li>Financial Markets, Investing & Trading – Udemy, Jan 2026</li>
-                <li>Robotics Boot Camp – Sirena Technologies, Jan 2026</li>
-            </ul>
-
+            <ul><li>ChatGPT Prompt Engineering for Developers – OpenAI, Jan 2026</li><li>GRAD 2.0 – Galderma | Semi-Finalist (Case Study Competition), Jan 2026</li><li>Ethical Hacking & Cyber Security – IIT Bombay, Jan 2026</li><li>Financial Markets, Investing & Trading – Udemy, Jan 2026</li><li>Robotics Boot Camp – Sirena Technologies, Jan 2026</li></ul>
             <h2>Key Achievements</h2>
-            <ul>
-                <li>Represented India at BOEING's 2019 FIRST Robotics Finals; won NASA's Engineering & Inspiration Award for technical innovation and community outreach.</li>
-                <li>1st Runner-Up at Atharva College of Engineering's Projectathon – National Project Competition.</li>
-                <li>Conducted Robotics outreach across Mumbai colleges, educating students on STEM principles and FIRST Robotics Competition.</li>
-                <li>Sub-Head at Taqneeq, the official Tech Fest of NMIMS.</li>
-            </ul>
-
+            <ul><li>Represented India at BOEING's 2019 FIRST Robotics Finals; won NASA's Engineering & Inspiration Award for technical innovation and community outreach.</li><li>1st Runner-Up at Atharva College of Engineering's Projectathon – National Project Competition.</li><li>Conducted Robotics outreach across Mumbai colleges, educating students on STEM principles and FIRST Robotics Competition.</li><li>Sub-Head at Taqneeq, the official Tech Fest of NMIMS.</li></ul>
             <h2>Publications</h2>
-            <ul>
-                <li>Sustainable Fashion Adoption Among Gen Z in Urban India. Ecology, Environment & Conservation, Oct 2025.</li>
-                <li>GoSolo – A Freelancer Portal. ISTE Journal, Feb 2024.</li>
-            </ul>
-
+            <ul><li>Sustainable Fashion Adoption Among Gen Z in Urban India. Ecology, Environment & Conservation, Oct 2025.</li><li>GoSolo – A Freelancer Portal. ISTE Journal, Feb 2024.</li></ul>
             <h2>Languages</h2>
             <p>English, Hindi, French, Spanish</p>
+        </div>
+    </div>
+
+    <!-- CASE STUDY MODAL -->
+    <div id="case-study-modal" class="modal-overlay" data-lenis-prevent>
+        <button class="close-modal-btn close-btn">Close [X]</button>
+        <div class="modal-paper">
+            <h1 id="cs-title">Project Title</h1>
+            <p id="cs-subtitle" style="font-size: 1.2rem; color: #555; font-family: 'Syne', sans-serif; margin-bottom: 2rem;">Project Subtitle</p>
+            <img id="cs-img" src="" alt="Project Image" class="case-study-img">
+            <h2>Overview</h2>
+            <p id="cs-overview">Description goes here.</p>
+            <h2>System Architecture</h2>
+            <div class="arch-box"><p id="cs-arch">Architecture details go here.</p></div>
+            <h2>Challenges & Solutions</h2>
+            <p id="cs-challenges">Challenges go here.</p>
+        </div>
+    </div>
+
+    <!-- CONTACT MODAL -->
+    <div id="contact-modal" class="modal-overlay" data-lenis-prevent>
+        <button class="close-modal-btn close-btn">Close [X]</button>
+        <div class="modal-paper" style="max-width: 600px;">
+            <h1>Get in Touch</h1>
+            <p style="color: #555; margin-bottom: 1rem;">Have a project in mind or just want to say hello? Drop a message below.</p>
+            <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
+                <div class="form-group"><label for="name">Name</label><input type="text" id="name" name="name" required></div>
+                <div class="form-group"><label for="email">Email</label><input type="email" id="email" name="email" required></div>
+                <div class="form-group"><label for="message">Message</label><textarea id="message" name="message" rows="5" required></textarea></div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
         </div>
     </div>
 
@@ -559,6 +547,7 @@
             gsap.from('.hero-title', { yPercent: 100, opacity: 0, duration: 1.5, stagger: 0.1, ease: "expo.out" });
             gsap.from('.hero-subtitle', { opacity: 0, duration: 1, delay: 0.8, ease: "power2.out" });
             gsap.from('.hero-status', { opacity: 0, scale: 0.8, duration: 1, delay: 1, ease: "power2.out" });
+            gsap.from('.scroll-cue', { opacity: 0, duration: 1, delay: 1.5, ease: "power2.out" });
             
             gsap.utils.toArray('.reveal-word').forEach((word, i) => {
                 gsap.to(word, { color: '#e0e0e0', duration: 1.5, ease: "power2.out", scrollTrigger: { trigger: word, start: "top 85%" }, delay: i * 0.08 });
@@ -571,200 +560,293 @@
 
             gsap.from('.cap-card', { y: 50, opacity: 0, duration: 1, stagger: 0.15, scrollTrigger: { trigger: '#capabilities', start: "top 70%" } });
             gsap.from('.timeline-item', { y: 50, opacity: 0, duration: 1, stagger: 0.1, scrollTrigger: { trigger: '#experience', start: "top 70%" } });
+            gsap.from('.section-tag', { opacity: 0, y: 20, duration: 1, scrollTrigger: { trigger: el => el.nextElementSibling, start: "top 85%" } });
+
+            // Metrics Count Up
+            document.querySelectorAll('.stat-num').forEach(stat => {
+                const target = parseInt(stat.dataset.target);
+                gsap.to(stat, {
+                    innerText: target,
+                    duration: 2,
+                    ease: "power2.out",
+                    snap: { innerText: 1 },
+                    scrollTrigger: { trigger: '#metrics', start: "top 70%" }
+                });
+            });
         }
 
-        // 3. Mouse Parallax
-        const heroSection = document.getElementById('hero');
-        heroSection.addEventListener('mousemove', (e) => {
-            const { clientX, clientY } = e; const centerX = window.innerWidth / 2; const centerY = window.innerHeight / 2;
-            document.querySelectorAll('[data-depth]').forEach(el => {
-                const depth = parseFloat(el.dataset.depth);
-                gsap.to(el, { x: (clientX - centerX) * depth, y: (clientY - centerY) * depth, duration: 1, ease: "power2.out" });
+        // 3. Modal Logic
+        const modals = document.querySelectorAll('.modal-overlay');
+        const openResume = document.getElementById('open-resume');
+        const openContact = document.getElementById('open-contact');
+        const closeBtns = document.querySelectorAll('.close-btn');
+
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.style.display = 'block';
+            lenis.stop(); 
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeModal(modal) {
+            modal.style.display = 'none';
+            lenis.start(); 
+            document.body.style.overflow = 'auto';
+        }
+
+        openResume.addEventListener('click', (e) => { e.preventDefault(); openModal('resume-modal'); });
+        openContact.addEventListener('click', (e) => { e.preventDefault(); openModal('contact-modal'); });
+        
+        closeBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const modal = e.target.closest('.modal-overlay');
+                if (modal) closeModal(modal);
             });
         });
 
-        // 4. HYBRID CURSOR ENGINE
-        const metalSvg = document.getElementById('metal-cursor-svg');
-        const metalGroup = document.getElementById('metalGroup');
-        const mainBlob = document.getElementById('mainBlob');
-        const innerBlob = document.getElementById('innerBlob');
-        const glassContainer = document.getElementById('glass-container');
-        const label = document.getElementById('mercuryLabel');
-
-        const trailCount = 14;
-        const trailCircles = [];
-        const svgNS = "http://www.w3.org/2000/svg";
-        for(let i=0; i<trailCount; i++) {
-            const c = document.createElementNS(svgNS, 'circle');
-            c.setAttribute('cx', -100); c.setAttribute('cy', -100);
-            c.setAttribute('r', 8); c.setAttribute('fill', 'url(#chromeGrad)');
-            metalGroup.appendChild(c);
-            trailCircles.push({ el: c, x: -100, y: -100 });
-        }
-
-        const glassMain = document.getElementById('glass-main');
-        const glassMid = document.getElementById('glass-mid');
-        const glassTrail = document.getElementById('glass-trail');
-        const glassOrbs = [
-            { el: glassMain, x: 0, y: 0, lerp: 0.2 },
-            { el: glassMid, x: 0, y: 0, lerp: 0.12 },
-            { el: glassTrail, x: 0, y: 0, lerp: 0.08 }
-        ];
-
-        let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
-        let prevX = mouseX, prevY = mouseY;
-        let vx = 0, vy = 0;
-        let isHoveringExpand = false;
-        let isHoveringLink = false;
-        let isClicked = false;
-        let time = 0;
-
-        const xLabel = gsap.quickTo(label, "x", { duration: 0.5, ease: "power3" });
-        const yLabel = gsap.quickTo(label, "y", { duration: 0.5, ease: "power3" });
-
-        window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX; mouseY = e.clientY;
-            xLabel(mouseX); yLabel(mouseY);
-        });
-
-        window.addEventListener('mousedown', () => isClicked = true);
-        window.addEventListener('mouseup', () => isClicked = false);
-
-        function updateCursor() {
-            time += 0.05;
-            vx = mouseX - prevX; vy = mouseY - prevY;
-            prevX = mouseX; prevY = mouseY;
-            const speed = Math.sqrt(vx*vx + vy*vy);
-
-            let leaderX = mouseX, leaderY = mouseY;
-            trailCircles.forEach((t, i) => {
-                t.x += (leaderX - t.x) * 0.06;
-                t.y += (leaderY - t.y) * 0.06;
-                t.el.setAttribute('cx', t.x);
-                t.el.setAttribute('cy', t.y);
-                let r = 10 - i * 0.4;
-                if(r < 2) r = 2;
-                t.el.setAttribute('r', r);
-                leaderX = t.x; leaderY = t.y;
-            });
-
-            let targetRx = 16, targetRy = 16;
-            if(isHoveringExpand) { targetRx = 0; targetRy = 0; } 
-            else if(isHoveringLink) { targetRx = 60; targetRy = 8; }
-            else if(isClicked) { targetRx = 40; targetRy = 6; }
-            else {
-                targetRx = Math.max(10, 18 + speed * 0.5);
-                targetRy = Math.max(10, 18 - speed * 0.3);
-                if(speed < 2) {
-                    targetRx += Math.sin(time * 2) * 2;
-                    targetRy += Math.cos(time * 2.5) * 2;
-                }
+        // 4. Case Study Data & Injection
+        const caseStudies = {
+            nexus: {
+                title: "Nexus Alpha", subtitle: "Agentic Trading System",
+                img: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?q=80&w=800&auto=format&fit=crop",
+                overview: "Advanced agentic system featuring neural execution and explainable AI (XAI) narration. It bridges finance and deep technical agentic AI capabilities perfectly. The system processes real-time market data, generates automated trade signals, and narrates its decision-making process via XAI layers.",
+                arch: "<strong>Data Ingestion:</strong> Financial APIs (WebSocket) -> <strong>Neural Execution Core:</strong> LangChain Agent + Python -> <strong>XAI Narration:</strong> GPT-4 translates logic to human-readable text -> <strong>Dashboard:</strong> React frontend displays live trades and AI reasoning.",
+                challenges: "Challenge: The AI agent needed to make split-second decisions while remaining explainable to human auditors. Solution: Implemented a dual-track neural execution path where the fast-track executes trades, while a secondary LangChain agent traces the logic steps and generates an XAI report post-execution."
+            },
+            mentar: {
+                title: "MentAR", subtitle: "AR AI Study Companion",
+                img: "https://z-cdn-media.chatglm.cn/files/4d143ce3-498e-4a7a-96b1-13d769656d70.png",
+                overview: "Developed an AR-powered learning assistant using Unity, ARKit, and AI for personalized study experiences with voice-activated quizzes, 3D avatars, and interactive educational content.",
+                arch: "<strong>Frontend:</strong> Unity + ARKit (iOS) -> <strong>Voice Pipeline:</strong> Native Speech-to-Text -> <strong>AI Core:</strong> Conversational AI model processes queries -> <strong>Animation:</strong> Unity Mechanim drives the 3D avatar lip-sync.",
+                challenges: "Challenge: Synchronizing the voice recognition latency with real-time AR avatar animations. Solution: Utilized multi-threading in Unity to separate the audio processing pipeline from the main render loop, ensuring 60FPS AR tracking while waiting for AI responses."
+            },
+            bistro: {
+                title: "Neo-Bistro", subtitle: "Voice AI Restaurant System",
+                img: "https://z-cdn-media.chatglm.cn/files/05f199ae-aace-4cfc-b57b-cb26c4c4a87a.png",
+                overview: "Full-stack voice ordering system for restaurants. Uses React for the digital menu interface, a Flask backend, and LangChain/GPT to process natural language voice orders, suggest items, and calculate totals.",
+                arch: "<strong>Frontend:</strong> React.js (Menu UI) -> <strong>Backend:</strong> Flask REST API -> <strong>AI Agent:</strong> LangChain processes transcribed voice, queries the menu database, and returns structured JSON orders -> <strong>TTS:</strong> Responds verbally to the user.",
+                challenges: "Challenge: The AI occasionally hallucinated menu items that didn't exist. Solution: Prompt engineering and LangChain tool integration forced the agent to strictly query the SQL database before confirming an item, reducing hallucination rates to 0%."
+            },
+            emotion: {
+                title: "EmotionAI", subtitle: "Speech & Emotion Recognition",
+                img: "https://z-cdn-media.chatglm.cn/files/4e50c0c3-3b8a-4545-b456-a002f513f69a.png",
+                overview: "Trained a CNN-based speech emotion recognition model using 500+ audio samples to classify emotions from voice inputs with high prediction accuracy.",
+                arch: "<strong>Data:</strong> Audio files (WAV) -> <strong>Preprocessing:</strong> Librosa for MFCC feature extraction -> <strong>Model:</strong> Convolutional Neural Network (TensorFlow/Keras) -> <strong>Output:</strong> Emotion classification (Happy, Sad, Angry, Neutral).",
+                challenges: "Challenge: Limited dataset size led to overfitting. Solution: Applied data augmentation techniques such as pitch shifting and time stretching to artificially expand the dataset by 3x, improving validation accuracy by 18%."
+            },
+            gesture: {
+                title: "GestureCtrl", subtitle: "Hand Gesture Gaming Interface",
+                img: "https://z-cdn-media.chatglm.cn/files/a9259f21-f0e2-4466-84c9-f3ee0b0b281c.png",
+                overview: "Real-time hand gesture recognition system using OpenCV for intuitive game control without traditional input devices. Maps hand landmarks to keyboard inputs.",
+                arch: "<strong>Input:</strong> Webcam Feed -> <strong>Tracking:</strong> OpenCV + MediaPipe Hands -> <strong>Logic:</strong> Python script calculates finger distances -> <strong>Output:</strong> PyAutoGUI triggers keyboard/mouse events in the game.",
+                challenges: "Challenge: High latency caused a delay between gesture and game action. Solution: Optimized the OpenCV frame resolution and utilized multi-processing to separate video capture from gesture logic, reducing input lag from 150ms to 40ms."
             }
-
-            let currRx = parseFloat(mainBlob.getAttribute('rx'));
-            let currRy = parseFloat(mainBlob.getAttribute('ry'));
-            currRx += (targetRx - currRx) * 0.2;
-            currRy += (targetRy - currRy) * 0.2;
-
-            mainBlob.setAttribute('rx', currRx);
-            mainBlob.setAttribute('ry', currRy);
-            mainBlob.setAttribute('cx', mouseX);
-            mainBlob.setAttribute('cy', mouseY);
-            innerBlob.setAttribute('cx', mouseX - vx * 0.8);
-            innerBlob.setAttribute('cy', mouseY - vy * 0.8);
-            innerBlob.setAttribute('rx', currRx * 0.3);
-            innerBlob.setAttribute('ry', currRy * 0.3);
-
-            let glassLeaderX = mouseX, glassLeaderY = mouseY;
-            glassOrbs.forEach(g => {
-                g.x += (glassLeaderX - g.x) * g.lerp;
-                g.y += (glassLeaderY - g.y) * g.lerp;
-                g.el.style.transform = `translate(${g.x}px, ${g.y}px) translate(-50%, -50%)`;
-                glassLeaderX = g.x; glassLeaderY = g.y;
-            });
-
-            requestAnimationFrame(updateCursor);
-        }
-        updateCursor();
-
-        document.querySelectorAll('[data-cursor]').forEach(el => {
-            const type = el.dataset.cursor;
-            
-            el.addEventListener('mouseenter', () => {
-                if (type === 'expand') {
-                    isHoveringExpand = true;
-                    label.textContent = 'VIEW';
-                    gsap.to(label, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" });
-                    gsap.to(metalSvg, { opacity: 0, duration: 0.3 });
-                    gsap.to(glassContainer, { opacity: 1, duration: 0.3 });
-                } else if (type === 'link') {
-                    isHoveringLink = true;
-                }
-            });
-
-            el.addEventListener('mouseleave', () => {
-                isHoveringExpand = false;
-                isHoveringLink = false;
-                gsap.to(label, { opacity: 0, scale: 0.8, duration: 0.2, ease: "power2.in" });
-                gsap.to(metalSvg, { opacity: 1, duration: 0.3 });
-                gsap.to(glassContainer, { opacity: 0, duration: 0.3 });
-            });
-        });
+        };
 
         document.querySelectorAll('.project').forEach(project => {
-            const preview = project.querySelector('.project-preview');
-            if(project.dataset.img) preview.style.backgroundImage = `url(${project.dataset.img})`;
-            
-            project.addEventListener('mousemove', (e) => {
-                const rect = project.getBoundingClientRect();
-                gsap.to(preview, { x: e.clientX - rect.left - 250, y: e.clientY - rect.top - 150, duration: 0.5 });
+            project.addEventListener('click', (e) => {
+                if (e.target.closest('.project-links')) return;
+                const studyId = project.dataset.study;
+                const data = caseStudies[studyId];
+                if (data) {
+                    document.getElementById('cs-title').textContent = data.title;
+                    document.getElementById('cs-subtitle').textContent = data.subtitle;
+                    document.getElementById('cs-img').src = data.img;
+                    document.getElementById('cs-overview').textContent = data.overview;
+                    document.getElementById('cs-arch').innerHTML = data.arch;
+                    document.getElementById('cs-challenges').textContent = data.challenges;
+                    openModal('case-study-modal');
+                }
             });
         });
 
-        const magneticBtn = document.querySelector('.magnetic-btn');
-        magneticBtn.addEventListener('mousemove', (e) => {
-            const rect = magneticBtn.getBoundingClientRect();
-            gsap.to(magneticBtn, { x: (e.clientX - rect.left - rect.width / 2) * 0.3, y: (e.clientY - rect.top - rect.height / 2) * 0.3, duration: 0.4 });
-        });
-        magneticBtn.addEventListener('mouseleave', () => gsap.to(magneticBtn, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1, 0.3)" }));
-
-        document.querySelectorAll('.hover-tilt').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const rotateX = ((y - centerY) / centerY) * -10;
-                const rotateY = ((x - centerX) / centerX) * 10;
-                gsap.to(card, { rotateX, rotateY, duration: 0.2, transformPerspective: 800 });
+        // 5. Active Nav Link Highlighting
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav a');
+        sections.forEach(sec => {
+            ScrollTrigger.create({
+                trigger: sec,
+                start: 'top center',
+                end: 'bottom center',
+                onToggle: self => {
+                    if (self.isActive) {
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        const activeLink = document.querySelector(`nav a[href="#${sec.id}"]`);
+                        if (activeLink) activeLink.classList.add('active');
+                    }
+                }
             });
-            card.addEventListener('mouseleave', () => gsap.to(card, { rotateX: 0, rotateY: 0, duration: 0.6, ease: "elastic.out(1, 0.75)" }));
         });
 
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('mousemove', (e) => {
-                const rect = link.getBoundingClientRect();
-                gsap.to(link, { x: (e.clientX - rect.left - rect.width / 2) * 0.5, y: (e.clientY - rect.top - rect.height / 2) * 0.5, duration: 0.3 });
+        // 6. Desktop-Only Interactions (Cursor, Tilt, Parallax)
+        const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+        if (canHover) {
+            const heroSection = document.getElementById('hero');
+            heroSection.addEventListener('mousemove', (e) => {
+                const { clientX, clientY } = e; const centerX = window.innerWidth / 2; const centerY = window.innerHeight / 2;
+                document.querySelectorAll('[data-depth]').forEach(el => {
+                    const depth = parseFloat(el.dataset.depth);
+                    gsap.to(el, { x: (clientX - centerX) * depth, y: (clientY - centerY) * depth, duration: 1, ease: "power2.out" });
+                });
             });
-            link.addEventListener('mouseleave', () => gsap.to(link, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1, 0.3)" }));
-        });
 
-        // 8. RESUME MODAL LOGIC
-        const resumeModal = document.getElementById('resume-modal');
-        const openResume = document.getElementById('open-resume');
-        const closeResume = document.getElementById('close-resume');
+            // HYBRID CURSOR ENGINE
+            const metalSvg = document.getElementById('metal-cursor-svg');
+            const metalGroup = document.getElementById('metalGroup');
+            const mainBlob = document.getElementById('mainBlob');
+            const innerBlob = document.getElementById('innerBlob');
+            const glassContainer = document.getElementById('glass-container');
+            const label = document.getElementById('mercuryLabel');
 
-        openResume.addEventListener('click', (e) => {
-            e.preventDefault();
-            resumeModal.style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Prevent background scroll
-        });
+            const trailCount = 14;
+            const trailCircles = [];
+            const svgNS = "http://www.w3.org/2000/svg";
+            for(let i=0; i<trailCount; i++) {
+                const c = document.createElementNS(svgNS, 'circle');
+                c.setAttribute('cx', -100); c.setAttribute('cy', -100);
+                c.setAttribute('r', 8); c.setAttribute('fill', 'url(#chromeGrad)');
+                metalGroup.appendChild(c);
+                trailCircles.push({ el: c, x: -100, y: -100 });
+            }
 
-        closeResume.addEventListener('click', () => {
-            resumeModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        });
+            const glassMain = document.getElementById('glass-main');
+            const glassMid = document.getElementById('glass-mid');
+            const glassTrail = document.getElementById('glass-trail');
+            const glassOrbs = [
+                { el: glassMain, x: 0, y: 0, lerp: 0.2 },
+                { el: glassMid, x: 0, y: 0, lerp: 0.12 },
+                { el: glassTrail, x: 0, y: 0, lerp: 0.08 }
+            ];
+
+            let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+            let prevX = mouseX, prevY = mouseY;
+            let vx = 0, vy = 0;
+            let isHoveringExpand = false;
+            let isHoveringLink = false;
+            let isClicked = false;
+            let time = 0;
+
+            const xLabel = gsap.quickTo(label, "x", { duration: 0.5, ease: "power3" });
+            const yLabel = gsap.quickTo(label, "y", { duration: 0.5, ease: "power3" });
+
+            window.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX; mouseY = e.clientY;
+                xLabel(mouseX); yLabel(mouseY);
+            });
+
+            window.addEventListener('mousedown', () => isClicked = true);
+            window.addEventListener('mouseup', () => isClicked = false);
+
+            function updateCursor() {
+                time += 0.05;
+                vx = mouseX - prevX; vy = mouseY - prevY;
+                prevX = mouseX; prevY = mouseY;
+                const speed = Math.sqrt(vx*vx + vy*vy);
+
+                let leaderX = mouseX, leaderY = mouseY;
+                trailCircles.forEach((t, i) => {
+                    t.x += (leaderX - t.x) * 0.06;
+                    t.y += (leaderY - t.y) * 0.06;
+                    t.el.setAttribute('cx', t.x);
+                    t.el.setAttribute('cy', t.y);
+                    let r = 10 - i * 0.4;
+                    if(r < 2) r = 2;
+                    t.el.setAttribute('r', r);
+                    leaderX = t.x; leaderY = t.y;
+                });
+
+                let targetRx = 16, targetRy = 16;
+                if(isHoveringExpand) { targetRx = 0; targetRy = 0; } 
+                else if(isHoveringLink) { targetRx = 60; targetRy = 8; }
+                else if(isClicked) { targetRx = 40; targetRy = 6; }
+                else {
+                    targetRx = Math.max(10, 18 + speed * 0.5);
+                    targetRy = Math.max(10, 18 - speed * 0.3);
+                    if(speed < 2) {
+                        targetRx += Math.sin(time * 2) * 2;
+                        targetRy += Math.cos(time * 2.5) * 2;
+                    }
+                }
+
+                let currRx = parseFloat(mainBlob.getAttribute('rx'));
+                let currRy = parseFloat(mainBlob.getAttribute('ry'));
+                currRx += (targetRx - currRx) * 0.2;
+                currRy += (targetRy - currRy) * 0.2;
+
+                mainBlob.setAttribute('rx', currRx);
+                mainBlob.setAttribute('ry', currRy);
+                mainBlob.setAttribute('cx', mouseX);
+                mainBlob.setAttribute('cy', mouseY);
+                innerBlob.setAttribute('cx', mouseX - vx * 0.8);
+                innerBlob.setAttribute('cy', mouseY - vy * 0.8);
+                innerBlob.setAttribute('rx', currRx * 0.3);
+                innerBlob.setAttribute('ry', currRy * 0.3);
+
+                let glassLeaderX = mouseX, glassLeaderY = mouseY;
+                glassOrbs.forEach(g => {
+                    g.x += (glassLeaderX - g.x) * g.lerp;
+                    g.y += (glassLeaderY - g.y) * g.lerp;
+                    g.el.style.transform = `translate(${g.x}px, ${g.y}px) translate(-50%, -50%)`;
+                    glassLeaderX = g.x; glassLeaderY = g.y;
+                });
+
+                requestAnimationFrame(updateCursor);
+            }
+            updateCursor();
+
+            document.querySelectorAll('[data-cursor]').forEach(el => {
+                const type = el.dataset.cursor;
+                el.addEventListener('mouseenter', () => {
+                    if (type === 'expand') {
+                        isHoveringExpand = true;
+                        label.textContent = 'VIEW';
+                        gsap.to(label, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" });
+                        gsap.to(metalSvg, { opacity: 0, duration: 0.3 });
+                        gsap.to(glassContainer, { opacity: 1, duration: 0.3 });
+                    } else if (type === 'link') {
+                        isHoveringLink = true;
+                    }
+                });
+                el.addEventListener('mouseleave', () => {
+                    isHoveringExpand = false;
+                    isHoveringLink = false;
+                    gsap.to(label, { opacity: 0, scale: 0.8, duration: 0.2, ease: "power2.in" });
+                    gsap.to(metalSvg, { opacity: 1, duration: 0.3 });
+                    gsap.to(glassContainer, { opacity: 0, duration: 0.3 });
+                });
+            });
+
+            document.querySelectorAll('.project').forEach(project => {
+                const preview = project.querySelector('.project-preview');
+                if(project.dataset.img) preview.style.backgroundImage = `url(${project.dataset.img})`;
+                project.addEventListener('mousemove', (e) => {
+                    const rect = project.getBoundingClientRect();
+                    gsap.to(preview, { x: e.clientX - rect.left - 250, y: e.clientY - rect.top - 150, duration: 0.5 });
+                });
+            });
+
+            const magneticBtn = document.querySelector('.magnetic-btn');
+            magneticBtn.addEventListener('mousemove', (e) => {
+                const rect = magneticBtn.getBoundingClientRect();
+                gsap.to(magneticBtn, { x: (e.clientX - rect.left - rect.width / 2) * 0.3, y: (e.clientY - rect.top - rect.height / 2) * 0.3, duration: 0.4 });
+            });
+            magneticBtn.addEventListener('mouseleave', () => gsap.to(magneticBtn, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1, 0.3)" }));
+
+            document.querySelectorAll('.hover-tilt').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = ((y - centerY) / centerY) * -10;
+                    const rotateY = ((x - centerX) / centerX) * 10;
+                    gsap.to(card, { rotateX, rotateY, duration: 0.2, transformPerspective: 800 });
+                });
+                card.addEventListener('mouseleave', () => gsap.to(card, { rotateX: 0, rotateY: 0, duration: 0.6, ease: "elastic.out(1, 0.75)" }));
+            });
+        }
     </script>
 </body>
 </html>
