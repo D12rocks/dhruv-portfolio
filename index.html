@@ -1,566 +1,752 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dhruv Arora — AI, Spatial Systems & Product Thinking</title>
-  <meta name="description" content="A premium portfolio showcasing AI systems, AR/VR, gesture interfaces, and product-driven engineering." />
-  <meta property="og:title" content="Dhruv Arora — AI, Spatial Systems & Product Thinking" />
-  <meta property="og:description" content="Premium portfolio with cinematic motion, refined layout, and stronger storytelling." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://dhruvarora12.netlify.app" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
-  <style>
-    :root{
-      --bg:#050505;
-      --bg2:#0a0a0a;
-      --panel:rgba(255,255,255,.04);
-      --panel-strong:rgba(255,255,255,.08);
-      --line:rgba(255,255,255,.10);
-      --text:#f4f4f4;
-      --muted:rgba(244,244,244,.68);
-      --accent:#9fffd1;
-      --accent2:#89b4ff;
-      --shadow:0 20px 80px rgba(0,0,0,.45);
-      --radius:28px;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:auto}
-    body{
-      margin:0;
-      background:
-        radial-gradient(circle at 20% 10%, rgba(159,255,209,.12), transparent 26%),
-        radial-gradient(circle at 80% 20%, rgba(137,180,255,.10), transparent 22%),
-        linear-gradient(180deg, #070707 0%, #040404 45%, #060606 100%);
-      color:var(--text);
-      font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-      overflow-x:hidden;
-      -webkit-font-smoothing:antialiased;
-      text-rendering:optimizeLegibility;
-    }
-    ::selection{background:var(--accent);color:#08110d}
-    a{color:inherit;text-decoration:none}
-    .container{width:min(1200px, calc(100% - 40px)); margin:0 auto}
-    .grid-bg:before{
-      content:""; position:fixed; inset:0; pointer-events:none; opacity:.14;
-      background-image:linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-      background-size:48px 48px; mask-image:radial-gradient(circle at center, black 18%, transparent 78%);
-      z-index:0;
-    }
-    .noise{position:fixed; inset:0; pointer-events:none; z-index:1; opacity:.03; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E"); }
-    .topbar{
-      position:fixed; left:0; top:0; width:100%; z-index:50; padding:18px 0;
-      backdrop-filter: blur(16px); background: rgba(5,5,5,.32); border-bottom:1px solid rgba(255,255,255,.05);
-    }
-    .navwrap{display:flex; justify-content:space-between; align-items:center; gap:16px}
-    .brand{font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:.18em; font-size:12px; text-transform:uppercase}
-    .navlinks{display:flex; flex-wrap:wrap; gap:18px; align-items:center}
-    .navlinks a{font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); position:relative; padding:8px 0}
-    .navlinks a:after{content:""; position:absolute; left:0; bottom:2px; width:0; height:1px; background:var(--accent); transition:width .35s ease}
-    .navlinks a:hover:after{width:100%}
-    .pill{
-      display:inline-flex; align-items:center; gap:10px; border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.04); border-radius:999px; padding:12px 16px; color:var(--muted);
-      box-shadow:var(--shadow)
-    }
-    .pill b{color:var(--text)}
-    .hero{position:relative; min-height:100svh; display:flex; align-items:center; padding:120px 0 60px; z-index:2}
-    .hero-grid{display:grid; grid-template-columns: 1.2fr .8fr; gap:32px; align-items:end}
-    .eyebrow{font-size:12px; text-transform:uppercase; letter-spacing:.22em; color:var(--muted); margin-bottom:18px}
-    .hero h1{
-      font-size:clamp(4rem, 11vw, 9.8rem); line-height:.88; letter-spacing:-.08em; margin:0; font-weight:900;
-      max-width: 9ch;
-    }
-    .hero .outline{color:transparent; -webkit-text-stroke:1px rgba(255,255,255,.18)}
-    .hero-copy{max-width:560px; margin-top:22px; color:var(--muted); font-size:clamp(1rem, 1.4vw, 1.12rem); line-height:1.75}
-    .hero-actions{display:flex; flex-wrap:wrap; gap:14px; margin-top:28px}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:14px 20px;
-      border-radius:999px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.04);
-      transition:transform .3s ease, border-color .3s ease, background .3s ease, color .3s ease;
-      will-change:transform; cursor:pointer
-    }
-    .btn:hover{transform:translateY(-2px); border-color:rgba(159,255,209,.45); background:rgba(159,255,209,.08)}
-    .btn.primary{background:linear-gradient(135deg, rgba(159,255,209,.18), rgba(137,180,255,.12)); border-color:rgba(159,255,209,.28)}
-    .stats-panel{
-      border:1px solid rgba(255,255,255,.08); background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025));
-      border-radius:var(--radius); padding:24px; box-shadow:var(--shadow); overflow:hidden; position:relative
-    }
-    .stats-panel:before{
-      content:""; position:absolute; inset:-1px; border-radius:inherit; padding:1px; background:linear-gradient(135deg, rgba(159,255,209,.25), transparent 40%, rgba(137,180,255,.18));
-      -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude; pointer-events:none;
-    }
-    .stat-row{display:grid; grid-template-columns:1fr 1fr; gap:14px}
-    .stat{padding:18px; border-radius:22px; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.06)}
-    .stat .n{font-size:2rem; font-weight:800; letter-spacing:-.06em; margin-bottom:6px}
-    .stat .l{font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
-    .hero-visual{
-      margin-top:28px; border:1px solid rgba(255,255,255,.08); border-radius:28px; min-height:240px; overflow:hidden; position:relative;
-      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); box-shadow:var(--shadow)
-    }
-    .orb{position:absolute; border-radius:50%; filter:blur(6px); opacity:.9; mix-blend-mode:screen}
-    .orb.a{width:220px;height:220px; left:-40px; top:-30px; background:radial-gradient(circle, rgba(159,255,209,.95), rgba(159,255,209,.05) 68%, transparent 72%)}
-    .orb.b{width:280px;height:280px; right:-80px; bottom:-70px; background:radial-gradient(circle, rgba(137,180,255,.9), rgba(137,180,255,.04) 68%, transparent 73%)}
-    .orb.c{width:150px;height:150px; right:20%; top:18%; background:radial-gradient(circle, rgba(255,255,255,.82), rgba(255,255,255,.02) 62%, transparent 70%)}
-    .hero-visual .label{position:absolute; left:20px; bottom:20px; z-index:2; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.72)}
-    .marquee{position:relative; overflow:hidden; padding:18px 0; border-top:1px solid rgba(255,255,255,.06); border-bottom:1px solid rgba(255,255,255,.06); background:rgba(255,255,255,.02)}
-    .marquee-track{display:flex; gap:24px; white-space:nowrap; will-change:transform}
-    .marquee span{font-family:'Space Grotesk',sans-serif; font-size:clamp(1rem, 2vw, 2rem); text-transform:uppercase; letter-spacing:.2em; color:rgba(255,255,255,.42)}
-    .section{position:relative; z-index:2; padding:110px 0}
-    .section-head{display:flex; justify-content:space-between; align-items:end; gap:18px; margin-bottom:34px}
-    .section-kicker{font-size:12px; text-transform:uppercase; letter-spacing:.22em; color:var(--muted)}
-    .section-title{font-size:clamp(2.2rem, 4vw, 4.8rem); line-height:.95; margin:0; letter-spacing:-.06em; max-width:12ch}
-    .section-desc{max-width:520px; color:var(--muted); line-height:1.75}
-    .about-grid{display:grid; grid-template-columns: .95fr 1.05fr; gap:24px}
-    .card{
-      position:relative; border:1px solid rgba(255,255,255,.08); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
-      border-radius:var(--radius); padding:28px; box-shadow:var(--shadow); overflow:hidden
-    }
-    .card:hover{border-color:rgba(159,255,209,.22)}
-    .card h3{margin:0 0 10px; font-size:1.3rem; letter-spacing:-.03em}
-    .card p{margin:0; color:var(--muted); line-height:1.75}
-    .cap-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px}
-    .cap .num{font-size:12px; color:var(--accent); letter-spacing:.22em; text-transform:uppercase; margin-bottom:18px}
-    .cap h4{font-size:1.35rem; margin:0 0 10px; letter-spacing:-.04em}
-    .cap ul{margin:18px 0 0; padding:0; list-style:none; display:flex; flex-wrap:wrap; gap:10px}
-    .tag{padding:8px 12px; border-radius:999px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); font-size:12px; color:var(--muted)}
-    .work-list{display:grid; gap:16px}
-    .project{
-      display:grid; grid-template-columns: 1.2fr .8fr auto; gap:18px; align-items:center; padding:22px 24px; border-radius:24px;
-      border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.03); transition:transform .35s ease, border-color .35s ease, background .35s ease;
-      overflow:hidden; position:relative; cursor:pointer
-    }
-    .project:before{content:""; position:absolute; inset:0; background:radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(159,255,209,.12), transparent 32%); opacity:0; transition:opacity .35s ease}
-    .project:hover{transform:translateY(-3px); border-color:rgba(159,255,209,.2); background:rgba(255,255,255,.045)}
-    .project:hover:before{opacity:1}
-    .project h3{margin:0; font-size:clamp(1.2rem, 2vw, 2.1rem); letter-spacing:-.05em}
-    .project .sub{margin-top:6px; color:var(--muted); line-height:1.6}
-    .project .meta{font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:rgba(244,244,244,.58)}
-    .project .img{width:92px; height:92px; border-radius:22px; object-fit:cover; border:1px solid rgba(255,255,255,.08); box-shadow:var(--shadow)}
-    .timeline{display:grid; gap:16px}
-    .timeline-item{display:grid; grid-template-columns: 140px 1fr; gap:22px; align-items:start; padding:22px 24px; border-radius:24px; border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.03)}
-    .timeline-item .year{font-weight:800; letter-spacing:.1em; color:var(--accent)}
-    .timeline-item h4{margin:0 0 8px; font-size:1.2rem}
-    .timeline-item p{margin:0; color:var(--muted); line-height:1.75}
-    .contact{display:grid; grid-template-columns: 1.1fr .9fr; gap:24px; align-items:stretch}
-    .contact-box{padding:32px; border-radius:30px; border:1px solid rgba(255,255,255,.08); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03)); box-shadow:var(--shadow)}
-    .contact-big{font-size:clamp(2.8rem, 7vw, 7rem); margin:0; letter-spacing:-.08em; line-height:.9}
-    .contact-links{display:flex; flex-wrap:wrap; gap:12px; margin-top:20px}
-    .fine{font-size:12px; color:var(--muted); line-height:1.7}
-    .footer{padding:28px 0 48px; color:rgba(244,244,244,.45); font-size:12px; letter-spacing:.16em; text-transform:uppercase}
-    .cursor{
-      position:fixed; left:0; top:0; width:14px; height:14px; border-radius:50%; pointer-events:none; z-index:80;
-      background:rgba(159,255,209,.92); mix-blend-mode:screen; transform:translate(-50%,-50%); opacity:0; filter:blur(.2px)
-    }
-    .cursor-ring{
-      position:fixed; left:0; top:0; width:44px; height:44px; border:1px solid rgba(159,255,209,.28); border-radius:50%; pointer-events:none; z-index:79;
-      transform:translate(-50%,-50%); opacity:0
-    }
-    .reveal{opacity:0; transform:translateY(24px)}
-    .blur-in{filter:blur(12px)}
-    @media (max-width: 980px){
-      .hero-grid,.about-grid,.cap-grid,.contact,.timeline-item,.project,.section-head{grid-template-columns:1fr; display:grid}
-      .stat-row{grid-template-columns:1fr 1fr}
-      .hero{padding-top:110px}
-      .navlinks{gap:10px}
-      .project .img{width:100%; height:180px; justify-self:stretch}
-    }
-    @media (max-width: 640px){
-      .container{width:min(100% - 24px, 1200px)}
-      .topbar{padding:14px 0}
-      .navlinks{display:none}
-      .hero h1{max-width:unset}
-      .stat-row{grid-template-columns:1fr}
-      .section{padding:84px 0}
-      .project{padding:18px}
-      .card,.contact-box{padding:22px}
-    }
-    @media (hover:none) and (pointer:coarse){
-      .cursor,.cursor-ring{display:none}
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO & Meta Tags -->
+    <title>Dhruv Arora — AI & Systems Architect</title>
+    <meta name="description" content="Architecting the future of AI, Spatial Computing, and Autonomous Systems. Bridging business intelligence with cutting-edge tech.">
+    
+    <!-- UNIQUE TECHY GLITCH HUD FAVICON -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230a0a0a' rx='20'/><text x='50' y='65' font-family='Arial,sans-serif' font-weight='900' font-size='40' fill='%23C6F135' text-anchor='middle'>D</text></svg>" />
+    
+    <!-- OpenGraph (OG) Tags -->
+    <meta property="og:title" content="Dhruv Arora — AI & Systems Architect" />
+    <meta property="og:description" content="Architecting the future of AI, Spatial Computing, and Autonomous Systems. Bridging business intelligence with cutting-edge tech." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dhruvarora12.netlify.app" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop" />
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    
+    <!-- Premium Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a0a0a; 
+            --surface: #141414;
+            --text: #f0f0f0;
+            --text-muted: #888888;
+            --accent: #C6F135; 
+            --border: rgba(255, 255, 255, 0.08);
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html, body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            cursor: none; /* Custom cursor fallback */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overscroll-behavior: none;
+        }
+
+        h1, h2, h3, .syne { font-family: 'Syne', sans-serif; letter-spacing: -0.02em; }
+        .mono { font-family: 'Space Mono', monospace; }
+
+        ::selection { background: var(--accent); color: var(--bg); }
+
+        /* Subtle Grain Overlay */
+        .noise {
+            position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* ------------------ CUSTOM CURSOR ------------------ */
+        .cursor-dot, .cursor-outline, .cursor-label {
+            position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
+            border-radius: 50%; pointer-events: none; z-index: 10000;
+        }
+        .cursor-dot { width: 6px; height: 6px; background: var(--accent); }
+        .cursor-outline { 
+            width: 40px; height: 40px; border: 1px solid rgba(198, 241, 53, 0.4); 
+            transition: width 0.3s var(--ease-out), height 0.3s var(--ease-out), background 0.3s var(--ease-out);
+        }
+        .cursor-label {
+            font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; color: #000;
+            background: var(--accent); padding: 8px 16px; border-radius: 20px;
+            opacity: 0; transform: translate(-50%, -50%) scale(0.5); text-transform: uppercase;
+            transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+        }
+        
+        body.hovering .cursor-outline { width: 80px; height: 80px; background: rgba(198, 241, 53, 0.05); }
+        body.viewing .cursor-label { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        body.viewing .cursor-outline, body.viewing .cursor-dot { opacity: 0; }
+
+        /* ------------------ LOADER ------------------ */
+        #loader {
+            position: fixed; inset: 0; background: var(--bg); z-index: 10005;
+            display: flex; justify-content: flex-end; align-items: flex-end; padding: 4vw;
+        }
+        .loader-text { font-family: 'Syne', sans-serif; font-size: 12vw; font-weight: 800; color: var(--text); line-height: 0.8; }
+        .loader-progress { width: 0%; height: 2px; background: var(--accent); position: absolute; top: 0; left: 0; }
+
+        /* ------------------ LAYOUT ------------------ */
+        .container { width: 100%; max-width: 1600px; margin: 0 auto; padding: 0 5vw; }
+
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 2rem 5vw; display: flex; justify-content: space-between; align-items: center;
+            z-index: 100; mix-blend-mode: difference;
+        }
+        .nav-logo { font-size: 1.2rem; font-weight: 800; text-transform: uppercase; letter-spacing: -0.02em; }
+        .nav-links { display: flex; gap: 3rem; align-items: center; }
+        .nav-links a { 
+            color: #fff; text-decoration: none; text-transform: uppercase; font-family: 'Space Mono', monospace;
+            font-size: 11px; letter-spacing: 1px; opacity: 0.6; transition: opacity 0.3s, color 0.3s;
+        }
+        .nav-links a:hover, .nav-links a.active { opacity: 1; color: var(--accent); }
+        .resume-btn { border: 1px solid var(--border); padding: 10px 20px; border-radius: 100px; }
+        .resume-btn:hover { border-color: var(--accent); }
+
+        .section-tag { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--text-muted); margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 2px; }
+
+        /* ------------------ HERO ------------------ */
+        #hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; position: relative; }
+        .hero-title-wrapper { overflow: hidden; display: flex; }
+        .hero-title { font-size: 16vw; line-height: 0.85; font-weight: 800; color: var(--text); text-transform: uppercase; }
+        .hero-title.outline { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.2); margin-left: 10vw; }
+        .hero-title .char { display: inline-block; transform: translateY(110%); }
+        
+        .hero-subtitle { margin-top: 4rem; max-width: 400px; font-size: 1rem; color: var(--text-muted); line-height: 1.5; font-family: 'Space Mono', monospace; opacity: 0; }
+        .hero-status { position: absolute; top: 25%; right: 5vw; font-family: 'Space Mono', monospace; font-size: 11px; text-transform: uppercase; color: var(--bg); background: var(--accent); padding: 8px 16px; border-radius: 100px; opacity: 0; }
+
+        /* ------------------ MARQUEE ------------------ */
+        .marquee { overflow: hidden; padding: 3rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); white-space: nowrap; background: var(--surface); }
+        .marquee-inner { display: inline-block; animation: marquee 25s linear infinite; }
+        .marquee span { font-family: 'Syne', sans-serif; font-size: 5vw; font-weight: 700; margin-right: 4rem; color: transparent; -webkit-text-stroke: 1px var(--text-muted); transition: color 0.3s; }
+        .marquee:hover span { color: var(--accent); -webkit-text-stroke: 0; }
+        @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        /* ------------------ ABOUT ------------------ */
+        #about { padding: 15rem 0 10rem; }
+        .about-grid { display: grid; grid-template-columns: 1fr 2.5fr; gap: 4rem; }
+        .manifesto { font-family: 'Syne', sans-serif; font-size: 3vw; line-height: 1.2; font-weight: 500; color: #333; }
+        .manifesto .word { display: inline-block; margin-right: 0.3vw; background: linear-gradient(90deg, var(--text) 50%, #333 50%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-size: 200% 100%; background-position: 100% 0; transition: background-position 0.1s; }
+
+        /* ------------------ METRICS ------------------ */
+        #metrics { padding: 8rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .stats-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2rem; }
+        .stat-item { border-left: 1px solid var(--border); padding-left: 2rem; }
+        .stat-num { font-family: 'Syne', sans-serif; font-size: 5vw; font-weight: 800; color: var(--accent); line-height: 1; margin-bottom: 1rem; }
+        .stat-label { font-family: 'Space Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); }
+
+        /* ------------------ CAPABILITIES ------------------ */
+        #capabilities { padding: 15rem 0; }
+        .section-header { font-size: 4vw; margin-bottom: 5rem; text-transform: uppercase; overflow: hidden; }
+        .section-header .line { display: block; transform: translateY(110%); }
+        .cap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .cap-card { padding: 3rem; background: var(--surface); border: 1px solid var(--border); transition: border 0.4s ease, transform 0.4s ease; cursor: crosshair; }
+        .cap-card:hover { border-color: var(--accent); transform: translateY(-10px); }
+        .cap-num { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--accent); margin-bottom: 3rem; }
+        .cap-title { font-family: 'Syne', sans-serif; font-size: 1.8rem; margin-bottom: 1.5rem; }
+        .cap-text { color: var(--text-muted); font-size: 1rem; line-height: 1.6; }
+
+        /* ------------------ WORK SECTION (MAGNETIC PREVIEWS) ------------------ */
+        #work { padding: 10rem 0; }
+        .project-list { border-top: 1px solid var(--border); position: relative; }
+        .project { display: flex; justify-content: space-between; align-items: center; padding: 4rem 0; border-bottom: 1px solid var(--border); cursor: pointer; position: relative; z-index: 2; mix-blend-mode: difference; }
+        .project-info { display: flex; align-items: baseline; gap: 2rem; }
+        .project-index { font-family: 'Space Mono', monospace; font-size: 14px; color: var(--text-muted); }
+        .project-name { font-family: 'Syne', sans-serif; font-size: 4.5vw; font-weight: 600; color: var(--text); transition: color 0.4s, transform 0.5s var(--ease-out); display: flex; align-items: baseline; gap: 1.5rem; }
+        .project-subtitle { font-family: 'Space Mono', monospace; font-size: 1rem; font-weight: 400; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        
+        .project:hover .project-name { transform: translateX(2vw); color: var(--accent); }
+        .project-meta { text-align: right; font-family: 'Space Mono', monospace; font-size: 12px; color: var(--text-muted); display: flex; flex-direction: column; align-items: flex-end; gap: 0.5rem; }
+        
+        /* Floating Image Hover */
+        .work-hover-img {
+            position: fixed; top: 0; left: 0; width: 450px; height: 320px;
+            background-size: cover; background-position: center; pointer-events: none;
+            opacity: 0; z-index: 1; transform: scale(0.8) translate(-50%, -50%);
+            transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+            border-radius: 4px; overflow: hidden;
+        }
+        .work-hover-img::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.2); }
+
+        /* ------------------ EXPERIENCE ------------------ */
+        #experience { padding: 10rem 0; border-top: 1px solid var(--border); }
+        .timeline-item { display: grid; grid-template-columns: 1fr 3fr; gap: 4rem; padding: 4rem 0; border-bottom: 1px solid var(--border); transition: padding-left 0.4s var(--ease-out); }
+        .timeline-item:hover { padding-left: 2rem; background: rgba(255,255,255,0.02); }
+        .timeline-year { font-family: 'Syne', sans-serif; font-size: 2.5rem; color: var(--text-muted); transition: color 0.3s; }
+        .timeline-item:hover .timeline-year { color: var(--accent); }
+        .timeline-content h3 { font-size: 2rem; margin-bottom: 1rem; }
+        .timeline-content p { color: var(--text-muted); font-size: 1.1rem; line-height: 1.6; max-width: 700px; }
+
+        /* ------------------ FOOTER / CONTACT ------------------ */
+        #contact { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; }
+        .contact-title { font-size: 12vw; font-weight: 800; text-transform: uppercase; line-height: 1; margin-bottom: 4rem; }
+        .magnetic-btn-wrap { display: inline-block; }
+        .contact-btn {
+            background: transparent; color: var(--text); border: 1px solid var(--border);
+            padding: 2rem 4rem; font-family: 'Syne', sans-serif; font-size: 2rem; text-transform: uppercase;
+            border-radius: 100px; cursor: pointer; transition: background 0.4s, color 0.4s;
+        }
+        .contact-btn:hover { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+        
+        .footer-bottom { position: absolute; bottom: 3rem; width: 100%; display: flex; justify-content: space-between; padding: 0 5vw; font-family: 'Space Mono', monospace; font-size: 11px; color: var(--text-muted); text-transform: uppercase; }
+        .socials { display: flex; gap: 2rem; }
+        .socials a { color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
+        .socials a:hover { color: var(--accent); }
+
+        /* ------------------ MODALS ------------------ */
+        .modal-overlay {
+            position: fixed; inset: 0; z-index: 10010; background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            opacity: 0; pointer-events: none; transition: opacity 0.5s var(--ease-out);
+            overflow-y: auto; padding: 10vh 5vw;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: all; }
+        
+        .modal-paper { background: var(--surface); border: 1px solid var(--border); color: var(--text); max-width: 900px; margin: 0 auto; padding: 5rem; border-radius: 8px; transform: translateY(50px); transition: transform 0.6s var(--ease-out); }
+        .modal-overlay.active .modal-paper { transform: translateY(0); }
+        
+        .close-modal-btn { position: fixed; top: 30px; right: 40px; background: transparent; color: var(--text); border: 1px solid var(--border); padding: 12px 24px; border-radius: 100px; font-family: 'Space Mono', monospace; font-size: 12px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; z-index: 10011; }
+        .close-modal-btn:hover { background: var(--text); color: var(--bg); }
+
+        /* Modal Typography */
+        .modal-paper h1 { font-size: 3.5rem; margin-bottom: 0.5rem; color: var(--accent); }
+        .modal-paper h2 { font-size: 1.5rem; margin: 3rem 0 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); text-transform: uppercase; }
+        .modal-paper p, .modal-paper li { font-size: 1rem; line-height: 1.7; color: #ccc; margin-bottom: 1rem; }
+        .modal-paper ul { padding-left: 1.5rem; }
+        .exp-item { margin-bottom: 2rem; }
+        .exp-title { font-weight: 600; color: #fff; font-family: 'Syne', sans-serif; font-size: 1.2rem; }
+        .case-study-img { width: 100%; height: 400px; object-fit: cover; border-radius: 4px; margin-bottom: 3rem; filter: grayscale(20%); }
+
+        /* MOBILE OPTIMIZATION */
+        @media (max-width: 768px) {
+            html, body { cursor: auto; }
+            .cursor-dot, .cursor-outline, .cursor-label, .work-hover-img { display: none !important; }
+            .hero-title { font-size: 22vw; }
+            .hero-title.outline { margin-left: 0; }
+            .about-grid, .stats-grid, .cap-grid, .timeline-item { grid-template-columns: 1fr; gap: 2rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .project { flex-direction: column; align-items: flex-start; gap: 1.5rem; padding: 2rem 0; }
+            .project-name { font-size: 8vw; flex-direction: column; gap: 0.5rem; transform: none !important; }
+            .project-meta { text-align: left; align-items: flex-start; }
+            .modal-paper { padding: 2rem; }
+            .contact-title { font-size: 15vw; }
+            nav { padding: 1.5rem 5vw; }
+            .nav-links { display: none; } /* Simplified for code snippet, implement hamburger if needed */
+        }
+    </style>
 </head>
-<body class="grid-bg">
-  <div class="noise"></div>
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
+<body>
 
-  <header class="topbar">
-    <div class="container navwrap">
-      <div class="brand">Dhruv Arora</div>
-      <nav class="navlinks">
-        <a href="#about">About</a>
-        <a href="#capabilities">Capabilities</a>
-        <a href="#work">Work</a>
-        <a href="#timeline">Timeline</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <a class="pill" href="#contact"><b>Available</b><span>for select builds</span></a>
+    <div class="noise"></div>
+    
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+    <div class="cursor-label">View</div>
+
+    <!-- Preloader -->
+    <div id="loader">
+        <div class="loader-progress"></div>
+        <div class="loader-text">00</div>
     </div>
-  </header>
 
-  <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <div class="eyebrow reveal">AI • Spatial Systems • Product Thinking</div>
-          <h1 class="reveal">Dhruv <span class="outline">Arora</span></h1>
-          <p class="hero-copy reveal">
-            I build polished AI systems, spatial interfaces, gesture-driven experiences, and business-aware products that feel premium from the first scroll.
-          </p>
-          <div class="hero-actions reveal">
-            <a class="btn primary magnetic" href="#work">View Selected Work</a>
-            <a class="btn magnetic" href="#contact">Start a Project</a>
-          </div>
-          <div class="hero-visual reveal">
-            <div class="orb a"></div>
-            <div class="orb b"></div>
-            <div class="orb c"></div>
-            <div class="label">Cinematic motion / premium portfolio / modern engineer identity</div>
-          </div>
+    <nav>
+        <div class="nav-logo syne">Dhruv Arora©</div>
+        <div class="nav-links mono">
+            <a href="#about" class="hover-target">About</a>
+            <a href="#capabilities" class="hover-target">Stack</a>
+            <a href="#work" class="hover-target">Work</a>
+            <a href="#experience" class="hover-target">Experience</a>
+            <a href="#" id="open-resume" class="resume-btn hover-target">Resume</a>
         </div>
+    </nav>
 
-        <aside class="stats-panel reveal">
-          <div class="eyebrow" style="margin-bottom:12px">Proof of work</div>
-          <div class="stat-row">
-            <div class="stat"><div class="n" data-count="10">0</div><div class="l">Projects built</div></div>
-            <div class="stat"><div class="n" data-count="3">0</div><div class="l">AI workflows</div></div>
-            <div class="stat"><div class="n" data-count="5">0</div><div class="l">BI dashboards</div></div>
-            <div class="stat"><div class="n" data-count="2">0</div><div class="l">Publications</div></div>
-          </div>
-          <p class="fine" style="margin-top:18px">
-            This layout is designed to feel expensive: calmer hierarchy, tighter spacing, less visual noise, stronger reveal timing.
-          </p>
-        </aside>
-      </div>
+    <!-- HERO -->
+    <section id="hero" class="container">
+        <div class="hero-status">Status: Available</div>
+        <div class="hero-title-wrapper"><h1 class="hero-title split-text">Dhruv</h1></div>
+        <div class="hero-title-wrapper"><h1 class="hero-title outline split-text">Arora</h1></div>
+        <div class="hero-subtitle">
+            Architecting the future of AI, Spatial Computing, and Autonomous Systems. Bridging business intelligence with cutting-edge tech.
+        </div>
     </section>
 
+    <!-- MARQUEE -->
     <div class="marquee">
-      <div class="container">
-        <div class="marquee-track" id="marqueeTrack">
-          <span>AI ENGINEERING</span><span>•</span><span>AR / VR</span><span>•</span><span>GESTURE CONTROL</span><span>•</span><span>VOICE SYSTEMS</span><span>•</span><span>BUSINESS INTELLIGENCE</span><span>•</span>
-          <span>AI ENGINEERING</span><span>•</span><span>AR / VR</span><span>•</span><span>GESTURE CONTROL</span><span>•</span><span>VOICE SYSTEMS</span><span>•</span><span>BUSINESS INTELLIGENCE</span><span>•</span>
+        <div class="marquee-inner">
+            <span>AI ENGINEER</span><span>●</span><span>AR/VR DEV</span><span>●</span><span>ROBOTICS</span><span>●</span><span>AI ENGINEER</span><span>●</span><span>AR/VR DEV</span><span>●</span><span>ROBOTICS</span><span>●</span>
         </div>
-      </div>
     </div>
 
-    <section class="section" id="about">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <div class="section-kicker reveal">01 / Identity</div>
-            <h2 class="section-title reveal">Engineering, but with product taste.</h2>
-          </div>
-          <p class="section-desc reveal">
-            The goal is not just to show skills. It is to make the entire page feel like a premium product page — controlled motion, strong typographic rhythm, and clean spacing.
-          </p>
-        </div>
+    <!-- ABOUT -->
+    <section id="about" class="container">
+        <div class="section-tag">// 01. Identity</div>
         <div class="about-grid">
-          <div class="card reveal">
-            <h3>What this site should communicate</h3>
-            <p>
-              You are not just “a student with projects.” You are someone who can connect AI, spatial UX, computer vision, and business value into one coherent story.
-            </p>
-          </div>
-          <div class="card reveal">
-            <h3>What I changed in the structure</h3>
-            <p>
-              I reduced the overstuffed sci-fi effect, kept the premium motion, and rebuilt the information flow so users understand your value in the first 10 seconds.
-            </p>
-          </div>
+            <div class="mono" style="color: var(--text-muted); text-transform: uppercase; font-size: 12px;">( Vision )</div>
+            <div class="manifesto">
+                <!-- Text scrubbed via JS -->
+                Bridging business intelligence with cutting-edge AI technology. Pursuing an MBA Tech at NMIMS Mumbai—a hybrid of engineering and strategic management—I focus on AI & Agentic Systems—building intelligent agents capable of executing complex tasks autonomously, alongside pioneering AR/VR & Voice Systems.
+            </div>
         </div>
-      </div>
     </section>
 
-    <section class="section" id="capabilities">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <div class="section-kicker reveal">02 / Capabilities</div>
-            <h2 class="section-title reveal">Three pillars that make sense.</h2>
-          </div>
-          <p class="section-desc reveal">
-            This version groups your strengths into a clearer product story so recruiters instantly see where you fit.
-          </p>
+    <!-- METRICS -->
+    <section id="metrics">
+        <div class="container">
+            <div class="section-tag">// 02. Proof Metrics</div>
+            <div class="stats-grid">
+                <div class="stat-item"><div class="stat-num" data-target="10">0</div><div class="stat-label">Projects Built</div></div>
+                <div class="stat-item"><div class="stat-num" data-target="3">0</div><div class="stat-label">Agentic Workflows</div></div>
+                <div class="stat-item"><div class="stat-num" data-target="5">0</div><div class="stat-label">BI Dashboards</div></div>
+                <div class="stat-item"><div class="stat-num" data-target="2">0</div><div class="stat-label">Publications</div></div>
+                <div class="stat-item"><div class="stat-num" data-target="1">0</div><div class="stat-label">NASA Award</div></div>
+            </div>
         </div>
+    </section>
+
+    <!-- CAPABILITIES -->
+    <section id="capabilities" class="container">
+        <div class="section-tag">// 03. Capabilities</div>
+        <h2 class="section-header syne"><span class="line">Core Stack</span></h2>
         <div class="cap-grid">
-          <div class="card cap reveal">
-            <div class="num">01</div>
-            <h4>AI & Automation</h4>
-            <p>Agentic workflows, NLP systems, APIs, dashboards, and intelligent task automation.</p>
+            <div class="cap-card hover-target">
+                <div class="cap-num">01</div>
+                <div class="cap-title">AI & Agentic Systems</div>
+                <p class="cap-text">Python, TensorFlow, LangChain, GPT. Building CNNs, voice agents, and autonomous task-executing AI systems.</p>
+            </div>
+            <div class="cap-card hover-target">
+                <div class="cap-num">02</div>
+                <div class="cap-title">AR/VR & Gaming</div>
+                <p class="cap-text">Unity, ARKit, C#, OpenCV. Crafting interactive 3D visualizations, AR study assistants, and gesture-based interfaces.</p>
+            </div>
+            <div class="cap-card hover-target">
+                <div class="cap-num">03</div>
+                <div class="cap-title">Business Intelligence</div>
+                <p class="cap-text">Data Analytics, ERP Automation, Finance. Merging technical infrastructure with strategic business solutions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORK -->
+    <section id="work" class="container">
+        <div class="section-tag">// 04. Selected Architecture</div>
+        <h2 class="section-header syne"><span class="line">Featured Work</span></h2>
+        
+        <div class="project-list">
+            <!-- Global Image Holder for Hover Effect -->
+            <div class="work-hover-img" id="workHoverImg"></div>
+
+            <div class="project view-target" data-study="nexus" data-img="https://images.unsplash.com/photo-1642790106117-e829e14a795f?q=80&w=800&auto=format&fit=crop">
+                <div class="project-info">
+                    <span class="project-index">01</span>
+                    <div class="project-name">Nexus Alpha <span class="project-subtitle">Agentic Trading System</span></div>
+                </div>
+                <div class="project-meta">
+                    <div>FINTECH / AI</div>
+                    <div style="color: var(--accent);">PYTHON / LANGCHAIN / XAI</div>
+                </div>
+            </div>
+
+            <div class="project view-target" data-study="mentar" data-img="https://z-cdn-media.chatglm.cn/files/4d143ce3-498e-4a7a-96b1-13d769656d70.png">
+                <div class="project-info">
+                    <span class="project-index">02</span>
+                    <div class="project-name">MentAR <span class="project-subtitle">AR AI Study Companion</span></div>
+                </div>
+                <div class="project-meta">
+                    <div>EDTECH / SPATIAL</div>
+                    <div style="color: var(--accent);">UNITY / ARKIT / CONV AI</div>
+                </div>
+            </div>
+
+            <div class="project view-target" data-study="bistro" data-img="https://z-cdn-media.chatglm.cn/files/05f199ae-aace-4cfc-b57b-cb26c4c4a87a.png">
+                <div class="project-info">
+                    <span class="project-index">03</span>
+                    <div class="project-name">Neo-Bistro <span class="project-subtitle">Voice AI Restaurant</span></div>
+                </div>
+                <div class="project-meta">
+                    <div>HOSPITALITY / VOICE AI</div>
+                    <div style="color: var(--accent);">REACT / LANGCHAIN / GPT</div>
+                </div>
+            </div>
+            
+            <div class="project view-target" data-study="emotion" data-img="https://z-cdn-media.chatglm.cn/files/4e50c0c3-3b8a-4545-b456-a002f513f69a.png">
+                <div class="project-info">
+                    <span class="project-index">04</span>
+                    <div class="project-name">EmotionAI <span class="project-subtitle">Speech Recognition</span></div>
+                </div>
+                <div class="project-meta">
+                    <div>NLP / DEEP LEARNING</div>
+                    <div style="color: var(--accent);">PYTHON / CNN / TF</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="container">
+        <div class="section-tag">// 05. Timeline & Accolades</div>
+        <div class="timeline-item">
+            <div class="timeline-year">2025</div>
+            <div class="timeline-content">
+                <h3 class="syne">AI Engineer — Bizwy</h3>
+                <p>Developed advanced AI systems and ERP automation solutions to streamline business operations in Hyderabad.</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-year">2024</div>
+            <div class="timeline-content">
+                <h3 class="syne">Unity Game Developer</h3>
+                <p>Created engaging mobile games using the Unity engine, focusing on popular game mechanics and UX optimization for Being Ambitious.</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-year">2023</div>
+            <div class="timeline-content">
+                <h3 class="syne">NASA Engineering Award</h3>
+                <p>Awarded by FIRST Robotics for innovative robotics solutions, technical excellence, and team leadership representing India at BOEING.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="section-tag" style="position: absolute; top: 10vh; left: 5vw;">// 06. Initiation</div>
+        <h2 class="contact-title">Let's Talk</h2>
+        <div class="magnetic-btn-wrap hover-target" id="contactBtnWrap">
+            <button class="contact-btn" id="open-contact">Get in Touch</button>
+        </div>
+        
+        <div class="footer-bottom">
+            <div>© 2026 DHRUV ARORA</div>
+            <div class="socials">
+                <a href="mailto:whizdhruv@gmail.com" class="hover-target">Email</a>
+                <a href="https://linkedin.com/in/dhruv-arora-bb42602a9" target="_blank" class="hover-target">LinkedIn</a>
+                <a href="https://github.com" target="_blank" class="hover-target">GitHub</a>
+            </div>
+            <div>BUILT FOR THE FUTURE</div>
+        </div>
+    </section>
+
+    <!-- ==================== MODALS ==================== -->
+    
+    <!-- RESUME MODAL -->
+    <div id="resume-modal" class="modal-overlay">
+        <button class="close-modal-btn">Close</button>
+        <div class="modal-paper">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <h1>DHRUV ARORA</h1>
+                <p style="font-family: 'Syne', sans-serif; font-size: 1.5rem; color: var(--accent);">Aspiring AI & Data Analyst</p>
+                <div class="mono" style="font-size: 0.9rem; color: #888; margin-top: 1rem;">
+                    Mumbai, India | 8104620845 | whizdhruv@gmail.com | linkedin.com/in/dhruv-arora-bb42602a9
+                </div>
+            </div>
+            
+            <h2>Professional Summary</h2>
+            <p>Aspiring AI & Data Analyst pursuing an MBA Tech in Artificial Intelligence & Business Intelligence with hands-on experience in developing agentic AI systems, ERP-integrated analytics, and intelligent automation workflows. Skilled in Python, Tableau, REST APIs, and data-driven problem solving with practical exposure to full-stack AI solution development and business intelligence reporting.</p>
+            
+            <h2>Skills</h2>
+            <p><strong>Technical:</strong> Python, SQL, C/C++/C#, Java, Machine Learning, Deep Learning & Generative AI, Agentic AI, REST APIs, Git/GitHub, DevOps & Deployment Pipelines, Full-Stack Development, RPA, ERP Integration</p>
+            <p><strong>Tools & Platforms:</strong> Power BI, Tableau, Business Intelligence, ARKit & Unity Development, Game Development, Intelligent Automation, Data Analytics</p>
+            
+            <h2>Experience</h2>
+            <div class="exp-item">
+                <p class="exp-title">Data Solutions & AI Engineer Intern | May 2025 – Sep 2025</p>
+                <p class="mono" style="font-size:0.85rem;">Bizwy Information Management India Pvt. Ltd., Hyderabad, India</p>
+                <ul>
+                    <li>Developed 3+ agentic AI workflows and ERP-integrated automation systems for intelligent analytics and business process optimization.</li>
+                    <li>Built REST APIs, AI interfaces, and backend automation pipelines, supporting real-time intelligent workflows.</li>
+                    <li>Designed 5+ Tableau and Power BI dashboards while integrating enterprise datasets to improve reporting and analytical efficiency.</li>
+                </ul>
+            </div>
+            <div class="exp-item">
+                <p class="exp-title">Game Development Intern | May 2024 – Jul 2024</p>
+                <p class="mono" style="font-size:0.85rem;">Being Ambitious, Mumbai, India</p>
+                <ul>
+                    <li>Developed and optimized 5+ interactive game prototypes using Unity and C#, including Agar.io, Paper.io, and Hole.io clones.</li>
+                    <li>Implemented gameplay mechanics, UI systems, collision handling, and real-time player interaction features.</li>
+                </ul>
+            </div>
+            <div class="exp-item">
+                <p class="exp-title">Aeronautics & Simulation Intern | Apr 2024 – May 2024</p>
+                <p class="mono" style="font-size:0.85rem;">DK Aviation, Mumbai, India</p>
+                <ul>
+                    <li>Assisted in 8+ aerodynamics and flight simulation sessions involving aircraft controls, navigation systems, and piloting principles.</li>
+                </ul>
+            </div>
+            
+            <h2>Education</h2>
+            <div class="exp-item">
+                <p class="exp-title">MBA Tech – Artificial Intelligence & Business Intelligence | 2026</p>
+                <p>NMIMS Mukesh Patel School of Technology Management and Engineering, Mumbai, India</p>
+            </div>
+            <div class="exp-item">
+                <p class="exp-title">International Baccalaureate Diploma Programme (IBDP) | 2021</p>
+                <p>Podar International School, Mumbai, India</p>
+            </div>
+
+            <h2>Projects</h2>
+            <div class="exp-item">
+                <p class="exp-title">MENTAR: AI-Driven Augmented Reality Study Companion</p>
+                <ul>
+                    <li>Developed an AR-powered learning assistant using Unity, ARKit, and AI for personalized study experiences.</li>
+                    <li>Integrated immersive AR visualization and adaptive AI-driven assistance to enhance student engagement.</li>
+                </ul>
+            </div>
+            <div class="exp-item">
+                <p class="exp-title">Speech Emotion Recognition System</p>
+                <ul><li>Trained a CNN-based speech emotion recognition model using 500+ audio samples to classify emotions from voice inputs.</li></ul>
+            </div>
+            <div class="exp-item">
+                <p class="exp-title">Agentic AI Analytics System</p>
+                <ul><li>Developed AI-driven workflows capable of processing natural language queries and executing ERP-integrated analytical tasks.</li></ul>
+            </div>
+            <div class="exp-item">
+                <p class="exp-title">AI-Powered Algorithmic Trading System</p>
+                <ul><li>Developed an AI-driven algorithmic trading system for real-time market analysis, automated trade signal generation, and strategy back testing.</li></ul>
+            </div>
+            <div class="exp-item">
+                <p class="exp-title">Google “Add Me” Image Stitching Model</p>
+                <ul><li>Developed a SIFT-based computer vision system for seamless image stitching and photorealistic blending.</li></ul>
+            </div>
+
+            <h2>Key Achievements</h2>
             <ul>
-              <li class="tag">Python</li><li class="tag">LLMs</li><li class="tag">REST APIs</li><li class="tag">Tableau</li>
+                <li>Represented India at BOEING's 2019 FIRST Robotics Finals; won NASA's Engineering & Inspiration Award.</li>
+                <li>1st Runner-Up at Atharva College of Engineering's Projectathon.</li>
+                <li>Conducted Robotics outreach across Mumbai colleges.</li>
+                <li>Sub-Head at Taqneeq, the official Tech Fest of NMIMS.</li>
             </ul>
-          </div>
-          <div class="card cap reveal">
-            <div class="num">02</div>
-            <h4>Spatial / Interactive</h4>
-            <p>AR, gesture control, Unity, and immersive prototypes that feel futuristic but still usable.</p>
-            <ul>
-              <li class="tag">Unity</li><li class="tag">ARKit</li><li class="tag">OpenCV</li><li class="tag">C#</li>
-            </ul>
-          </div>
-          <div class="card cap reveal">
-            <div class="num">03</div>
-            <h4>Business Awareness</h4>
-            <p>Portfolio narrative, analytics thinking, product framing, and enterprise context.</p>
-            <ul>
-              <li class="tag">BI</li><li class="tag">Strategy</li><li class="tag">Design Thinking</li><li class="tag">Systems</li>
-            </ul>
-          </div>
         </div>
-      </div>
-    </section>
-
-    <section class="section" id="work">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <div class="section-kicker reveal">03 / Selected Work</div>
-            <h2 class="section-title reveal">Make the work feel real.</h2>
-          </div>
-          <p class="section-desc reveal">Each project should open like a mini case study, not just a list item.</p>
-        </div>
-        <div class="work-list">
-          <article class="project reveal project-card" data-img="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop">
-            <div>
-              <div class="meta">AI / PRODUCT</div>
-              <h3>Nexus Alpha</h3>
-              <div class="sub">Agentic trading system with explainable decision flows and live orchestration.</div>
-            </div>
-            <div>
-              <div class="meta">Stack</div>
-              <div class="sub">Python • LangChain • XAI • React</div>
-            </div>
-            <img class="img" alt="Nexus Alpha preview" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=400&auto=format&fit=crop" />
-          </article>
-
-          <article class="project reveal project-card" data-img="https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=1200&auto=format&fit=crop">
-            <div>
-              <div class="meta">AR / EDUCATION</div>
-              <h3>MentAR</h3>
-              <div class="sub">AR study companion with voice, 3D avatar presence, and interactive learning flows.</div>
-            </div>
-            <div>
-              <div class="meta">Stack</div>
-              <div class="sub">Unity • ARKit • Speech • OpenCV</div>
-            </div>
-            <img class="img" alt="MentAR preview" src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=400&auto=format&fit=crop" />
-          </article>
-
-          <article class="project reveal project-card" data-img="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=1200&auto=format&fit=crop">
-            <div>
-              <div class="meta">VOICE AI / FULL STACK</div>
-              <h3>Neo-Bistro</h3>
-              <div class="sub">Restaurant ordering interface with voice prompts, structured order handling, and menu intelligence.</div>
-            </div>
-            <div>
-              <div class="meta">Stack</div>
-              <div class="sub">React • Flask • GPT • LangChain</div>
-            </div>
-            <img class="img" alt="Neo-Bistro preview" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=400&auto=format&fit=crop" />
-          </article>
-
-          <article class="project reveal project-card" data-img="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop">
-            <div>
-              <div class="meta">NLP / DL</div>
-              <h3>EmotionAI</h3>
-              <div class="sub">Speech emotion recognition system using audio features and deep learning.</div>
-            </div>
-            <div>
-              <div class="meta">Stack</div>
-              <div class="sub">Python • Librosa • CNN • TensorFlow</div>
-            </div>
-            <img class="img" alt="EmotionAI preview" src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=400&auto=format&fit=crop" />
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="timeline">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <div class="section-kicker reveal">04 / Timeline</div>
-            <h2 class="section-title reveal">A cleaner story of progress.</h2>
-          </div>
-          <p class="section-desc reveal">This section should read like credibility, not a resume dump.</p>
-        </div>
-        <div class="timeline">
-          <div class="timeline-item reveal">
-            <div class="year">2023</div>
-            <div>
-              <h4>Recognition in robotics and technical leadership</h4>
-              <p>A milestone that supports your maker identity and gives the site early authority.</p>
-            </div>
-          </div>
-          <div class="timeline-item reveal">
-            <div class="year">2024</div>
-            <div>
-              <h4>Game and interactive systems work</h4>
-              <p>Useful for showing experimentation, iteration, and ability to ship interactive experiences.</p>
-            </div>
-          </div>
-          <div class="timeline-item reveal">
-            <div class="year">2025</div>
-            <div>
-              <h4>AI and business systems direction</h4>
-              <p>Strongest positioning for your current portfolio: AI + product + business context.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="contact">
-          <div class="contact-box reveal">
-            <div class="section-kicker">05 / Contact</div>
-            <h2 class="contact-big">Let's build something premium.</h2>
-            <p class="hero-copy" style="margin-top:16px; max-width: 48ch;">
-              A good portfolio should feel like a strong product launch. This version pushes toward that feel with tighter motion, softer contrast, and a more intentional content hierarchy.
-            </p>
-            <div class="contact-links">
-              <a class="btn magnetic" href="mailto:whizdhruv@gmail.com">Email</a>
-              <a class="btn magnetic" href="https://linkedin.com/in/dhruv-arora-bb42602a9" target="_blank">LinkedIn</a>
-              <a class="btn magnetic" href="https://github.com" target="_blank">GitHub</a>
-            </div>
-          </div>
-          <div class="contact-box reveal">
-            <h3 style="margin-top:0; font-size:1.35rem;">What to improve next</h3>
-            <p class="fine">
-              1) Replace placeholder project images with custom screenshots.
-              <br />2) Add real case study modals for each project.
-              <br />3) Use your own short intro video or looping clip in the hero.
-              <br />4) Connect the contact form to Formspree / Netlify Forms.
-              <br />5) Compress all assets and keep only one animation system.
-            </p>
-            <div class="card" style="margin-top:18px; background:rgba(255,255,255,.03)">
-              <h3 style="margin-bottom:8px">Design principle</h3>
-              <p>Premium websites usually feel expensive because they are calm, consistent, and intentional. Fewer effects. Better timing. Cleaner text.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="container footer">
-      © 2026 Dhruv Arora — built for a sharper first impression.
     </div>
-  </main>
 
-  <script>
-    gsap.registerPlugin(ScrollTrigger);
+    <!-- CASE STUDY MODAL -->
+    <div id="case-study-modal" class="modal-overlay">
+        <button class="close-modal-btn">Close</button>
+        <div class="modal-paper">
+            <h1 id="cs-title">Title</h1>
+            <p id="cs-subtitle" class="mono" style="font-size: 1rem; color: var(--accent); margin-bottom: 3rem;">Subtitle</p>
+            <img id="cs-img" src="" alt="Project Image" class="case-study-img">
+            <h2>Overview</h2>
+            <p id="cs-overview">Description goes here.</p>
+            <h2>System Architecture</h2>
+            <div style="background: rgba(255,255,255,0.03); padding: 2rem; border-left: 3px solid var(--accent); margin: 2rem 0;">
+                <p id="cs-arch" class="mono" style="margin:0; font-size:0.9rem; line-height: 1.8;">Architecture details</p>
+            </div>
+            <h2>Challenges & Solutions</h2>
+            <p id="cs-challenges">Challenges go here.</p>
+        </div>
+    </div>
 
-    const lenis = new Lenis({
-      duration: 1.15,
-      smoothWheel: true,
-      smoothTouch: false
-    });
-    function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
-    requestAnimationFrame(raf);
-    lenis.on('scroll', ScrollTrigger.update);
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // 1. Core Setup & Smooth Scroll
+        const lenis = new Lenis({ duration: 1.5, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+        gsap.ticker.lagSmoothing(0);
 
-    // Cursor
-    const cursor = document.getElementById('cursor');
-    const cursorRing = document.getElementById('cursorRing');
-    const canHover = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
-    if (canHover) {
-      let x = window.innerWidth / 2, y = window.innerHeight / 2;
-      let rx = x, ry = y;
-      window.addEventListener('mousemove', (e) => { x = e.clientX; y = e.clientY; cursor.style.opacity = 1; cursorRing.style.opacity = 1; });
-      gsap.ticker.add(() => {
-        rx += (x - rx) * 0.18;
-        ry += (y - ry) * 0.18;
-        gsap.set(cursor, { x, y });
-        gsap.set(cursorRing, { x: rx, y: ry });
-      });
-      document.querySelectorAll('.magnetic, .project-card').forEach(el => {
-        el.addEventListener('mouseenter', () => gsap.to(cursorRing, { scale: 1.45, duration: .25 }));
-        el.addEventListener('mouseleave', () => gsap.to(cursorRing, { scale: 1, duration: .25 }));
-      });
-    }
+        // 2. Custom Fable-Style Cursor (Highly Optimized)
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+        const cursorLabel = document.querySelector('.cursor-label');
+        
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        
+        // Use GSAP quickTo for 60fps hardware accelerated cursor tracking
+        const xToDot = gsap.quickTo(cursorDot, "x", {duration: 0.1, ease: "power3"});
+        const yToDot = gsap.quickTo(cursorDot, "y", {duration: 0.1, ease: "power3"});
+        const xToOutline = gsap.quickTo(cursorOutline, "x", {duration: 0.6, ease: "power3.out"});
+        const yToOutline = gsap.quickTo(cursorOutline, "y", {duration: 0.6, ease: "power3.out"});
+        const xToLabel = gsap.quickTo(cursorLabel, "x", {duration: 0.4, ease: "power3.out"});
+        const yToLabel = gsap.quickTo(cursorLabel, "y", {duration: 0.4, ease: "power3.out"});
 
-    // Reveal system
-    gsap.utils.toArray('.reveal').forEach((el, i) => {
-      gsap.to(el, {
-        opacity: 1,
-        y: 0,
-        filter: 'blur(0px)',
-        duration: 1.1,
-        ease: 'power4.out',
-        delay: i * 0.03,
-        scrollTrigger: { trigger: el, start: 'top 85%' }
-      });
-    });
+        window.addEventListener("mousemove", e => {
+            mouseX = e.clientX; mouseY = e.clientY;
+            xToDot(mouseX); yToDot(mouseY);
+            xToOutline(mouseX); yToOutline(mouseY);
+            xToLabel(mouseX); yToLabel(mouseY);
+        });
 
-    // Hero intro
-    gsap.from('.hero h1', { opacity: 0, y: 40, duration: 1.4, ease: 'power4.out' });
-    gsap.from('.hero-copy, .hero-actions, .hero-visual', { opacity: 0, y: 24, duration: 1.2, stagger: 0.12, delay: .15, ease: 'power3.out' });
-    gsap.from('.stats-panel', { opacity: 0, y: 24, duration: 1.2, delay: .2, ease: 'power3.out' });
+        // Hover States
+        document.querySelectorAll('.hover-target').forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+        });
+        document.querySelectorAll('.view-target').forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('viewing'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('viewing'));
+        });
 
-    // Split marquee looping
-    gsap.to('#marqueeTrack', { xPercent: -12, duration: 18, repeat: -1, ease: 'none' });
+        // 3. Magnetic Button Logic
+        const btnWrap = document.getElementById('contactBtnWrap');
+        const btn = document.getElementById('open-contact');
+        if(btnWrap && matchMedia('(pointer:fine)').matches) {
+            btnWrap.addEventListener('mousemove', (e) => {
+                const rect = btnWrap.getBoundingClientRect();
+                const x = (e.clientX - rect.left - rect.width / 2) * 0.4;
+                const y = (e.clientY - rect.top - rect.height / 2) * 0.4;
+                gsap.to(btn, { x: x, y: y, duration: 0.5, ease: "power2.out" });
+            });
+            btnWrap.addEventListener('mouseleave', () => {
+                gsap.to(btn, { x: 0, y: 0, duration: 1, ease: "elastic.out(1, 0.3)" });
+            });
+        }
 
-    // Count-up stats
-    const animateCount = (el) => {
-      const target = +el.dataset.count;
-      const obj = { value: 0 };
-      gsap.to(obj, {
-        value: target,
-        duration: 1.8,
-        ease: 'power2.out',
-        scrollTrigger: { trigger: el, start: 'top 88%' },
-        onUpdate: () => { el.textContent = Math.round(obj.value); }
-      });
-    };
-    document.querySelectorAll('[data-count]').forEach(animateCount);
+        // 4. Floating Project Image (Fable style list reveal)
+        const workImg = document.getElementById('workHoverImg');
+        const setX = gsap.quickTo(workImg, "left", {duration: 0.6, ease: "power3.out"});
+        const setY = gsap.quickTo(workImg, "top", {duration: 0.6, ease: "power3.out"});
+        
+        document.querySelectorAll('.project').forEach(proj => {
+            proj.addEventListener('mouseenter', (e) => {
+                workImg.style.backgroundImage = `url(${proj.dataset.img})`;
+                workImg.style.opacity = 1;
+            });
+            proj.addEventListener('mousemove', (e) => {
+                setX(e.clientX); setY(e.clientY);
+            });
+            proj.addEventListener('mouseleave', () => { workImg.style.opacity = 0; });
+        });
 
-    // Gentle hover motion on project cards
-    document.querySelectorAll('.project-card').forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const r = card.getBoundingClientRect();
-        const x = ((e.clientX - r.left) / r.width) * 100;
-        const y = ((e.clientY - r.top) / r.height) * 100;
-        card.style.setProperty('--mx', `${x}%`);
-        card.style.setProperty('--my', `${y}%`);
-      });
-    });
+        // 5. Utility: Split text into spans for staggered animation
+        function splitText(selector) {
+            document.querySelectorAll(selector).forEach(el => {
+                const text = el.innerText;
+                el.innerHTML = text.split('').map(char => `<span class="char">${char === ' ' ? '&nbsp;' : char}</span>`).join('');
+            });
+        }
+        splitText('.split-text');
 
-    // Magnetic buttons
-    document.querySelectorAll('.magnetic').forEach(btn => {
-      btn.addEventListener('mousemove', (e) => {
-        const r = btn.getBoundingClientRect();
-        const dx = (e.clientX - r.left - r.width / 2) / 6;
-        const dy = (e.clientY - r.top - r.height / 2) / 6;
-        gsap.to(btn, { x: dx, y: dy, duration: 0.35, ease: 'power3.out' });
-      });
-      btn.addEventListener('mouseleave', () => gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, .4)' }));
-    });
+        // Text Gradient Scrub Reveal
+        const manifesto = document.querySelector('.manifesto');
+        if(manifesto) {
+            const words = manifesto.innerText.split(' ');
+            manifesto.innerHTML = '';
+            words.forEach(word => {
+                const span = document.createElement('span');
+                span.className = 'word'; span.innerText = word + ' ';
+                manifesto.appendChild(span);
+            });
+            gsap.to('.manifesto .word', {
+                backgroundPositionX: '0%', stagger: 0.1,
+                scrollTrigger: { trigger: '#about', start: 'top 60%', end: 'bottom 80%', scrub: 1 }
+            });
+        }
 
-    // Project hover depth
-    document.querySelectorAll('.project').forEach(project => {
-      project.addEventListener('mouseenter', () => gsap.to(project, { scale: 1.01, duration: 0.35, ease: 'power2.out' }));
-      project.addEventListener('mouseleave', () => gsap.to(project, { scale: 1, duration: 0.45, ease: 'power2.out' }));
-    });
+        // 6. Intro Loader & Animations
+        let counter = 0;
+        const loaderText = document.querySelector('.loader-text');
+        const loaderProgress = document.querySelector('.loader-progress');
+        
+        const loaderInterval = setInterval(() => {
+            counter += Math.floor(Math.random() * 8) + 1;
+            if (counter >= 100) {
+                counter = 100; clearInterval(loaderInterval);
+                initAnimations();
+            }
+            loaderText.textContent = counter.toString().padStart(2, '0');
+            loaderProgress.style.width = counter + '%';
+        }, 60);
 
-    // Subtle parallax on hero visual
-    ScrollTrigger.create({
-      trigger: '.hero',
-      start: 'top top',
-      end: 'bottom top',
-      scrub: true,
-      onUpdate: self => {
-        gsap.to('.hero-visual', { y: self.progress * 50, duration: 0.2, overwrite: true });
-      }
-    });
-  </script>
+        function initAnimations() {
+            const tl = gsap.timeline();
+            tl.to('#loader', { yPercent: -100, duration: 1.5, ease: "expo.inOut", delay: 0.2 })
+              .set('#loader', { display: 'none' })
+              .to('.hero-title .char', { y: '0%', duration: 1.5, stagger: 0.04, ease: "expo.out" }, "-=0.8")
+              .to('.hero-subtitle', { opacity: 1, y: -20, duration: 1.5, ease: "power4.out" }, "-=1")
+              .to('.hero-status', { opacity: 1, scale: 1, duration: 1, ease: "back.out(1.5)" }, "-=1");
+
+            // Scroll Triggers
+            gsap.utils.toArray('.section-header .line').forEach(line => {
+                gsap.to(line, { y: '0%', duration: 1.5, ease: "expo.out", scrollTrigger: { trigger: line.parentElement, start: "top 85%" } });
+            });
+
+            gsap.from('.cap-card', { y: 100, opacity: 0, duration: 1.5, stagger: 0.1, ease: "expo.out", scrollTrigger: { trigger: '#capabilities', start: "top 70%" } });
+            gsap.from('.timeline-item', { x: -50, opacity: 0, duration: 1.5, stagger: 0.15, ease: "expo.out", scrollTrigger: { trigger: '#experience', start: "top 70%" } });
+
+            // Counter Animation
+            document.querySelectorAll('.stat-num').forEach(stat => {
+                ScrollTrigger.create({
+                    trigger: '#metrics', start: "top 70%", once: true,
+                    onEnter: () => {
+                        gsap.to(stat, {
+                            innerText: stat.dataset.target, duration: 3, ease: "power3.out",
+                            snap: { innerText: 1 }
+                        });
+                    }
+                });
+            });
+        }
+
+        // 7. Modals & Data Injection (Preserved specific case study data)
+        const caseStudies = {
+            nexus: {
+                title: "Nexus Alpha", subtitle: "Agentic Trading System",
+                img: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?q=80&w=800&auto=format&fit=crop",
+                overview: "Advanced agentic system featuring neural execution and explainable AI (XAI) narration. It bridges finance and deep technical agentic AI capabilities perfectly.",
+                arch: "Data Ingestion: Financial APIs -> Neural Core: LangChain Agent -> XAI Narration: GPT-4 translates logic -> Dashboard: React frontend.",
+                challenges: "The AI agent needed to make split-second decisions while remaining explainable. Solution: Implemented a dual-track neural execution path."
+            },
+            mentar: {
+                title: "MentAR", subtitle: "AR AI Study Companion",
+                img: "https://z-cdn-media.chatglm.cn/files/4d143ce3-498e-4a7a-96b1-13d769656d70.png",
+                overview: "Developed an AR-powered learning assistant using Unity, ARKit, and AI for personalized study experiences with voice-activated quizzes.",
+                arch: "Frontend: Unity + ARKit -> Voice Pipeline: Native STT -> AI Core: Conversational AI -> Animation: Unity Mechanim.",
+                challenges: "Synchronizing the voice recognition latency with real-time AR avatar animations. Solution: Utilized multi-threading in Unity."
+            },
+            bistro: {
+                title: "Neo-Bistro", subtitle: "Voice AI Restaurant System",
+                img: "https://z-cdn-media.chatglm.cn/files/05f199ae-aace-4cfc-b57b-cb26c4c4a87a.png",
+                overview: "Full-stack voice ordering system for restaurants. Uses React for the digital menu interface, a Flask backend, and LangChain/GPT.",
+                arch: "Frontend: React.js -> Backend: Flask REST API -> AI Agent: LangChain -> TTS: Responds verbally.",
+                challenges: "The AI hallucinated menu items. Solution: Prompt engineering and LangChain SQL database integration."
+            },
+            emotion: {
+                title: "EmotionAI", subtitle: "Speech & Emotion Recognition",
+                img: "https://z-cdn-media.chatglm.cn/files/4e50c0c3-3b8a-4545-b456-a002f513f69a.png",
+                overview: "Trained a CNN-based speech emotion recognition model using 500+ audio samples to classify emotions from voice inputs.",
+                arch: "Data: Audio (WAV) -> Preprocessing: Librosa -> Model: CNN (TensorFlow) -> Output: Classification.",
+                challenges: "Limited dataset size led to overfitting. Solution: Applied data augmentation techniques to expand dataset by 3x."
+            }
+        };
+
+        const modals = document.querySelectorAll('.modal-overlay');
+        function openModal(id) { 
+            document.getElementById(id).classList.add('active'); 
+            lenis.stop(); 
+        }
+        function closeModal() { 
+            modals.forEach(m => m.classList.remove('active')); 
+            lenis.start(); 
+        }
+
+        document.getElementById('open-resume').addEventListener('click', e => { e.preventDefault(); openModal('resume-modal'); });
+        
+        document.querySelectorAll('.project').forEach(proj => {
+            proj.addEventListener('click', () => {
+                const data = caseStudies[proj.dataset.study];
+                if (data) {
+                    document.getElementById('cs-title').textContent = data.title;
+                    document.getElementById('cs-subtitle').textContent = data.subtitle;
+                    document.getElementById('cs-img').src = data.img;
+                    document.getElementById('cs-overview').textContent = data.overview;
+                    document.getElementById('cs-arch').textContent = data.arch;
+                    document.getElementById('cs-challenges').textContent = data.challenges;
+                    openModal('case-study-modal');
+                }
+            });
+        });
+
+        document.querySelectorAll('.close-modal-btn').forEach(btn => btn.addEventListener('click', closeModal));
+    </script>
 </body>
 </html>
