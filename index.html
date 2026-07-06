@@ -1,883 +1,7807 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO & Meta Tags -->
-    <title>Dhruv Arora — AI & Systems Architect</title>
-    <meta name="description" content="Architecting the future of AI, Spatial Computing, and Autonomous Systems. Bridging business intelligence with cutting-edge tech.">
-    
-    <!-- UNIQUE TECHY GLITCH HUD FAVICON -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23020202' rx='20'/><polygon points='50,8 88,30 88,70 50,92 12,70 12,30' fill='none' stroke='%230aff9d' stroke-width='4'/><polygon points='50,18 78,34 78,66 50,82 22,66 22,34' fill='none' stroke='%230aff9d' stroke-width='1.5' opacity='0.4'/><text x='46' y='64' font-family='Arial,sans-serif' font-weight='900' font-size='32' fill='%23ff0044' text-anchor='middle'>D12</text><text x='54' y='64' font-family='Arial,sans-serif' font-weight='900' font-size='32' fill='%2300d4ff' text-anchor='middle'>D12</text><text x='50' y='64' font-family='Arial,sans-serif' font-weight='900' font-size='32' fill='%23ffffff' text-anchor='middle'>D12</text><rect x='18' y='46' width='64' height='3' fill='%230aff9d' opacity='0.8'/><circle cx='12' cy='30' r='4' fill='%230aff9d'/><circle cx='88' cy='70' r='4' fill='%230aff9d'/></svg>" />
-    
-    <!-- OpenGraph (OG) Tags -->
-    <meta property="og:title" content="Dhruv Arora — AI & Systems Architect" />
-    <meta property="og:description" content="Architecting the future of AI, Spatial Computing, and Autonomous Systems. Bridging business intelligence with cutting-edge tech." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://dhruvarora12.netlify.app" />
-    <meta property="og:image" content="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop" />
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-    <style>
-        :root {
-            --bg: #020202; 
-            --text: #f5f5f5;
-            --accent: #0aff9d; 
-            --gray: #1a1a1a;
-        }
+<meta charset="UTF-8">
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-        html, body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: 'Space Mono', monospace;
-            overflow-x: hidden;
-            cursor: none;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
 
-        h1, h2, h3, .syne { font-family: 'Syne', sans-serif; letter-spacing: -0.04em; }
 
-        /* Cinematic Noise Overlay */
-        .noise-overlay {
-            position: fixed; top: -50%; left: -50%; width: 200%; height: 200%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            opacity: 0.03; pointer-events: none; z-index: 9999;
-            animation: noise 0.2s infinite step-start;
-        }
-        @keyframes noise {
-            0% { transform: translate(0, 0); } 10% { transform: translate(-5%, -5%); }
-            20% { transform: translate(-10%, 5%); } 30% { transform: translate(5%, -10%); }
-            40% { transform: translate(-5%, 15%); } 50% { transform: translate(-10%, 5%); }
-            60% { transform: translate(15%, 0); } 70% { transform: translate(0, 10%); }
-            80% { transform: translate(-15%, 0); } 90% { transform: translate(10, 5%); }
-            100% { transform: translate(5%, 0); }
-        }
+<title>Dhruv Arora — AI Systems Architect</title>
 
-        /* METALLIC SLIME SVG CURSOR */
-        #metal-cursor-svg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 10002; display: block; mix-blend-mode: difference; transition: opacity 0.3s ease; }
-        #glass-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 10003; display: block; opacity: 0; transition: opacity 0.3s ease; }
-        .glass-orb { position: absolute; border-radius: 50%; background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: inset 0 0 20px rgba(255,255,255,0.1), inset 0 0 2px rgba(255,255,255,0.8), 0 5px 15px rgba(0,0,0,0.2); backdrop-filter: blur(1px) brightness(1.2) contrast(3) saturate(2.5); -webkit-backdrop-filter: blur(1px) brightness(1.2) contrast(3) saturate(2.5); will-change: transform, width, height; pointer-events: none; }
-        .mercury-label { display: block; position: fixed; top: 0; left: 0; font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; color: #000; background: rgba(255,255,255,0.9); padding: 4px 8px; border-radius: 2px; pointer-events: none; z-index: 10004; transform: translate(-50%, -50%); opacity: 0; transition: opacity 0.2s; text-transform: uppercase; }
 
-        /* Loader */
-        #loader { position: fixed; inset: 0; background: var(--bg); z-index: 10005; display: flex; justify-content: center; align-items: center; flex-direction: column; }
-        .loader-text { font-family: 'Syne', sans-serif; font-size: 8vw; font-weight: 800; color: var(--text); }
 
-        .container { width: 90%; max-width: 1400px; margin: 0 auto; }
+<meta name="description" content="AI • Spatial Computing • Autonomous Systems">
 
-        /* Nav & Guided Cues */
-        nav { position: fixed; top: 0; width: 100%; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; z-index: 100; mix-blend-mode: difference; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
-        nav a { color: #fff; text-decoration: none; text-transform: uppercase; font-size: 11px; letter-spacing: 2px; position: relative; display: inline-block; transition: color 0.3s; opacity: 0.8; }
-        nav a::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -4px; left: 0; background: #fff; transition: width 0.3s; }
-        nav a:hover::after, nav a.active::after { width: 100%; }
-        nav a:hover, nav a.active { opacity: 1; color: var(--accent); }
-        nav .resume-btn { border: 1px solid #fff; padding: 6px 12px; border-radius: 2px; }
-        nav .resume-btn.active { border-color: var(--accent); }
 
-        .section-tag { display: block; font-size: 11px; color: #444; margin-bottom: 3rem; text-transform: uppercase; letter-spacing: 3px; }
-        .scroll-cue { position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%); font-size: 10px; color: #555; text-transform: uppercase; letter-spacing: 2px; display: flex; flex-direction: column; align-items: center; gap: 8px; animation: bounce 2s infinite; }
-        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);} 40% {transform: translateX(-50%) translateY(-10px);} 60% {transform: translateX(-50%) translateY(-5px);} }
 
-        /* Hero */
-        #hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; position: relative; perspective: 1000px; }
-        .hero-title { font-size: 18vw; line-height: 0.8; font-weight: 800; mix-blend-mode: difference; color: #fff; transform-style: preserve-3d; }
-        .hero-title.outline { color: transparent; -webkit-text-stroke: 1px #333; }
-        .hero-subtitle { position: absolute; bottom: 15%; left: 5%; text-align: left; max-width: 350px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #888; }
-        .hero-status { position: absolute; top: 20%; right: 5%; font-size: 11px; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); padding: 0.5rem 1rem; border-radius: 4px; }
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
-        /* Marquee */
-        .marquee { overflow: hidden; padding: 4rem 0; border-top: 1px solid #111; border-bottom: 1px solid #111; white-space: nowrap; }
-        .marquee-inner { display: inline-block; animation: marquee 20s linear infinite; }
-        .marquee span { font-family: 'Syne', sans-serif; font-size: 6vw; font-weight: 700; margin-right: 4rem; color: transparent; -webkit-text-stroke: 1px #222; }
-        .marquee span:nth-child(odd) { color: var(--accent); -webkit-text-stroke: 0; }
-        @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        /* About Section */
-        #about { padding: 15rem 5% 10rem; position: relative; }
-        .about-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; }
-        .about-label { font-size: 11px; text-transform: uppercase; color: #666; letter-spacing: 2px; }
-        .manifesto { font-family: 'Syne', sans-serif; font-size: 2.5vw; line-height: 1.3; font-weight: 400; }
-        .manifesto span { color: #1a1a1a; transition: color 0.3s; }
-        .manifesto span.active { color: var(--accent); }
 
-        /* Metrics Section */
-        #metrics { padding: 5rem 5%; border-top: 1px solid #111; border-bottom: 1px solid #111; background: #050505; }
-        .stats-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2rem; text-align: center; }
-        .stat-num { font-family: 'Syne', sans-serif; font-size: 4vw; font-weight: 800; color: var(--accent); margin-bottom: 0.5rem; }
-        .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #888; }
 
-        /* Capabilities */
-        #capabilities { padding: 12rem 5%; border-top: 1px solid #111; }
-        .cap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem; }
-        .cap-card { padding: 2rem; border: 1px solid #111; transition: background 0.3s, border 0.3s; transform-style: preserve-3d; position: relative; overflow: hidden; }
-        .cap-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at var(--mx) var(--my), rgba(10,255,157,0.05), transparent 40%); opacity: 0; transition: opacity 0.3s; }
-        .cap-card:hover { border-color: var(--accent); }
-        .cap-card:hover::before { opacity: 1; }
-        .cap-num { font-size: 11px; color: var(--accent); margin-bottom: 2rem; transform: translateZ(40px); position: relative; z-index: 2; }
-        .cap-title { font-family: 'Syne', sans-serif; font-size: 24px; margin-bottom: 1rem; transform: translateZ(60px); position: relative; z-index: 2; }
-        .cap-text { position: relative; z-index: 2; }
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-        /* WORK SECTION */
-        #work { padding: 12rem 5%; }
-        .section-header { font-family: 'Syne', sans-serif; font-size: 3vw; margin-bottom: 4rem; color: #333; text-transform: uppercase; }
-        .project { display: flex; justify-content: space-between; align-items: center; padding: 3rem 0; border-bottom: 1px solid #111; position: relative; cursor: pointer; }
-        .project-wrapper { display: flex; align-items: baseline; gap: 1.5rem; z-index: 2; }
-        .project-index { font-family: 'Space Mono', monospace; font-size: 12px; color: #444; }
-        .project-name { font-family: 'Syne', sans-serif; font-size: 4vw; font-weight: 600; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s; display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
-        .project-subtitle { font-family: 'Space Mono', monospace; font-size: 1rem; font-weight: 400; color: #555; text-transform: uppercase; letter-spacing: 1px; }
-        .project:hover .project-name { transform: translateX(50px); color: var(--accent); }
-        .project:hover .project-subtitle { color: #aaa; }
-        .project-meta { font-size: 11px; text-transform: uppercase; color: #666; z-index: 2; text-align: right; display: flex; flex-direction: column; align-items: flex-end; }
-        .project-tags { margin-top: 0.5rem; color: var(--accent); opacity: 0.7; }
-        .project-links { margin-top: 1rem; display: flex; gap: 1rem; z-index: 5; }
-        .project-links a { font-size: 10px; color: #888; border: 1px solid #333; padding: 4px 8px; text-decoration: none; transition: all 0.3s; display: flex; align-items: center; gap: 4px; }
-        .project-links a:hover { color: var(--accent); border-color: var(--accent); }
-        .project-preview { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.8); width: 500px; height: 300px; background-size: cover; background-position: center; opacity: 0; pointer-events: none; transition: opacity 0.3s, transform 0.3s; z-index: 1; filter: grayscale(20%) contrast(1.1); }
-        .project:hover .project-preview { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 
-        /* Experience Timeline */
-        #experience { padding: 12rem 5%; border-top: 1px solid #111; }
-        .timeline-item { display: grid; grid-template-columns: 1fr 3fr; gap: 4rem; padding: 3rem 0; border-bottom: 1px solid #111; transform-style: preserve-3d; transition: background 0.3s; }
-        .timeline-item:hover { background: #050505; }
-        .timeline-year { font-family: 'Syne', sans-serif; font-size: 2rem; color: #444; transition: color 0.3s; transform: translateZ(30px); }
-        .timeline-item:hover .timeline-year { color: var(--accent); }
-        .timeline-content h3 { font-size: 1.8rem; margin-bottom: 0.5rem; transform: translateZ(50px); }
-        .timeline-content p { color: #888; max-width: 600px; transform: translateZ(20px); }
 
-        /* Footer/Contact */
-        #contact { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 5rem; position: relative; }
-        .contact-title { font-family: 'Syne', sans-serif; font-size: 12vw; font-weight: 800; mix-blend-mode: difference; color: #fff; }
-        .magnetic-btn { position: relative; padding: 2rem 4rem; border: 1px solid #333; background: transparent; color: #fff; font-family: 'Syne', sans-serif; font-size: 2rem; text-transform: uppercase; cursor: pointer; transition: background 0.3s, color 0.3s; margin-top: 4rem; }
-        .magnetic-btn:hover { background: var(--accent); color: #000; border-color: var(--accent); }
-        .socials { margin-top: 3rem; display: flex; gap: 2rem; }
-        .socials a { color: #888; text-decoration: none; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s; }
-        .socials a:hover { color: var(--accent); }
-        .footer-bottom { position: absolute; bottom: 2rem; width: 90%; display: flex; justify-content: space-between; font-size: 11px; color: #555; text-transform: uppercase; letter-spacing: 2px; }
+<script src="https://cdn.tailwindcss.com"></script>
 
-        /* MODALS */
-        .modal-overlay { position: fixed; inset: 0; z-index: 10010; background: rgba(0,0,0,0.85); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); display: none; overflow-y: auto; padding: 5vh 0; }
-        .modal-paper { background: #fff; color: #111; width: 90%; max-width: 800px; margin: 0 auto; padding: 4rem; box-shadow: 0 30px 80px rgba(0,0,0,0.5); font-family: 'Space Mono', monospace; position: relative; min-height: 90vh; }
-        .close-modal-btn { position: fixed; top: 20px; right: 20px; z-index: 10011; background: #fff; color: #000; border: none; padding: 12px 24px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: all 0.3s; }
-        .close-modal-btn:hover { background: var(--accent); color: #000; }
-        .resume-header { text-align: center; margin-bottom: 2rem; }
-        .modal-paper h1 { font-family: 'Syne', sans-serif; font-size: 3rem; margin-bottom: 0.5rem; color: #000; }
-        .modal-paper h2 { font-family: 'Syne', sans-serif; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; border-bottom: 2px solid #111; padding-bottom: 0.5rem; margin-top: 2rem; margin-bottom: 1rem; }
-        .modal-paper p { font-size: 0.9rem; line-height: 1.6; color: #333; margin-bottom: 1rem; }
-        .modal-paper ul { padding-left: 1.5rem; margin-bottom: 1rem; }
-        .modal-paper li { font-size: 0.9rem; line-height: 1.6; color: #333; margin-bottom: 0.5rem; }
-        .modal-paper .exp-item { margin-bottom: 1.5rem; }
-        .modal-paper .exp-title { font-weight: 700; font-family: 'Syne', sans-serif; }
-        .case-study-img { width: 100%; height: 300px; object-fit: cover; margin-bottom: 2rem; border: 1px solid #ccc; }
-        .arch-box { background: #f4f4f4; border-left: 4px solid var(--accent); padding: 1rem; margin: 1.5rem 0; }
-        .arch-box strong { color: #000; }
-        .contact-form { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
-        .form-group { display: flex; flex-direction: column; }
-        .form-group label { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 0.5rem; color: #555; }
-        .form-group input, .form-group textarea { padding: 1rem; border: 1px solid #ccc; font-family: 'Space Mono', monospace; font-size: 1rem; outline: none; transition: border 0.3s; }
-        .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
-        .submit-btn { background: #000; color: #fff; padding: 1.5rem; border: none; font-family: 'Syne', sans-serif; font-size: 1.2rem; text-transform: uppercase; cursor: pointer; transition: background 0.3s; margin-top: 1rem; }
-        .submit-btn:hover { background: var(--accent); color: #000; }
 
-        /* MOBILE TOUCH FALLBACK */
-        @media (hover: none) and (pointer: coarse) {
-            html, body { cursor: auto; }
-            #metal-cursor-svg, #glass-container, .mercury-label { display: none !important; }
-            .project:hover .project-name { transform: none; color: inherit; }
-            .project:hover .project-preview { display: none; }
-            .hero-title { font-size: 20vw; }
-            .hero-title.outline { margin-left: 5%; }
-            .hero-subtitle { position: relative; bottom: auto; left: auto; margin-top: 2rem; text-align: left; }
-            .hero-status { top: 10%; right: 5%; font-size: 10px; }
-            .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .manifesto { font-size: 5vw; }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 3rem; }
-            .stat-num { font-size: 8vw; }
-            .cap-grid { grid-template-columns: 1fr; }
-            .project { flex-direction: column; align-items: flex-start; gap: 1rem; }
-            .project-name { font-size: 8vw; flex-direction: column; gap: 0.5rem; }
-            .project-subtitle { font-size: 0.8rem; }
-            .project-meta { text-align: left; align-items: flex-start; }
-            .section-header { font-size: 8vw; }
-            .timeline-item { grid-template-columns: 1fr; gap: 1rem; }
-            .contact-title { font-size: 18vw; }
-            .magnetic-btn { font-size: 1.2rem; padding: 1.5rem 3rem; }
-            nav { padding: 1rem 5%; }
-            nav .flex { gap: 1rem; flex-wrap: wrap; justify-content: flex-end; }
-            nav a { font-size: 10px; }
-            .modal-paper { padding: 2rem; }
-        }
-    </style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r161/three.min.js"></script>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+
+
+
+<style>
+
+
+
+:root{
+
+
+
+--bg:#020202;
+
+
+
+--panel:#070707;
+
+
+
+--text:#f5f5f5;
+
+
+
+--accent:#0aff9d;
+
+
+
+--line:#151515;
+
+
+
+--grey:#555;
+
+
+
+--radius:26px;
+
+
+
+--shadow:0 25px 90px rgba(0,0,0,.55);
+
+
+
+}
+
+
+
+*{
+
+
+
+margin:0;
+
+
+
+padding:0;
+
+
+
+box-sizing:border-box;
+
+
+
+}
+
+
+
+html{
+
+
+
+scroll-behavior:auto;
+
+
+
+}
+
+
+
+body{
+
+
+
+background:#020202;
+
+
+
+font-family:'Space Mono',monospace;
+
+
+
+color:white;
+
+
+
+overflow-x:hidden;
+
+
+
+cursor:none;
+
+
+
+}
+
+
+
+canvas{
+
+
+
+position:fixed;
+
+
+
+inset:0;
+
+
+
+z-index:-5;
+
+
+
+}
+
+
+
+#gradientBG{
+
+
+
+position:fixed;
+
+
+
+inset:0;
+
+
+
+z-index:-4;
+
+
+
+background:
+
+
+
+radial-gradient(circle at 15% 20%,rgba(10,255,157,.15),transparent 28%),
+
+
+
+radial-gradient(circle at 85% 25%,rgba(0,150,255,.12),transparent 25%),
+
+
+
+radial-gradient(circle at 50% 90%,rgba(255,255,255,.05),transparent 25%),
+
+
+
+#020202;
+
+
+
+filter:blur(0px);
+
+
+
+}
+
+
+
+#noise{
+
+
+
+position:fixed;
+
+
+
+inset:0;
+
+
+
+pointer-events:none;
+
+
+
+opacity:.035;
+
+
+
+z-index:9999;
+
+
+
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+
+
+
+mix-blend-mode:screen;
+
+
+
+animation:noise .2s infinite;
+
+
+
+}
+
+
+
+@keyframes noise{
+
+
+
+0%{transform:translate(0)}
+
+
+
+20%{transform:translate(-3%,2%)}
+
+
+
+40%{transform:translate(4%,-2%)}
+
+
+
+60%{transform:translate(-2%,4%)}
+
+
+
+80%{transform:translate(1%,-4%)}
+
+
+
+100%{transform:translate(0)}
+
+
+
+}
+
+
+
+#progress{
+
+
+
+position:fixed;
+
+
+
+left:0;
+
+
+
+top:0;
+
+
+
+height:3px;
+
+
+
+width:0%;
+
+
+
+background:linear-gradient(90deg,#0aff9d,#68d8ff);
+
+
+
+z-index:10000;
+
+
+
+}
+
+
+
+nav{
+
+
+
+position:fixed;
+
+
+
+top:0;
+
+
+
+left:0;
+
+
+
+width:100%;
+
+
+
+padding:24px 5%;
+
+
+
+display:flex;
+
+
+
+justify-content:space-between;
+
+
+
+align-items:center;
+
+
+
+backdrop-filter:blur(20px);
+
+
+
+background:rgba(5,5,5,.22);
+
+
+
+border-bottom:1px solid rgba(255,255,255,.05);
+
+
+
+z-index:999;
+
+
+
+transition:.5s;
+
+
+
+}
+
+
+
+nav.scrolled{
+
+
+
+padding:18px 5%;
+
+
+
+background:rgba(5,5,5,.6);
+
+
+
+}
+
+
+
+.logo{
+
+
+
+font-family:Syne;
+
+
+
+font-size:24px;
+
+
+
+font-weight:800;
+
+
+
+letter-spacing:-1px;
+
+
+
+}
+
+
+
+.links{
+
+
+
+display:flex;
+
+
+
+gap:42px;
+
+
+
+}
+
+
+
+.links a{
+
+
+
+text-decoration:none;
+
+
+
+color:white;
+
+
+
+font-size:11px;
+
+
+
+letter-spacing:2px;
+
+
+
+text-transform:uppercase;
+
+
+
+position:relative;
+
+
+
+}
+
+
+
+.links a:after{
+
+
+
+content:"";
+
+
+
+position:absolute;
+
+
+
+bottom:-8px;
+
+
+
+left:0;
+
+
+
+width:0;
+
+
+
+height:1px;
+
+
+
+background:var(--accent);
+
+
+
+transition:.35s;
+
+
+
+}
+
+
+
+.links a:hover:after{
+
+
+
+width:100%;
+
+
+
+}
+
+
+
+#cursor{
+
+
+
+width:18px;
+
+
+
+height:18px;
+
+
+
+position:fixed;
+
+
+
+border-radius:50%;
+
+
+
+background:white;
+
+
+
+mix-blend-mode:difference;
+
+
+
+pointer-events:none;
+
+
+
+z-index:99999;
+
+
+
+transform:translate(-50%,-50%);
+
+
+
+}
+
+
+
+#cursorRing{
+
+
+
+width:58px;
+
+
+
+height:58px;
+
+
+
+position:fixed;
+
+
+
+border-radius:50%;
+
+
+
+border:1px solid rgba(255,255,255,.35);
+
+
+
+pointer-events:none;
+
+
+
+z-index:99998;
+
+
+
+transform:translate(-50%,-50%);
+
+
+
+}
+
+
+
+section{
+
+
+
+width:100%;
+
+
+
+position:relative;
+
+
+
+padding:160px 7%;
+
+
+
+}
+
+
+
+#hero{
+
+
+
+height:100vh;
+
+
+
+display:flex;
+
+
+
+justify-content:center;
+
+
+
+flex-direction:column;
+
+
+
+}
+
+
+
+.heroGlow{
+
+
+
+position:absolute;
+
+
+
+width:700px;
+
+
+
+height:700px;
+
+
+
+border-radius:50%;
+
+
+
+background:radial-gradient(circle,rgba(10,255,157,.18),transparent 70%);
+
+
+
+filter:blur(60px);
+
+
+
+right:-120px;
+
+
+
+top:-150px;
+
+
+
+animation:floatGlow 14s ease-in-out infinite;
+
+
+
+}
+
+
+
+@keyframes floatGlow{
+
+
+
+0%,100%{
+
+
+
+transform:translateY(0) translateX(0);
+
+
+
+}
+
+
+
+50%{
+
+
+
+transform:translateY(60px) translateX(-50px);
+
+
+
+}
+
+
+
+}
+
+
+
+.heroTitle{
+
+
+
+font-family:Syne;
+
+
+
+font-size:17vw;
+
+
+
+font-weight:800;
+
+
+
+line-height:.8;
+
+
+
+letter-spacing:-10px;
+
+
+
+position:relative;
+
+
+
+}
+
+
+
+.heroOutline{
+
+
+
+color:transparent;
+
+
+
+-webkit-text-stroke:1px #303030;
+
+
+
+margin-left:10%;
+
+
+
+}
+
+
+
+.heroSub{
+
+
+
+position:absolute;
+
+
+
+bottom:14%;
+
+
+
+left:7%;
+
+
+
+width:360px;
+
+
+
+color:#888;
+
+
+
+text-transform:uppercase;
+
+
+
+font-size:12px;
+
+
+
+line-height:1.7;
+
+
+
+}
+
+
+
+.status{
+
+
+
+position:absolute;
+
+
+
+top:22%;
+
+
+
+right:7%;
+
+
+
+padding:10px 20px;
+
+
+
+border:1px solid var(--accent);
+
+
+
+color:var(--accent);
+
+
+
+font-size:11px;
+
+
+
+letter-spacing:2px;
+
+
+
+text-transform:uppercase;
+
+
+
+backdrop-filter:blur(18px);
+
+
+
+}
+
+
+
+.marquee{
+
+
+
+padding:70px 0;
+
+
+
+overflow:hidden;
+
+
+
+border-top:1px solid var(--line);
+
+
+
+border-bottom:1px solid var(--line);
+
+
+
+white-space:nowrap;
+
+
+
+}
+
+
+
+.marqueeInner{
+
+
+
+display:inline-flex;
+
+
+
+animation:marquee 18s linear infinite;
+
+
+
+}
+
+
+
+.marquee span{
+
+
+
+font-family:Syne;
+
+
+
+font-size:7vw;
+
+
+
+margin-right:60px;
+
+
+
+font-weight:700;
+
+
+
+}
+
+
+
+.marquee span:nth-child(even){
+
+
+
+color:transparent;
+
+
+
+-webkit-text-stroke:1px #303030;
+
+
+
+}
+
+
+
+@keyframes marquee{
+
+
+
+to{
+
+
+
+transform:translateX(-50%);
+
+
+
+}
+
+
+
+}
+
+
+
+.sectionTag{
+
+
+
+color:#444;
+
+
+
+letter-spacing:3px;
+
+
+
+font-size:11px;
+
+
+
+margin-bottom:70px;
+
+
+
+}
+
+
+
+.sectionTitle{
+
+
+
+font-family:Syne;
+
+
+
+font-size:4vw;
+
+
+
+margin-bottom:80px;
+
+
+
+}
+
+
+
+.aboutGrid{
+
+
+
+display:grid;
+
+
+
+grid-template-columns:1fr 2fr;
+
+
+
+gap:90px;
+
+
+
+}
+
+
+
+.manifesto{
+
+
+
+font-family:Syne;
+
+
+
+font-size:2.6vw;
+
+
+
+line-height:1.35;
+
+
+
+}
+
+
+
+.manifesto span{
+
+
+
+opacity:.2;
+
+
+
+display:inline-block;
+
+
+
+transition:.6s;
+
+
+
+}
+
+
+
+.metricGrid{
+
+
+
+display:grid;
+
+
+
+grid-template-columns:repeat(5,1fr);
+
+
+
+gap:40px;
+
+
+
+}
+
+
+
+.metric{
+
+
+
+text-align:center;
+
+
+
+}
+
+
+
+.metric h1{
+
+
+
+font-family:Syne;
+
+
+
+font-size:4vw;
+
+
+
+color:var(--accent);
+
+
+
+margin-bottom:10px;
+
+
+
+}
+
+
+
+.metric p{
+
+
+
+font-size:11px;
+
+
+
+letter-spacing:2px;
+
+
+
+text-transform:uppercase;
+
+
+
+color:#777;
+
+
+
+}
+
+
+
+.cardGrid{
+
+
+
+display:grid;
+
+
+
+grid-template-columns:repeat(3,1fr);
+
+
+
+gap:32px;
+
+
+
+}
+
+
+
+.card{
+
+
+
+background:rgba(255,255,255,.02);
+
+
+
+border:1px solid rgba(255,255,255,.05);
+
+
+
+padding:45px;
+
+
+
+border-radius:24px;
+
+
+
+transition:.5s;
+
+
+
+position:relative;
+
+
+
+overflow:hidden;
+
+
+
+backdrop-filter:blur(20px);
+
+
+
+}
+
+
+
+.card:before{
+
+
+
+content:"";
+
+
+
+position:absolute;
+
+
+
+width:420px;
+
+
+
+height:420px;
+
+
+
+background:radial-gradient(circle,rgba(10,255,157,.15),transparent 65%);
+
+
+
+left:var(--mx);
+
+
+
+top:var(--my);
+
+
+
+transform:translate(-50%,-50%);
+
+
+
+opacity:0;
+
+
+
+transition:.5s;
+
+
+
+}
+
+
+
+.card:hover{
+
+
+
+transform:translateY(-12px);
+
+
+
+border-color:var(--accent);
+
+
+
+}
+
+
+
+.card:hover:before{
+
+
+
+opacity:1;
+
+
+
+}
+
+
+
+.card h3{
+
+
+
+font-family:Syne;
+
+
+
+font-size:34px;
+
+
+
+margin:25px 0;
+
+
+
+}
+
+
+
+.card p{
+
+
+
+color:#777;
+
+
+
+line-height:1.8;
+
+
+
+}
+
+
+
+.projects{
+
+
+
+margin-top:70px;
+
+
+
+}
+
+
+
+.project{
+
+
+
+display:flex;
+
+
+
+justify-content:space-between;
+
+
+
+align-items:center;
+
+
+
+padding:65px 0;
+
+
+
+border-bottom:1px solid var(--line);
+
+
+
+cursor:pointer;
+
+
+
+position:relative;
+
+
+
+overflow:hidden;
+
+
+
+}
+
+
+
+.projectImage{
+
+
+
+position:absolute;
+
+
+
+width:520px;
+
+
+
+height:320px;
+
+
+
+right:14%;
+
+
+
+top:50%;
+
+
+
+transform:translateY(-50%) scale(.8);
+
+
+
+opacity:0;
+
+
+
+border-radius:18px;
+
+
+
+overflow:hidden;
+
+
+
+transition:.55s;
+
+
+
+box-shadow:var(--shadow);
+
+
+
+}
+
+
+
+.project:hover .projectImage{
+
+
+
+opacity:1;
+
+
+
+transform:translateY(-50%) scale(1);
+
+
+
+}
+
+
+
+.projectImage img{
+
+
+
+width:100%;
+
+
+
+height:100%;
+
+
+
+object-fit:cover;
+
+
+
+transition:1.2s;
+
+
+
+}
+
+
+
+.project:hover img{
+
+
+
+transform:scale(1.08);
+
+
+
+}
+
+
+
+.project h2{
+
+
+
+font-family:Syne;
+
+
+
+font-size:4vw;
+
+
+
+transition:.45s;
+
+
+
+}
+
+
+
+.project:hover h2{
+
+
+
+transform:translateX(40px);
+
+
+
+color:var(--accent);
+
+
+
+}
+
+
+
+.timelineItem{
+
+
+
+padding:70px 0;
+
+
+
+display:grid;
+
+
+
+grid-template-columns:220px auto;
+
+
+
+border-bottom:1px solid var(--line);
+
+
+
+}
+
+
+
+.timelineYear{
+
+
+
+font-family:Syne;
+
+
+
+font-size:42px;
+
+
+
+color:#333;
+
+
+
+transition:.4s;
+
+
+
+}
+
+
+
+.timelineItem:hover .timelineYear{
+
+
+
+color:var(--accent);
+
+
+
+}
+
+
+
+.contactTitle{
+
+
+
+font-family:Syne;
+
+
+
+font-size:13vw;
+
+
+
+text-align:center;
+
+
+
+}
+
+
+
+.contactButton{
+
+
+
+display:inline-flex;
+
+
+
+padding:28px 70px;
+
+
+
+border:1px solid #333;
+
+
+
+margin-top:70px;
+
+
+
+font-family:Syne;
+
+
+
+font-size:34px;
+
+
+
+text-transform:uppercase;
+
+
+
+transition:.4s;
+
+
+
+}
+
+
+
+.contactButton:hover{
+
+
+
+background:var(--accent);
+
+
+
+color:black;
+
+
+
+transform:translateY(-8px);
+
+
+
+}
+
+.heroParticles{
+
+
+
+position:absolute;
+
+
+
+inset:0;
+
+
+
+pointer-events:none;
+
+
+
+overflow:hidden;
+
+
+
+}
+
+
+
+.heroParticles span{
+
+
+
+position:absolute;
+
+
+
+width:3px;
+
+
+
+height:3px;
+
+
+
+border-radius:50%;
+
+
+
+background:#0aff9d;
+
+
+
+opacity:.3;
+
+
+
+animation:particleFloat linear infinite;
+
+
+
+}
+
+
+
+@keyframes particleFloat{
+
+
+
+0%{
+
+
+
+transform:translateY(120vh) scale(0);
+
+
+
+opacity:0;
+
+
+
+}
+
+
+
+20%{
+
+
+
+opacity:.8;
+
+
+
+}
+
+
+
+80%{
+
+
+
+opacity:.4;
+
+
+
+}
+
+
+
+100%{
+
+
+
+transform:translateY(-20vh) scale(1.5);
+
+
+
+opacity:0;
+
+
+
+}
+
+
+
+}
+
+
+
+.lightOrb{
+
+
+
+position:fixed;
+
+
+
+width:500px;
+
+
+
+height:500px;
+
+
+
+border-radius:50%;
+
+
+
+pointer-events:none;
+
+
+
+background:radial-gradient(circle,
+
+rgba(10,255,157,.12),
+
+transparent 70%);
+
+
+
+filter:blur(70px);
+
+
+
+z-index:-2;
+
+
+
+transition:
+
+transform .25s linear;
+
+
+
+}
+
+
+
+.lightOrb.blue{
+
+
+
+background:radial-gradient(circle,
+
+rgba(60,160,255,.12),
+
+transparent 70%);
+
+
+
+}
+
+
+
+.gridOverlay{
+
+
+
+position:fixed;
+
+
+
+inset:0;
+
+
+
+pointer-events:none;
+
+
+
+background:
+
+
+
+linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+
+
+
+linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+
+
+
+background-size:70px 70px;
+
+
+
+mask-image:
+
+
+
+radial-gradient(circle at center,black 30%,transparent 85%);
+
+
+
+opacity:.25;
+
+
+
+z-index:-3;
+
+
+
+}
+
+
+
+.glassBlur{
+
+
+
+position:fixed;
+
+
+
+inset:0;
+
+
+
+pointer-events:none;
+
+
+
+backdrop-filter:blur(0px);
+
+
+
+transition:1s;
+
+
+
+z-index:-1;
+
+
+
+}
+
+
+
+.spotlight{
+
+
+
+position:fixed;
+
+
+
+width:800px;
+
+
+
+height:800px;
+
+
+
+border-radius:50%;
+
+
+
+background:radial-gradient(circle,
+
+rgba(255,255,255,.06),
+
+transparent 70%);
+
+
+
+pointer-events:none;
+
+
+
+mix-blend-mode:screen;
+
+
+
+filter:blur(30px);
+
+
+
+z-index:-2;
+
+
+
+}
+
+
+
+.projectGlow{
+
+
+
+position:absolute;
+
+
+
+inset:0;
+
+
+
+background:
+
+
+
+linear-gradient(120deg,
+
+transparent,
+
+rgba(10,255,157,.08),
+
+transparent);
+
+
+
+transform:translateX(-120%);
+
+
+
+transition:1s;
+
+
+
+pointer-events:none;
+
+
+
+}
+
+
+
+.project:hover .projectGlow{
+
+
+
+transform:translateX(120%);
+
+
+
+}
+
+
+
+.projectNumber{
+
+
+
+font-size:12px;
+
+
+
+letter-spacing:2px;
+
+
+
+color:#666;
+
+
+
+margin-right:30px;
+
+
+
+}
+
+
+
+.projectLeft{
+
+
+
+display:flex;
+
+
+
+align-items:baseline;
+
+
+
+gap:20px;
+
+
+
+z-index:2;
+
+
+
+}
+
+
+
+.projectMeta{
+
+
+
+display:flex;
+
+
+
+flex-direction:column;
+
+
+
+align-items:flex-end;
+
+
+
+gap:14px;
+
+
+
+z-index:2;
+
+
+
+}
+
+
+
+.projectMeta div{
+
+
+
+font-size:11px;
+
+
+
+letter-spacing:2px;
+
+
+
+color:#666;
+
+
+
+text-transform:uppercase;
+
+
+
+}
+
+
+
+.tagRow{
+
+
+
+display:flex;
+
+
+
+gap:10px;
+
+
+
+flex-wrap:wrap;
+
+
+
+justify-content:flex-end;
+
+
+
+}
+
+
+
+.tag{
+
+
+
+padding:7px 12px;
+
+
+
+border:1px solid rgba(255,255,255,.08);
+
+
+
+border-radius:999px;
+
+
+
+font-size:10px;
+
+
+
+letter-spacing:1px;
+
+
+
+background:rgba(255,255,255,.03);
+
+
+
+transition:.35s;
+
+
+
+}
+
+
+
+.tag:hover{
+
+
+
+border-color:var(--accent);
+
+
+
+color:var(--accent);
+
+
+
+}
+
+
+
+.modal{
+
+
+
+position:fixed;
+
+
+
+inset:0;
+
+
+
+display:none;
+
+
+
+justify-content:center;
+
+
+
+align-items:center;
+
+
+
+background:rgba(0,0,0,.75);
+
+
+
+backdrop-filter:blur(18px);
+
+
+
+z-index:999999;
+
+
+
+overflow:auto;
+
+
+
+padding:70px;
+
+
+
+}
+
+
+
+.modalContent{
+
+
+
+width:min(1100px,95%);
+
+
+
+background:white;
+
+
+
+color:black;
+
+
+
+border-radius:30px;
+
+
+
+overflow:hidden;
+
+
+
+box-shadow:0 40px 120px rgba(0,0,0,.6);
+
+
+
+transform:translateY(60px);
+
+
+
+opacity:0;
+
+
+
+}
+
+
+
+.modalHero{
+
+
+
+height:420px;
+
+
+
+overflow:hidden;
+
+
+
+position:relative;
+
+
+
+}
+
+
+
+.modalHero img{
+
+
+
+width:100%;
+
+
+
+height:100%;
+
+
+
+object-fit:cover;
+
+
+
+transition:8s;
+
+
+
+}
+
+
+
+.modal.open .modalHero img{
+
+
+
+transform:scale(1.15);
+
+
+
+}
+
+
+
+.modalBody{
+
+
+
+padding:60px;
+
+
+
+}
+
+
+
+.modalBody h1{
+
+
+
+font-family:Syne;
+
+
+
+font-size:64px;
+
+
+
+margin-bottom:20px;
+
+
+
+}
+
+
+
+.modalBody h2{
+
+
+
+font-family:Syne;
+
+
+
+font-size:26px;
+
+
+
+margin-top:45px;
+
+
+
+margin-bottom:20px;
+
+
+
+}
+
+
+
+.modalBody p{
+
+
+
+line-height:2;
+
+
+
+color:#444;
+
+
+
+}
+
+
+
+.close{
+
+
+
+position:fixed;
+
+
+
+right:40px;
+
+
+
+top:40px;
+
+
+
+width:60px;
+
+
+
+height:60px;
+
+
+
+border-radius:50%;
+
+
+
+background:white;
+
+
+
+color:black;
+
+
+
+display:flex;
+
+
+
+justify-content:center;
+
+
+
+align-items:center;
+
+
+
+font-size:24px;
+
+
+
+cursor:pointer;
+
+
+
+z-index:9999999;
+
+
+
+transition:.4s;
+
+
+
+}
+
+
+
+.close:hover{
+
+
+
+background:var(--accent);
+
+
+
+transform:rotate(90deg);
+
+
+
+}
+
+
+
+.scrollIndicator{
+
+
+
+position:fixed;
+
+
+
+right:40px;
+
+
+
+top:50%;
+
+
+
+transform:translateY(-50%);
+
+
+
+display:flex;
+
+
+
+flex-direction:column;
+
+
+
+gap:14px;
+
+
+
+z-index:800;
+
+
+
+}
+
+
+
+.scrollDot{
+
+
+
+width:8px;
+
+
+
+height:8px;
+
+
+
+border-radius:50%;
+
+
+
+background:#333;
+
+
+
+transition:.4s;
+
+
+
+}
+
+
+
+.scrollDot.active{
+
+
+
+background:var(--accent);
+
+
+
+transform:scale(1.8);
+
+
+
+box-shadow:0 0 20px rgba(10,255,157,.6);
+
+
+
+}
+
+
+
+footer{
+
+
+
+padding:70px;
+
+
+
+text-align:center;
+
+
+
+border-top:1px solid var(--line);
+
+
+
+color:#555;
+
+
+
+font-size:11px;
+
+
+
+letter-spacing:3px;
+
+
+
+text-transform:uppercase;
+
+
+
+}
+
+
+
+@media(max-width:1000px){
+
+
+
+.links{
+
+
+
+display:none;
+
+
+
+}
+
+
+
+.heroTitle{
+
+
+
+font-size:23vw;
+
+
+
+}
+
+
+
+.aboutGrid{
+
+
+
+grid-template-columns:1fr;
+
+
+
+}
+
+
+
+.metricGrid{
+
+
+
+grid-template-columns:repeat(2,1fr);
+
+
+
+}
+
+
+
+.cardGrid{
+
+
+
+grid-template-columns:1fr;
+
+
+
+}
+
+
+
+.project{
+
+
+
+flex-direction:column;
+
+
+
+align-items:flex-start;
+
+
+
+gap:30px;
+
+
+
+}
+
+
+
+.project h2{
+
+
+
+font-size:11vw;
+
+
+
+}
+
+
+
+.projectImage{
+
+
+
+display:none;
+
+
+
+}
+
+
+
+.timelineItem{
+
+
+
+grid-template-columns:1fr;
+
+
+
+gap:20px;
+
+
+
+}
+
+
+
+.contactTitle{
+
+
+
+font-size:20vw;
+
+
+
+}
+
+
+
+}
+
+
+
+</style>
+
+
+
 </head>
+
+
+
 <body>
 
-    <div class="noise-overlay"></div>
-    
-    <svg id="metal-cursor-svg" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <filter id="metalGoo"><feGaussianBlur in="SourceGraphic" stdDeviation="7" result="blur" /><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 28 -14" result="goo" /></filter>
-            <radialGradient id="chromeGrad" cx="30%" cy="30%" r="70%">
-                <stop offset="0%" stop-color="#ffffff" /><stop offset="15%" stop-color="#f0f0f0" /><stop offset="40%" stop-color="#888888" />
-                <stop offset="70%" stop-color="#222222" /><stop offset="95%" stop-color="#111111" /><stop offset="100%" stop-color="#666666" />
-            </radialGradient>
-        </defs>
-        <g filter="url(#metalGoo)" id="metalGroup"></g>
-        <g filter="url(#metalGoo)" id="mainGroup">
-            <ellipse id="mainBlob" cx="-100" cy="-100" rx="15" ry="15" fill="url(#chromeGrad)"/>
-            <ellipse id="innerBlob" cx="-100" cy="-100" rx="5" ry="5" fill="#ffffff"/>
-        </g>
-    </svg>
 
-    <div id="glass-container">
-        <div class="glass-orb" id="glass-main" style="width: 160px; height: 160px; transform: translate(-50%, -50%);"></div>
-        <div class="glass-orb" id="glass-mid" style="width: 80px; height: 80px; transform: translate(-50%, -50%);"></div>
-        <div class="glass-orb" id="glass-trail" style="width: 40px; height: 40px; transform: translate(-50%, -50%);"></div>
-    </div>
 
-    <div class="mercury-label" id="mercuryLabel">View</div>
+<div id="progress"></div>
 
-    <div id="loader"><div class="loader-text">0</div></div>
 
-    <nav>
-        <div class="syne font-bold text-white tracking-tight">DHRUV ARORA©</div>
-        <div class="flex gap-8 items-center">
-            <a href="#about" data-cursor="link">About</a>
-            <a href="#metrics" data-cursor="link">Metrics</a>
-            <a href="#work" data-cursor="link">Work</a>
-            <a href="#experience" data-cursor="link">Experience</a>
-            <a href="#contact" data-cursor="link">Contact</a>
-            <a href="#" id="open-resume" class="resume-btn" data-cursor="link">Resume</a>
-        </div>
-    </nav>
 
-    <section id="hero" class="container">
-        <div class="hero-status" data-depth="0.2">Available for Work</div>
-        <h1 class="hero-title" data-depth="0.1">DHRUV</h1>
-        <h1 class="hero-title outline" style="margin-left: 10%;" data-depth="0.3">ARORA</h1>
-        <div class="hero-subtitle" data-depth="0.5">
-            Architecting the future of AI, Spatial Computing, and Autonomous Systems. Bridging business intelligence with cutting-edge tech.
-        </div>
-        <div class="scroll-cue">Scroll to Explore ↓</div>
-    </section>
+<div id="gradientBG"></div>
 
-    <div class="marquee">
-        <div class="marquee-inner">
-            <span>AI ENGINEER</span><span>●</span><span>AR/VR DEV</span><span>●</span><span>ROBOTICS</span><span>●</span><span>AI ENGINEER</span><span>●</span><span>AR/VR DEV</span><span>●</span><span>ROBOTICS</span><span>●</span>
-        </div>
-    </div>
 
-    <section id="about" class="container">
-        <div class="section-tag">// 01. IDENTITY</div>
-        <div class="about-grid">
-            <div class="about-label">(About Me)</div>
-            <div class="manifesto">
-                <span class="reveal-word">Bridging business intelligence</span> 
-                <span class="reveal-word">with cutting-edge AI technology.</span> 
-                <span class="reveal-word">Pursuing an MBA Tech at NMIMS Mumbai—</span>
-                <span class="reveal-word">a hybrid of engineering and strategic management—</span>
-                <span class="reveal-word">I focus on AI & Agentic Systems—</span>
-                <span class="reveal-word">building intelligent agents capable of</span>
-                <span class="reveal-word">executing complex tasks autonomously,</span>
-                <span class="reveal-word">alongside pioneering AR/VR & Voice Systems.</span>
-            </div>
-        </div>
-    </section>
 
-    <!-- PROOF METRICS SECTION -->
-    <section id="metrics">
-        <div class="container">
-            <div class="section-tag">// 02. PROOF METRICS</div>
-            <div class="stats-grid">
-                <div class="stat-item"><div class="stat-num" data-target="10">0</div><div class="stat-label">Projects Built</div></div>
-                <div class="stat-item"><div class="stat-num" data-target="3">0</div><div class="stat-label">Agentic Workflows</div></div>
-                <div class="stat-item"><div class="stat-num" data-target="5">0</div><div class="stat-label">BI Dashboards</div></div>
-                <div class="stat-item"><div class="stat-num" data-target="2">0</div><div class="stat-label">Publications</div></div>
-                <div class="stat-item"><div class="stat-num" data-target="1">0</div><div class="stat-label">NASA Award</div></div>
-            </div>
-        </div>
-    </section>
+<div id="noise"></div>
 
-    <section id="capabilities">
-        <div class="container">
-            <div class="section-tag">// 03. CAPABILITIES</div>
-            <h2 class="section-header reveal-text">Core Stack</h2>
-            <div class="cap-grid">
-                <div class="cap-card hover-tilt" data-cursor="tilt">
-                    <div class="cap-num">01</div>
-                    <div class="cap-title">AI & Agentic Systems</div>
-                    <p class="cap-text text-sm text-gray-500">Python, TensorFlow, LangChain, GPT. Building CNNs, voice agents, and autonomous task-executing AI systems.</p>
-                </div>
-                <div class="cap-card hover-tilt" data-cursor="tilt">
-                    <div class="cap-num">02</div>
-                    <div class="cap-title">AR/VR & Gaming</div>
-                    <p class="cap-text text-sm text-gray-500">Unity, ARKit, C#, OpenCV. Crafting interactive 3D visualizations, AR study assistants, and gesture-based interfaces.</p>
-                </div>
-                <div class="cap-card hover-tilt" data-cursor="tilt">
-                    <div class="cap-num">03</div>
-                    <div class="cap-title">Business Intelligence</div>
-                    <p class="cap-text text-sm text-gray-500">Data Analytics, ERP Automation, Finance. Merging technical infrastructure with strategic business solutions.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section id="work">
-        <div class="container">
-            <div class="section-tag">// 04. SELECTED ARCHITECTURE</div>
-            <h2 class="section-header reveal-text">Featured Work</h2>
-            
-            <div class="project" data-cursor="expand" data-study="nexus" data-img="https://images.unsplash.com/photo-1642790106117-e829e14a795f?q=80&w=800&auto=format&fit=crop">
-                <div class="project-wrapper">
-                    <span class="project-index">01</span>
-                    <div class="project-name">Nexus Alpha <span class="project-subtitle">— Agentic Trading System</span></div>
-                </div>
-                <div class="project-meta">
-                    <div>FINTECH / AI</div>
-                    <div class="project-tags">PYTHON / LANGCHAIN / XAI</div>
-                    <div class="project-links">
-                        <a href="https://github.com" target="_blank">[ GitHub ]</a>
-                        <a href="https://linkedin.com" target="_blank">[ Architecture ]</a>
-                    </div>
-                </div>
-                <div class="project-preview"></div>
-            </div>
 
-            <div class="project" data-cursor="expand" data-study="mentar" data-img="https://z-cdn-media.chatglm.cn/files/4d143ce3-498e-4a7a-96b1-13d769656d70.png?auth_key=1882216815-604f16ec3bc04564a265c41731c249c1-0-68a7e9870c8aa73e8ad800e606eade93">
-                <div class="project-wrapper">
-                    <span class="project-index">02</span>
-                    <div class="project-name">MentAR <span class="project-subtitle">— AR AI Study Companion</span></div>
-                </div>
-                <div class="project-meta">
-                    <div>EDTECH / SPATIAL</div>
-                    <div class="project-tags">UNITY / ARKIT / CONVERSATIONAL AI</div>
-                    <div class="project-links">
-                        <a href="https://github.com" target="_blank">[ GitHub ]</a>
-                        <a href="https://youtube.com" target="_blank">[ Demo ]</a>
-                    </div>
-                </div>
-                <div class="project-preview"></div>
-            </div>
+<div class="gridOverlay"></div>
 
-            <div class="project" data-cursor="expand" data-study="bistro" data-img="https://z-cdn-media.chatglm.cn/files/05f199ae-aace-4cfc-b57b-cb26c4c4a87a.png?auth_key=1882216815-f84225ea34dd4385b55aecd084a67e04-0-86ec0cdc77ac2e624ea59f820f80f666">
-                <div class="project-wrapper">
-                    <span class="project-index">03</span>
-                    <div class="project-name">Neo-Bistro <span class="project-subtitle">— Voice AI Restaurant System</span></div>
-                </div>
-                <div class="project-meta">
-                    <div>HOSPITALITY / VOICE AI</div>
-                    <div class="project-tags">REACT / FLASK / LANGCHAIN / GPT</div>
-                    <div class="project-links">
-                        <a href="https://github.com" target="_blank">[ GitHub ]</a>
-                        <a href="https://youtube.com" target="_blank">[ Demo ]</a>
-                    </div>
-                </div>
-                <div class="project-preview"></div>
-            </div>
 
-            <div class="project" data-cursor="expand" data-study="emotion" data-img="https://z-cdn-media.chatglm.cn/files/4e50c0c3-3b8a-4545-b456-a002f513f69a.png?auth_key=1882216815-f1e7725871b348eebb297117c6d999d3-0-05f267b43cf067228641416a7efe5556">
-                <div class="project-wrapper">
-                    <span class="project-index">04</span>
-                    <div class="project-name">EmotionAI <span class="project-subtitle">— Speech & Emotion Recognition</span></div>
-                </div>
-                <div class="project-meta">
-                    <div>NLP / DEEP LEARNING</div>
-                    <div class="project-tags">PYTHON / CNN / TENSORFLOW</div>
-                    <div class="project-links">
-                        <a href="https://github.com" target="_blank">[ GitHub ]</a>
-                    </div>
-                </div>
-                <div class="project-preview"></div>
-            </div>
 
-            <div class="project" data-cursor="expand" data-study="gesture" data-img="https://z-cdn-media.chatglm.cn/files/a9259f21-f0e2-4466-84c9-f3ee0b0b281c.png?auth_key=1882321216-f5b2707e11dd4650affb519db92b0150-0-308fda57cd9bdd3e96dc021ddff33a07">
-                <div class="project-wrapper">
-                    <span class="project-index">05</span>
-                    <div class="project-name">GestureCtrl <span class="project-subtitle">— Hand Gesture Gaming Interface</span></div>
-                </div>
-                <div class="project-meta">
-                    <div>GAMING / COMPUTER VISION</div>
-                    <div class="project-tags">PYTHON / OPENCV</div>
-                    <div class="project-links">
-                        <a href="https://github.com" target="_blank">[ GitHub ]</a>
-                        <a href="https://youtube.com" target="_blank">[ Demo ]</a>
-                    </div>
-                </div>
-                <div class="project-preview"></div>
-            </div>
-        </div>
-    </section>
+<div class="glassBlur"></div>
 
-    <section id="experience">
-        <div class="container">
-            <div class="section-tag">// 05. EXPERIENCE & AWARDS</div>
-            <h2 class="section-header reveal-text">Timeline</h2>
-            <div class="timeline-item hover-tilt" data-cursor="tilt">
-                <div class="timeline-year">2023</div>
-                <div class="timeline-content">
-                    <h3 class="syne">NASA Engineering & Inspiration Award</h3>
-                    <p>Awarded by FIRST Robotics for innovative robotics solutions, technical excellence, and team leadership.</p>
-                </div>
-            </div>
-            <div class="timeline-item hover-tilt" data-cursor="tilt">
-                <div class="timeline-year">2025</div>
-                <div class="timeline-content">
-                    <h3 class="syne">AI Engineer — Bizwy (Mumbai)</h3>
-                    <p>Developed advanced AI systems and ERP automation solutions to streamline business operations.</p>
-                </div>
-            </div>
-            <div class="timeline-item hover-tilt" data-cursor="tilt">
-                <div class="timeline-year">2024</div>
-                <div class="timeline-content">
-                    <h3 class="syne">Unity Game Developer (Remote)</h3>
-                    <p>Created engaging mobile games using the Unity engine, focusing on popular game mechanics and UX optimization.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section id="contact">
-        <div class="section-tag">// 06. CONTACT</div>
-        <h2 class="contact-title">LET'S TALK</h2>
-        <button class="magnetic-btn" id="open-contact" data-cursor="expand">Get in Touch</button>
-        <div class="socials">
-            <a href="mailto:whizdhruv@gmail.com" data-cursor="link">Email</a>
-            <a href="https://linkedin.com/in/dhruv-arora-bb42602a9" target="_blank" data-cursor="link">LinkedIn</a>
-            <a href="https://github.com" target="_blank" data-cursor="link">GitHub</a>
-        </div>
-        <div class="footer-bottom">
-            <div>© 2026 DHRUV ARORA</div>
-            <div>BUILT IN THE FUTURE</div>
-        </div>
-    </section>
 
-    <!-- RESUME MODAL -->
-    <div id="resume-modal" class="modal-overlay" data-lenis-prevent>
-        <button class="close-modal-btn close-btn">Close [X]</button>
-        <div class="modal-paper">
-            <div class="resume-header">
-                <h1>DHRUV ARORA</h1>
-                <p style="font-size: 1.2rem; color: #555; font-family: 'Syne', sans-serif;">Aspiring AI & Data Analyst</p>
-                <div class="contact-info" style="font-size: 0.8rem; color: #555; margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
-                    <span>Mumbai, India</span> | <span>8104620845</span> | <span>whizdhruv@gmail.com</span> | <span>linkedin.com/in/dhruv-arora-bb42602a9</span> | <span>dhruvarora12.netlify.app</span>
-                </div>
-            </div>
-            <h2>Professional Summary</h2>
-            <p>Aspiring AI & Data Analyst pursuing an MBA Tech in Artificial Intelligence & Business Intelligence with hands-on experience in developing agentic AI systems, ERP-integrated analytics, and intelligent automation workflows. Skilled in Python, Tableau, REST APIs, and data-driven problem solving with practical exposure to full-stack AI solution development and business intelligence reporting.</p>
-            <h2>Skills</h2>
-            <p><strong>Technical:</strong> Python, SQL, C/C++/C#, Java, Machine Learning, Deep Learning & Generative AI, Agentic AI, REST APIs, Git/GitHub, DevOps & Deployment Pipelines, Full-Stack Development, RPA, ERP Integration</p>
-            <p><strong>Tools & Platforms:</strong> Power BI, Tableau, Business Intelligence, ARKit & Unity Development, Game Development, Intelligent Automation, Data Analytics</p>
-            <h2>Experience</h2>
-            <div class="exp-item">
-                <p class="exp-title">Data Solutions & AI Engineer Intern | May 2025 – Sep 2025</p>
-                <p>Bizwy Information Management India Pvt. Ltd., Hyderabad, India</p>
-                <ul><li>Developed 3+ agentic AI workflows and ERP-integrated automation systems for intelligent analytics and business process optimization.</li><li>Built REST APIs, AI interfaces, and backend automation pipelines, supporting real-time intelligent workflows.</li><li>Designed 5+ Tableau and Power BI dashboards while integrating enterprise datasets to improve reporting and analytical efficiency.</li></ul>
-            </div>
-            <div class="exp-item">
-                <p class="exp-title">Game Development Intern | May 2024 – Jul 2024</p>
-                <p>Being Ambitious, Mumbai, India</p>
-                <ul><li>Developed and optimized 5+ interactive game prototypes using Unity and C#, including Agar.io, Paper.io, and Hole.io clones.</li><li>Implemented gameplay mechanics, UI systems, collision handling, and real-time player interaction features.</li><li>Improved game performance and debugging efficiency through iterative testing and object-oriented development practices.</li></ul>
-            </div>
-            <div class="exp-item">
-                <p class="exp-title">Aeronautics & Simulation Intern | Apr 2024 – May 2024</p>
-                <p>DK Aviation, Mumbai, India</p>
-                <ul><li>Assisted in 8+ aerodynamics and flight simulation sessions involving aircraft controls, navigation systems, and piloting principles.</li><li>Contributed to RC aircraft and glider development, aerodynamic experiments, and aviation workshop demonstrations.</li><li>Gained hands-on experience with flight simulators, aviation software tools, and applied aerodynamics concepts.</li></ul>
-            </div>
-            <h2>Education</h2>
-            <div class="exp-item"><p class="exp-title">MBA Tech – Artificial Intelligence & Business Intelligence | 2026</p><p>NMIMS Mukesh Patel School of Technology Management and Engineering, Mumbai, India</p></div>
-            <div class="exp-item"><p class="exp-title">International Baccalaureate Diploma Programme (IBDP) – Science & Business Studies | 2021</p><p>Podar International School, Mumbai, India</p></div>
-            <h2>Projects</h2>
-            <div class="exp-item"><p class="exp-title">MENTAR: AI-Driven Augmented Reality Study Companion | ARKit, Unity, AI</p><ul><li>Developed an AR-powered learning assistant using Unity, ARKit, and AI for personalized study experiences with voice-activated quizzes, 3D avatars, and interactive educational content.</li><li>Integrated immersive AR visualization and adaptive AI-driven assistance to enhance student engagement and learning workflows.</li></ul></div>
-            <div class="exp-item"><p class="exp-title">Speech Emotion Recognition System | Deep Learning, NLP, Python</p><ul><li>Trained a CNN-based speech emotion recognition model using 500+ audio samples to classify emotions from voice inputs with high prediction accuracy.</li><li>Applied NLP and audio feature extraction techniques for real-time emotion analysis and intelligent speech processing.</li></ul></div>
-            <div class="exp-item"><p class="exp-title">Agentic AI Analytics System | Python, REST APIs, Tableau</p><ul><li>Developed AI-driven workflows capable of processing natural language queries and executing ERP-integrated analytical tasks.</li><li>Built REST APIs and intelligent automation pipelines while integrating Tableau dashboards for real-time business intelligence reporting.</li></ul></div>
-            <div class="exp-item"><p class="exp-title">AI-Powered Algorithmic Trading System | Python, APIs, Machine Learning</p><ul><li>Developed an AI-driven algorithmic trading system for real-time market analysis, automated trade signal generation, and strategy back testing using financial APIs and machine learning techniques.</li></ul></div>
-            <div class="exp-item"><p class="exp-title">Google “Add Me” Image Stitching Model | Computer Vision, OpenCV</p><ul><li>Developed a SIFT-based computer vision system for seamless image stitching, feature matching, and photorealistic image blending.</li></ul></div>
-            <h2>Certifications</h2>
-            <ul><li>ChatGPT Prompt Engineering for Developers – OpenAI, Jan 2026</li><li>GRAD 2.0 – Galderma | Semi-Finalist (Case Study Competition), Jan 2026</li><li>Ethical Hacking & Cyber Security – IIT Bombay, Jan 2026</li><li>Financial Markets, Investing & Trading – Udemy, Jan 2026</li><li>Robotics Boot Camp – Sirena Technologies, Jan 2026</li></ul>
-            <h2>Key Achievements</h2>
-            <ul><li>Represented India at BOEING's 2019 FIRST Robotics Finals; won NASA's Engineering & Inspiration Award for technical innovation and community outreach.</li><li>1st Runner-Up at Atharva College of Engineering's Projectathon – National Project Competition.</li><li>Conducted Robotics outreach across Mumbai colleges, educating students on STEM principles and FIRST Robotics Competition.</li><li>Sub-Head at Taqneeq, the official Tech Fest of NMIMS.</li></ul>
-            <h2>Publications</h2>
-            <ul><li>Sustainable Fashion Adoption Among Gen Z in Urban India. Ecology, Environment & Conservation, Oct 2025.</li><li>GoSolo – A Freelancer Portal. ISTE Journal, Feb 2024.</li></ul>
-            <h2>Languages</h2>
-            <p>English, Hindi, French, Spanish</p>
-        </div>
-    </div>
+<div class="lightOrb"></div>
 
-    <!-- CASE STUDY MODAL -->
-    <div id="case-study-modal" class="modal-overlay" data-lenis-prevent>
-        <button class="close-modal-btn close-btn">Close [X]</button>
-        <div class="modal-paper">
-            <h1 id="cs-title">Project Title</h1>
-            <p id="cs-subtitle" style="font-size: 1.2rem; color: #555; font-family: 'Syne', sans-serif; margin-bottom: 2rem;">Project Subtitle</p>
-            <img id="cs-img" src="" alt="Project Image" class="case-study-img">
-            <h2>Overview</h2>
-            <p id="cs-overview">Description goes here.</p>
-            <h2>System Architecture</h2>
-            <div class="arch-box"><p id="cs-arch">Architecture details go here.</p></div>
-            <h2>Challenges & Solutions</h2>
-            <p id="cs-challenges">Challenges go here.</p>
-        </div>
-    </div>
 
-    <!-- CONTACT MODAL -->
-    <div id="contact-modal" class="modal-overlay" data-lenis-prevent>
-        <button class="close-modal-btn close-btn">Close [X]</button>
-        <div class="modal-paper" style="max-width: 600px;">
-            <h1>Get in Touch</h1>
-            <p style="color: #555; margin-bottom: 1rem;">Have a project in mind or just want to say hello? Drop a message below.</p>
-            <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
-                <div class="form-group"><label for="name">Name</label><input type="text" id="name" name="name" required></div>
-                <div class="form-group"><label for="email">Email</label><input type="email" id="email" name="email" required></div>
-                <div class="form-group"><label for="message">Message</label><textarea id="message" name="message" rows="5" required></textarea></div>
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
-        </div>
-    </div>
 
-    <script>
-        // 1. Smooth Scroll
-        const lenis = new Lenis({ duration: 1.4, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
-        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-        requestAnimationFrame(raf);
-        lenis.on('scroll', ScrollTrigger.update);
-        gsap.ticker.add((time) => { lenis.raf(time * 1000); });
-        gsap.ticker.lagSmoothing(0);
+<div class="lightOrb blue"></div>
 
-        // 2. Loader
-        const loaderText = document.querySelector('.loader-text');
-        let counter = 0;
-        const loaderInterval = setInterval(() => {
-            counter += Math.floor(Math.random() * 10) + 1;
-            if (counter >= 100) {
-                counter = 100; clearInterval(loaderInterval);
-                gsap.to('#loader', { yPercent: -100, duration: 1.4, ease: "expo.inOut", delay: 0.3, onComplete: () => { document.getElementById('loader').style.display = 'none'; initAnimations(); } });
-            }
-            loaderText.textContent = counter;
-        }, 80);
 
-        function initAnimations() {
-            gsap.from('.hero-title', { yPercent: 100, opacity: 0, duration: 1.8, stagger: 0.1, ease: "expo.out" });
-            gsap.from('.hero-subtitle', { opacity: 0, duration: 1.5, delay: 0.8, ease: "power4.out" });
-            gsap.from('.hero-status', { opacity: 0, scale: 0.8, duration: 1.5, delay: 1, ease: "power4.out" });
-            gsap.from('.scroll-cue', { opacity: 0, duration: 1.5, delay: 1.5, ease: "power4.out" });
-            
-            gsap.utils.toArray('.reveal-word').forEach((word, i) => {
-                gsap.to(word, { color: '#f5f5f5', duration: 1.5, ease: "power2.out", scrollTrigger: { trigger: word, start: "top 85%" }, delay: i * 0.08 });
-                gsap.from(word, { opacity: 0.1, duration: 1.5, ease: "power2.out", scrollTrigger: { trigger: word, start: "top 85%" }, delay: i * 0.08 });
-            });
 
-            gsap.utils.toArray('.reveal-text').forEach(el => {
-                gsap.from(el, { y: 50, opacity: 0, duration: 1.2, scrollTrigger: { trigger: el, start: "top 80%" }, ease: "expo.out" });
-            });
+<div class="spotlight"></div>
 
-            gsap.from('.cap-card', { y: 50, opacity: 0, duration: 1.2, stagger: 0.15, scrollTrigger: { trigger: '#capabilities', start: "top 70%" }, ease: "expo.out" });
-            gsap.from('.timeline-item', { y: 50, opacity: 0, duration: 1.2, stagger: 0.1, scrollTrigger: { trigger: '#experience', start: "top 70%" }, ease: "expo.out" });
-            gsap.from('.section-tag', { opacity: 0, y: 20, duration: 1.2, scrollTrigger: { trigger: el => el.nextElementSibling, start: "top 85%" } });
 
-            // Metrics Count Up
-            document.querySelectorAll('.stat-num').forEach(stat => {
-                const target = parseInt(stat.dataset.target);
-                gsap.to(stat, {
-                    innerText: target,
-                    duration: 2.5,
-                    ease: "power2.out",
-                    snap: { innerText: 1 },
-                    scrollTrigger: { trigger: '#metrics', start: "top 70%" }
-                });
-            });
-        }
 
-        // 3. Modal Logic
-        const modals = document.querySelectorAll('.modal-overlay');
-        const openResume = document.getElementById('open-resume');
-        const openContact = document.getElementById('open-contact');
-        const closeBtns = document.querySelectorAll('.close-btn');
+<canvas id="scene"></canvas>
 
-        function openModal(modalId) {
-            const modal = document.getElementById(modalId);
-            modal.style.display = 'block';
-            lenis.stop(); 
-            document.body.style.overflow = 'hidden'; 
-        }
 
-        function closeModal(modal) {
-            modal.style.display = 'none';
-            lenis.start(); 
-            document.body.style.overflow = 'auto';
-        }
 
-        openResume.addEventListener('click', (e) => { e.preventDefault(); openModal('resume-modal'); });
-        openContact.addEventListener('click', (e) => { e.preventDefault(); openModal('contact-modal'); });
-        
-        closeBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const modal = e.target.closest('.modal-overlay');
-                if (modal) closeModal(modal);
-            });
-        });
+<div id="cursor"></div>
 
-        // 4. Case Study Data & Injection
-        const caseStudies = {
-            nexus: {
-                title: "Nexus Alpha", subtitle: "Agentic Trading System",
-                img: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?q=80&w=800&auto=format&fit=crop",
-                overview: "Advanced agentic system featuring neural execution and explainable AI (XAI) narration. It bridges finance and deep technical agentic AI capabilities perfectly. The system processes real-time market data, generates automated trade signals, and narrates its decision-making process via XAI layers.",
-                arch: "<strong>Data Ingestion:</strong> Financial APIs (WebSocket) -> <strong>Neural Execution Core:</strong> LangChain Agent + Python -> <strong>XAI Narration:</strong> GPT-4 translates logic to human-readable text -> <strong>Dashboard:</strong> React frontend displays live trades and AI reasoning.",
-                challenges: "Challenge: The AI agent needed to make split-second decisions while remaining explainable to human auditors. Solution: Implemented a dual-track neural execution path where the fast-track executes trades, while a secondary LangChain agent traces the logic steps and generates an XAI report post-execution."
-            },
-            mentar: {
-                title: "MentAR", subtitle: "AR AI Study Companion",
-                img: "https://z-cdn-media.chatglm.cn/files/4d143ce3-498e-4a7a-96b1-13d769656d70.png",
-                overview: "Developed an AR-powered learning assistant using Unity, ARKit, and AI for personalized study experiences with voice-activated quizzes, 3D avatars, and interactive educational content.",
-                arch: "<strong>Frontend:</strong> Unity + ARKit (iOS) -> <strong>Voice Pipeline:</strong> Native Speech-to-Text -> <strong>AI Core:</strong> Conversational AI model processes queries -> <strong>Animation:</strong> Unity Mechanim drives the 3D avatar lip-sync.",
-                challenges: "Challenge: Synchronizing the voice recognition latency with real-time AR avatar animations. Solution: Utilized multi-threading in Unity to separate the audio processing pipeline from the main render loop, ensuring 60FPS AR tracking while waiting for AI responses."
-            },
-            bistro: {
-                title: "Neo-Bistro", subtitle: "Voice AI Restaurant System",
-                img: "https://z-cdn-media.chatglm.cn/files/05f199ae-aace-4cfc-b57b-cb26c4c4a87a.png",
-                overview: "Full-stack voice ordering system for restaurants. Uses React for the digital menu interface, a Flask backend, and LangChain/GPT to process natural language voice orders, suggest items, and calculate totals.",
-                arch: "<strong>Frontend:</strong> React.js (Menu UI) -> <strong>Backend:</strong> Flask REST API -> <strong>AI Agent:</strong> LangChain processes transcribed voice, queries the menu database, and returns structured JSON orders -> <strong>TTS:</strong> Responds verbally to the user.",
-                challenges: "Challenge: The AI occasionally hallucinated menu items that didn't exist. Solution: Prompt engineering and LangChain tool integration forced the agent to strictly query the SQL database before confirming an item, reducing hallucination rates to 0%."
-            },
-            emotion: {
-                title: "EmotionAI", subtitle: "Speech & Emotion Recognition",
-                img: "https://z-cdn-media.chatglm.cn/files/4e50c0c3-3b8a-4545-b456-a002f513f69a.png",
-                overview: "Trained a CNN-based speech emotion recognition model using 500+ audio samples to classify emotions from voice inputs with high prediction accuracy.",
-                arch: "<strong>Data:</strong> Audio files (WAV) -> <strong>Preprocessing:</strong> Librosa for MFCC feature extraction -> <strong>Model:</strong> Convolutional Neural Network (TensorFlow/Keras) -> <strong>Output:</strong> Emotion classification (Happy, Sad, Angry, Neutral).",
-                challenges: "Challenge: Limited dataset size led to overfitting. Solution: Applied data augmentation techniques such as pitch shifting and time stretching to artificially expand the dataset by 3x, improving validation accuracy by 18%."
-            },
-            gesture: {
-                title: "GestureCtrl", subtitle: "Hand Gesture Gaming Interface",
-                img: "https://z-cdn-media.chatglm.cn/files/a9259f21-f0e2-4466-84c9-f3ee0b0b281c.png",
-                overview: "Real-time hand gesture recognition system using OpenCV for intuitive game control without traditional input devices. Maps hand landmarks to keyboard inputs.",
-                arch: "<strong>Input:</strong> Webcam Feed -> <strong>Tracking:</strong> OpenCV + MediaPipe Hands -> <strong>Logic:</strong> Python script calculates finger distances -> <strong>Output:</strong> PyAutoGUI triggers keyboard/mouse events in the game.",
-                challenges: "Challenge: High latency caused a delay between gesture and game action. Solution: Optimized the OpenCV frame resolution and utilized multi-processing to separate video capture from gesture logic, reducing input lag from 150ms to 40ms."
-            }
-        };
 
-        document.querySelectorAll('.project').forEach(project => {
-            project.addEventListener('click', (e) => {
-                if (e.target.closest('.project-links')) return;
-                const studyId = project.dataset.study;
-                const data = caseStudies[studyId];
-                if (data) {
-                    document.getElementById('cs-title').textContent = data.title;
-                    document.getElementById('cs-subtitle').textContent = data.subtitle;
-                    document.getElementById('cs-img').src = data.img;
-                    document.getElementById('cs-overview').textContent = data.overview;
-                    document.getElementById('cs-arch').innerHTML = data.arch;
-                    document.getElementById('cs-challenges').textContent = data.challenges;
-                    openModal('case-study-modal');
-                }
-            });
-        });
 
-        // 5. Active Nav Link Highlighting
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('nav a');
-        sections.forEach(sec => {
-            ScrollTrigger.create({
-                trigger: sec,
-                start: 'top center',
-                end: 'bottom center',
-                onToggle: self => {
-                    if (self.isActive) {
-                        navLinks.forEach(link => link.classList.remove('active'));
-                        const activeLink = document.querySelector(`nav a[href="#${sec.id}"]`);
-                        if (activeLink) activeLink.classList.add('active');
-                    }
-                }
-            });
-        });
+<div id="cursorRing"></div>
 
-        // 6. Desktop-Only Interactions (Cursor, Tilt, Parallax)
-        const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
-        if (canHover) {
-            const heroSection = document.getElementById('hero');
-            heroSection.addEventListener('mousemove', (e) => {
-                const { clientX, clientY } = e; const centerX = window.innerWidth / 2; const centerY = window.innerHeight / 2;
-                document.querySelectorAll('[data-depth]').forEach(el => {
-                    const depth = parseFloat(el.dataset.depth);
-                    gsap.to(el, { x: (clientX - centerX) * depth, y: (clientY - centerY) * depth, duration: 1, ease: "power2.out" });
-                });
-            });
 
-            // Card Hover Grid Light
-            document.querySelectorAll('.cap-card').forEach(card => {
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    card.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
-                    card.style.setProperty('--my', (e.clientY - rect.top) + 'px');
-                });
-            });
+<nav>
 
-            // HYBRID CURSOR ENGINE
-            const metalSvg = document.getElementById('metal-cursor-svg');
-            const metalGroup = document.getElementById('metalGroup');
-            const mainBlob = document.getElementById('mainBlob');
-            const innerBlob = document.getElementById('innerBlob');
-            const glassContainer = document.getElementById('glass-container');
-            const label = document.getElementById('mercuryLabel');
 
-            const trailCount = 14;
-            const trailCircles = [];
-            const svgNS = "http://www.w3.org/2000/svg";
-            for(let i=0; i<trailCount; i++) {
-                const c = document.createElementNS(svgNS, 'circle');
-                c.setAttribute('cx', -100); c.setAttribute('cy', -100);
-                c.setAttribute('r', 8); c.setAttribute('fill', 'url(#chromeGrad)');
-                metalGroup.appendChild(c);
-                trailCircles.push({ el: c, x: -100, y: -100 });
-            }
 
-            const glassMain = document.getElementById('glass-main');
-            const glassMid = document.getElementById('glass-mid');
-            const glassTrail = document.getElementById('glass-trail');
-            const glassOrbs = [
-                { el: glassMain, x: 0, y: 0, lerp: 0.2 },
-                { el: glassMid, x: 0, y: 0, lerp: 0.12 },
-                { el: glassTrail, x: 0, y: 0, lerp: 0.08 }
-            ];
+<div class="logo">
 
-            let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
-            let prevX = mouseX, prevY = mouseY;
-            let vx = 0, vy = 0;
-            let isHoveringExpand = false;
-            let isHoveringLink = false;
-            let isClicked = false;
-            let time = 0;
 
-            const xLabel = gsap.quickTo(label, "x", { duration: 0.5, ease: "power3" });
-            const yLabel = gsap.quickTo(label, "y", { duration: 0.5, ease: "power3" });
 
-            window.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX; mouseY = e.clientY;
-                xLabel(mouseX); yLabel(mouseY);
-            });
+DHRUV ARORA®
 
-            window.addEventListener('mousedown', () => isClicked = true);
-            window.addEventListener('mouseup', () => isClicked = false);
 
-            function updateCursor() {
-                time += 0.05;
-                vx = mouseX - prevX; vy = mouseY - prevY;
-                prevX = mouseX; prevY = mouseY;
-                const speed = Math.sqrt(vx*vx + vy*vy);
 
-                let leaderX = mouseX, leaderY = mouseY;
-                trailCircles.forEach((t, i) => {
-                    t.x += (leaderX - t.x) * 0.06;
-                    t.y += (leaderY - t.y) * 0.06;
-                    t.el.setAttribute('cx', t.x);
-                    t.el.setAttribute('cy', t.y);
-                    let r = 10 - i * 0.4;
-                    if(r < 2) r = 2;
-                    t.el.setAttribute('r', r);
-                    leaderX = t.x; leaderY = t.y;
-                });
+</div>
 
-                let targetRx = 16, targetRy = 16;
-                if(isHoveringExpand) { targetRx = 0; targetRy = 0; } 
-                else if(isHoveringLink) { targetRx = 60; targetRy = 8; }
-                else if(isClicked) { targetRx = 40; targetRy = 6; }
-                else {
-                    targetRx = Math.max(10, 18 + speed * 0.5);
-                    targetRy = Math.max(10, 18 - speed * 0.3);
-                    if(speed < 2) {
-                        targetRx += Math.sin(time * 2) * 2;
-                        targetRy += Math.cos(time * 2.5) * 2;
-                    }
-                }
 
-                let currRx = parseFloat(mainBlob.getAttribute('rx'));
-                let currRy = parseFloat(mainBlob.getAttribute('ry'));
-                currRx += (targetRx - currRx) * 0.2;
-                currRy += (targetRy - currRy) * 0.2;
 
-                mainBlob.setAttribute('rx', currRx);
-                mainBlob.setAttribute('ry', currRy);
-                mainBlob.setAttribute('cx', mouseX);
-                mainBlob.setAttribute('cy', mouseY);
-                innerBlob.setAttribute('cx', mouseX - vx * 0.8);
-                innerBlob.setAttribute('cy', mouseY - vy * 0.8);
-                innerBlob.setAttribute('rx', currRx * 0.3);
-                innerBlob.setAttribute('ry', currRy * 0.3);
+<div class="links">
 
-                let glassLeaderX = mouseX, glassLeaderY = mouseY;
-                glassOrbs.forEach(g => {
-                    g.x += (glassLeaderX - g.x) * g.lerp;
-                    g.y += (glassLeaderY - g.y) * g.lerp;
-                    g.el.style.transform = `translate(${g.x}px, ${g.y}px) translate(-50%, -50%)`;
-                    glassLeaderX = g.x; glassLeaderY = g.y;
-                });
 
-                requestAnimationFrame(updateCursor);
-            }
-            updateCursor();
 
-            document.querySelectorAll('[data-cursor]').forEach(el => {
-                const type = el.dataset.cursor;
-                el.addEventListener('mouseenter', () => {
-                    if (type === 'expand') {
-                        isHoveringExpand = true;
-                        label.textContent = 'VIEW';
-                        gsap.to(label, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" });
-                        gsap.to(metalSvg, { opacity: 0, duration: 0.3 });
-                        gsap.to(glassContainer, { opacity: 1, duration: 0.3 });
-                    } else if (type === 'link') {
-                        isHoveringLink = true;
-                    }
-                });
-                el.addEventListener('mouseleave', () => {
-                    isHoveringExpand = false;
-                    isHoveringLink = false;
-                    gsap.to(label, { opacity: 0, scale: 0.8, duration: 0.2, ease: "power2.in" });
-                    gsap.to(metalSvg, { opacity: 1, duration: 0.3 });
-                    gsap.to(glassContainer, { opacity: 0, duration: 0.3 });
-                });
-            });
+<a href="#about">About</a>
 
-            document.querySelectorAll('.project').forEach(project => {
-                const preview = project.querySelector('.project-preview');
-                if(project.dataset.img) preview.style.backgroundImage = `url(${project.dataset.img})`;
-                project.addEventListener('mousemove', (e) => {
-                    const rect = project.getBoundingClientRect();
-                    gsap.to(preview, { x: e.clientX - rect.left - 250, y: e.clientY - rect.top - 150, duration: 0.5 });
-                });
-            });
 
-            const magneticBtn = document.querySelector('.magnetic-btn');
-            magneticBtn.addEventListener('mousemove', (e) => {
-                const rect = magneticBtn.getBoundingClientRect();
-                gsap.to(magneticBtn, { x: (e.clientX - rect.left - rect.width / 2) * 0.3, y: (e.clientY - rect.top - rect.height / 2) * 0.3, duration: 0.4 });
-            });
-            magneticBtn.addEventListener('mouseleave', () => gsap.to(magneticBtn, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1, 0.3)" }));
 
-            document.querySelectorAll('.hover-tilt').forEach(card => {
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    const rotateX = ((y - centerY) / centerY) * -10;
-                    const rotateY = ((x - centerX) / centerX) * 10;
-                    gsap.to(card, { rotateX, rotateY, duration: 0.2, transformPerspective: 800 });
-                });
-                card.addEventListener('mouseleave', () => gsap.to(card, { rotateX: 0, rotateY: 0, duration: 0.6, ease: "elastic.out(1, 0.75)" }));
-            });
-        }
-    </script>
+<a href="#metrics">Metrics</a>
+
+
+
+<a href="#capabilities">Capabilities</a>
+
+
+
+<a href="#work">Projects</a>
+
+
+
+<a href="#timeline">Experience</a>
+
+
+
+<a href="#contact">Contact</a>
+
+
+
+</div>
+
+
+
+</nav>
+
+
+
+<section id="hero">
+
+
+
+<div class="heroGlow"></div>
+
+
+
+<div class="heroParticles">
+
+
+
+<span style="left:4%;animation-duration:16s;"></span>
+
+<span style="left:12%;animation-duration:22s;"></span>
+
+<span style="left:20%;animation-duration:19s;"></span>
+
+<span style="left:27%;animation-duration:17s;"></span>
+
+<span style="left:33%;animation-duration:20s;"></span>
+
+<span style="left:42%;animation-duration:15s;"></span>
+
+<span style="left:48%;animation-duration:24s;"></span>
+
+<span style="left:57%;animation-duration:18s;"></span>
+
+<span style="left:64%;animation-duration:22s;"></span>
+
+<span style="left:73%;animation-duration:17s;"></span>
+
+<span style="left:81%;animation-duration:19s;"></span>
+
+<span style="left:92%;animation-duration:23s;"></span>
+
+
+
+</div>
+
+
+
+<div class="status">
+
+
+
+AVAILABLE FOR WORK
+
+
+
+</div>
+
+
+
+<h1 class="heroTitle">
+
+
+
+DHRUV
+
+
+
+</h1>
+
+
+
+<h1 class="heroTitle heroOutline">
+
+
+
+ARORA
+
+
+
+</h1>
+
+
+
+<div class="heroSub">
+
+
+
+Architecting intelligent AI systems,
+
+autonomous workflows,
+
+immersive AR experiences,
+
+voice interfaces,
+
+computer vision pipelines,
+
+and business-first digital products.
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+<div class="marquee">
+
+
+
+<div class="marqueeInner">
+
+
+
+<span>AI ENGINEER</span>
+
+
+
+<span>SPATIAL COMPUTING</span>
+
+
+
+<span>AGENTIC AI</span>
+
+
+
+<span>COMPUTER VISION</span>
+
+
+
+<span>FULL STACK AI</span>
+
+
+
+<span>AI ENGINEER</span>
+
+
+
+<span>SPATIAL COMPUTING</span>
+
+
+
+<span>AGENTIC AI</span>
+
+
+
+<span>COMPUTER VISION</span>
+
+
+
+<span>FULL STACK AI</span>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<section id="about">
+
+
+
+<div class="sectionTag">
+
+
+
+// 01 IDENTITY
+
+
+
+</div>
+
+
+
+<div class="aboutGrid">
+
+
+
+<div>
+
+
+
+<div class="sectionTitle">
+
+
+
+About
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div class="manifesto">
+
+
+
+<span>Bridging business intelligence with modern AI.</span>
+
+
+
+<span>Building products instead of projects.</span>
+
+
+
+<span>Creating systems that feel premium.</span>
+
+
+
+<span>Designing experiences with engineering precision.</span>
+
+
+
+<span>Focusing on autonomous agents.</span>
+
+
+
+<span>Spatial computing.</span>
+
+
+
+<span>Voice interfaces.</span>
+
+
+
+<span>Human centred AI.</span>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+</section><section id="metrics">
+
+
+
+<div class="sectionTag">
+
+
+
+// 02 PROOF METRICS
+
+
+
+</div>
+
+
+
+<div class="metricGrid">
+
+
+
+<div class="metric">
+
+
+
+<h1 data-count="10">
+
+
+
+0
+
+
+
+</h1>
+
+
+
+<p>
+
+
+
+Projects Built
+
+
+
+</p>
+
+
+
+</div>
+
+
+
+<div class="metric">
+
+
+
+<h1 data-count="3">
+
+
+
+0
+
+
+
+</h1>
+
+
+
+<p>
+
+
+
+Agentic Workflows
+
+
+
+</p>
+
+
+
+</div>
+
+
+
+<div class="metric">
+
+
+
+<h1 data-count="5">
+
+
+
+0
+
+
+
+</h1>
+
+
+
+<p>
+
+
+
+BI Dashboards
+
+
+
+</p>
+
+
+
+</div>
+
+
+
+<div class="metric">
+
+
+
+<h1 data-count="2">
+
+
+
+0
+
+
+
+</h1>
+
+
+
+<p>
+
+
+
+Research Papers
+
+
+
+</p>
+
+
+
+</div>
+
+
+
+<div class="metric">
+
+
+
+<h1 data-count="1">
+
+
+
+0
+
+
+
+</h1>
+
+
+
+<p>
+
+
+
+NASA Award
+
+
+
+</p>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+<section id="capabilities">
+
+
+
+<div class="sectionTag">
+
+
+
+// 03 CAPABILITIES
+
+
+
+</div>
+
+
+
+<div class="sectionTitle">
+
+
+
+Core Stack
+
+
+
+</div>
+
+
+
+<div class="cardGrid">
+
+
+
+<div class="card">
+
+
+
+<div class="projectGlow"></div>
+
+
+
+<div class="projectNumber">
+
+
+
+01
+
+
+
+</div>
+
+
+
+<h3>
+
+
+
+AI & Agentic Systems
+
+
+
+</h3>
+
+
+
+<p>
+
+
+
+Building autonomous AI workflows using
+
+Python,
+
+TensorFlow,
+
+LangChain,
+
+LLMs,
+
+REST APIs,
+
+Vector Databases,
+
+RAG Pipelines,
+
+Workflow Orchestration,
+
+Task Planning,
+
+Business Automation,
+
+and Explainable AI.
+
+
+
+</p>
+
+
+
+</div>
+
+
+
+<div class="card">
+
+
+
+<div class="projectGlow"></div>
+
+
+
+<div class="projectNumber">
+
+
+
+02
+
+
+
+</div>
+
+
+
+<h3>
+
+
+
+AR / VR & Vision
+
+
+
+</h3>
+
+
+
+<p>
+
+
+
+Unity,
+
+OpenCV,
+
+MediaPipe,
+
+ARKit,
+
+Gesture Recognition,
+
+Voice Interaction,
+
+Computer Vision,
+
+Immersive Interfaces,
+
+Spatial Computing
+
+and Human Computer Interaction.
+
+
+
+</p>
+
+
+
+</div>
+
+
+
+<div class="card">
+
+
+
+<div class="projectGlow"></div>
+
+
+
+<div class="projectNumber">
+
+
+
+03
+
+
+
+</div>
+
+
+
+<h3>
+
+
+
+Business Intelligence
+
+
+
+</h3>
+
+
+
+<p>
+
+
+
+ERP Automation,
+
+Analytics,
+
+Tableau,
+
+Power BI,
+
+Finance,
+
+Business Intelligence,
+
+Process Automation,
+
+Product Thinking,
+
+Data Visualization,
+
+Strategy
+
+and Digital Transformation.
+
+
+
+</p>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+<section id="work">
+
+
+
+<div class="sectionTag">
+
+
+
+// 04 FEATURED WORK
+
+
+
+</div>
+
+
+
+<div class="sectionTitle">
+
+
+
+Selected Projects
+
+
+
+</div>
+
+
+
+<div class="projects">
+
+
+
+<div class="project" data-project="nexus">
+
+
+
+<div class="projectGlow"></div>
+
+
+
+<div class="projectLeft">
+
+
+
+<div class="projectNumber">
+
+
+
+01
+
+
+
+</div>
+
+
+
+<div>
+
+
+
+<h2>
+
+
+
+Nexus Alpha
+
+
+
+</h2>
+
+
+
+<p>
+
+
+
+Agentic Trading Platform
+
+
+
+</p>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div class="projectMeta">
+
+
+
+<div>
+
+
+
+FINTECH / AI
+
+
+
+</div>
+
+
+
+<div class="tagRow">
+
+
+
+<div class="tag">
+
+
+
+Python
+
+
+
+</div>
+
+
+
+<div class="tag">
+
+
+
+LangChain
+
+
+
+</div>
+
+
+
+<div class="tag">
+
+
+
+XAI
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div class="projectImage">
+
+
+
+<img src="https://images.unsplash.com/photo-1642790106117-e829e14a795f?q=80&w=1200&auto=format&fit=crop">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div class="project" data-project="mentar">
+
+
+
+<div class="projectGlow"></div>
+
+
+
+<div class="projectLeft">
+
+
+
+<div class="projectNumber">
+
+
+
+02
+
+
+
+</div>
+
+
+
+<div>
+
+
+
+<h2>
+
+
+
+MentAR
+
+
+
+</h2>
+
+
+
+<p>
+
+
+
+AI Study Companion
+
+
+
+</p>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div class="projectMeta">
+
+
+
+<div>
+
+
+
+AR / EDUCATION
+
+
+
+</div>
+
+
+
+<div class="tagRow">
+
+
+
+<div class="tag">
+
+
+
+Unity
+
+
+
+</div>
+
+
+
+<div class="tag">
+
+
+
+ARKit
+
+
+
+</div>
+
+
+
+<div class="tag">
+
+
+
+OpenCV
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div class="projectImage">
+
+
+
+<img src="https://z-cdn-media.chatglm.cn/files/4d143ce3-498e-4a7a-96b1-13d769656d70.png">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div class="project" data-project="bistro">
+
+
+
+<div class="projectGlow"></div>
+
+
+
+<div class="projectLeft">
+
+
+
+<div class="projectNumber">
+
+
+
+03
+
+
+
+</div>
+
+
+
+<div>
+
+
+
+<h2>
+
+
+
+Neo Bistro
+
+
+
+</h2>
+
+
+
+<p>
+
+
+
+Voice AI Ordering
+
+
+
+</p>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div class="projectMeta">
+
+
+
+<div>
+
+
+
+VOICE AI
+
+
+
+</div>
+
+
+
+<div class="tagRow">
+
+
+
+<div class="tag">
+
+
+
+React
+
+
+
+</div>
+
+
+
+<div class="tag">
+
+
+
+Flask
+
+
+
+</div>
+
+
+
+<div class="tag">
+
+
+
+GPT
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div class="projectImage">
+
+
+
+<img src="https://z-cdn-media.chatglm.cn/files/05f199ae-aace-4cfc-b57b-cb26c4c4a87a.png">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div class="project" data-project="emotion">
+
+
+
+<div class="projectGlow"></div>
+
+
+
+<div class="projectLeft">
+
+
+
+<div class="projectNumber">
+
+
+
+04
+
+
+
+</div>
+
+
+
+<div>
+
+
+
+<h2>
+
+
+
+Emotion AI
+
+
+
+</h2>
+
+
+
+<p>
+
+
+
+Speech Recognition
+
+
+
+</p>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div class="projectMeta">
+
+
+
+<div>
+
+
+
+DEEP LEARNING
+
+
+
+</div>
+
+
+
+<div class="tagRow">
+
+
+
+<div class="tag">
+
+
+
+TensorFlow
+
+
+
+</div>
+
+
+
+<div class="tag">
+
+
+
+CNN
+
+
+
+</div>
+
+
+
+<div class="tag">
+
+
+
+Python
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div class="projectImage">
+
+
+
+<img src="https://z-cdn-media.chatglm.cn/files/4e50c0c3-3b8a-4545-b456-a002f513f69a.png">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div class="project" data-project="gesture">
+
+
+
+<div class="projectGlow"></div>
+
+
+
+<div class="projectLeft">
+
+
+
+<div class="projectNumber">
+
+
+
+05
+
+
+
+</div>
+
+
+
+<div>
+
+
+
+<h2>
+
+
+
+GestureCtrl
+
+
+
+</h2>
+
+
+
+<p>
+
+
+
+Computer Vision
+
+
+
+</p>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div class="projectMeta">
+
+
+
+<div>
+
+
+
+VISION AI
+
+
+
+</div>
+
+
+
+<div class="tagRow">
+
+
+
+<div class="tag">
+
+
+
+MediaPipe
+
+
+
+</div>
+
+
+
+<div class="tag">
+
+
+
+OpenCV
+
+
+
+</div>
+
+
+
+<div class="tag">
+
+
+
+Python
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div class="projectImage">
+
+
+
+<img src="https://z-cdn-media.chatglm.cn/files/a9259f21-f0e2-4466-84c9-f3ee0b0b281c.png">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+</section>/* =====================================================
+
+
+
+THREE.JS PARTICLE UNIVERSE
+
+
+
+===================================================== */
+
+
+
+const canvas=document.getElementById("scene");
+
+
+
+const renderer=new THREE.WebGLRenderer({
+
+
+
+canvas,
+
+
+
+alpha:true,
+
+
+
+antialias:true,
+
+
+
+powerPreference:"high-performance"
+
+
+
+});
+
+
+
+renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+
+
+
+renderer.setSize(window.innerWidth,window.innerHeight);
+
+
+
+const scene=new THREE.Scene();
+
+
+
+const camera=new THREE.PerspectiveCamera(
+
+
+
+60,
+
+
+
+window.innerWidth/window.innerHeight,
+
+
+
+0.1,
+
+
+
+1000
+
+
+
+);
+
+
+
+camera.position.z=30;
+
+
+
+/* =====================================================
+
+
+
+PARTICLE FIELD
+
+
+
+===================================================== */
+
+
+
+const particleCount=3200;
+
+
+
+const geometry=new THREE.BufferGeometry();
+
+
+
+const positions=new Float32Array(particleCount*3);
+
+
+
+const colors=new Float32Array(particleCount*3);
+
+
+
+for(let i=0;i<particleCount;i++){
+
+
+
+const i3=i*3;
+
+
+
+positions[i3]=(Math.random()-0.5)*140;
+
+
+
+positions[i3+1]=(Math.random()-0.5)*100;
+
+
+
+positions[i3+2]=(Math.random()-0.5)*90;
+
+
+
+colors[i3]=0.04+Math.random()*0.08;
+
+
+
+colors[i3+1]=0.7+Math.random()*0.3;
+
+
+
+colors[i3+2]=0.45+Math.random()*0.4;
+
+
+
+}
+
+
+
+geometry.setAttribute(
+
+
+
+"position",
+
+
+
+new THREE.BufferAttribute(positions,3)
+
+
+
+);
+
+
+
+geometry.setAttribute(
+
+
+
+"color",
+
+
+
+new THREE.BufferAttribute(colors,3)
+
+
+
+);
+
+
+
+const material=new THREE.PointsMaterial({
+
+
+
+size:0.08,
+
+
+
+vertexColors:true,
+
+
+
+transparent:true,
+
+
+
+opacity:.85,
+
+
+
+depthWrite:false,
+
+
+
+blending:THREE.AdditiveBlending
+
+
+
+});
+
+
+
+const particles=new THREE.Points(
+
+
+
+geometry,
+
+
+
+material
+
+
+
+);
+
+
+
+scene.add(particles);
+
+
+
+/* =====================================================
+
+
+
+FLOATING GLOW SPHERES
+
+
+
+===================================================== */
+
+
+
+const sphereGeometry=new THREE.SphereGeometry(
+
+
+
+2,
+
+
+
+32,
+
+
+
+32
+
+
+
+);
+
+
+
+const glowMaterial=new THREE.MeshBasicMaterial({
+
+
+
+color:0x0aff9d,
+
+
+
+transparent:true,
+
+
+
+opacity:.12
+
+
+
+});
+
+
+
+const sphere1=new THREE.Mesh(
+
+
+
+sphereGeometry,
+
+
+
+glowMaterial
+
+
+
+);
+
+
+
+sphere1.position.set(
+
+
+
+-18,
+
+
+
+12,
+
+
+
+-10
+
+
+
+);
+
+
+
+scene.add(sphere1);
+
+
+
+const sphere2=new THREE.Mesh(
+
+
+
+sphereGeometry,
+
+
+
+new THREE.MeshBasicMaterial({
+
+
+
+color:0x55bbff,
+
+
+
+transparent:true,
+
+
+
+opacity:.10
+
+
+
+})
+
+
+
+);
+
+
+
+sphere2.position.set(
+
+
+
+16,
+
+
+
+-10,
+
+
+
+-12
+
+
+
+);
+
+
+
+scene.add(sphere2);
+
+
+
+/* =====================================================
+
+
+
+AMBIENT LIGHT
+
+
+
+===================================================== */
+
+
+
+const ambient=new THREE.AmbientLight(
+
+
+
+0xffffff,
+
+
+
+1
+
+
+
+);
+
+
+
+scene.add(ambient);
+
+
+
+/* =====================================================
+
+
+
+MOUSE PARALLAX
+
+
+
+===================================================== */
+
+
+
+let targetX=0;
+
+
+
+let targetY=0;
+
+
+
+window.addEventListener(
+
+
+
+"mousemove",
+
+
+
+(e)=>{
+
+
+
+targetX=(e.clientX/window.innerWidth-.5)*4;
+
+
+
+targetY=(e.clientY/window.innerHeight-.5)*4;
+
+
+
+}
+
+
+
+);
+
+
+
+/* =====================================================
+
+
+
+RENDER LOOP
+
+
+
+===================================================== */
+
+
+
+const clock=new THREE.Clock();
+
+
+
+function animate(){
+
+
+
+requestAnimationFrame(animate);
+
+
+
+const t=clock.getElapsedTime();
+
+
+
+particles.rotation.y+=0.00045;
+
+
+
+particles.rotation.x+=0.00015;
+
+
+
+particles.position.x+=(targetX-particles.position.x)*0.03;
+
+
+
+particles.position.y+=(-targetY-particles.position.y)*0.03;
+
+
+
+sphere1.position.y=12+Math.sin(t*.8)*2;
+
+
+
+sphere1.position.x=-18+Math.cos(t*.6)*2;
+
+
+
+sphere2.position.y=-10+Math.cos(t*.65)*2;
+
+
+
+sphere2.position.x=16+Math.sin(t*.5)*2;
+
+
+
+renderer.render(
+
+
+
+scene,
+
+
+
+camera
+
+
+
+);
+
+
+
+}
+
+
+
+animate();
+
+
+
+/* =====================================================
+
+
+
+WINDOW RESIZE
+
+
+
+===================================================== */
+
+
+
+window.addEventListener(
+
+
+
+"resize",
+
+
+
+()=>{
+
+
+
+camera.aspect=
+
+
+
+window.innerWidth/window.innerHeight;
+
+
+
+camera.updateProjectionMatrix();
+
+
+
+renderer.setSize(
+
+
+
+window.innerWidth,
+
+
+
+window.innerHeight
+
+
+
+);
+
+
+
+renderer.setPixelRatio(
+
+
+
+Math.min(window.devicePixelRatio,2)
+
+
+
+);
+
+
+
+}
+
+
+
+);
+
+
+
+/* =====================================================
+
+
+
+MAGNETIC BUTTONS
+
+
+
+===================================================== */
+
+
+
+document
+
+
+
+.querySelectorAll(".magnetic")
+
+
+
+.forEach(button=>{
+
+
+
+button.addEventListener(
+
+
+
+"mousemove",
+
+
+
+e=>{
+
+
+
+const rect=
+
+
+
+button.getBoundingClientRect();
+
+
+
+const x=
+
+
+
+e.clientX-rect.left-rect.width/2;
+
+
+
+const y=
+
+
+
+e.clientY-rect.top-rect.height/2;
+
+
+
+gsap.to(
+
+
+
+button,
+
+
+
+{
+
+
+
+x:x*.25,
+
+
+
+y:y*.25,
+
+
+
+duration:.45,
+
+
+
+ease:"power3.out"
+
+
+
+}
+
+
+
+);
+
+
+
+}
+
+
+
+);
+
+
+
+button.addEventListener(
+
+
+
+"mouseleave",
+
+
+
+()=>{
+
+
+
+gsap.to(
+
+
+
+button,
+
+
+
+{
+
+
+
+x:0,
+
+
+
+y:0,
+
+
+
+duration:.6,
+
+
+
+ease:"elastic.out(1,.45)"
+
+
+
+}
+
+
+
+);
+
+
+
+}
+
+
+
+);
+
+
+
+});
+
+
+
+/* =====================================================
+
+
+
+CARD SPOTLIGHT
+
+
+
+===================================================== */
+
+
+
+document
+
+
+
+.querySelectorAll(".card")
+
+
+
+.forEach(card=>{
+
+
+
+card.addEventListener(
+
+
+
+"mousemove",
+
+
+
+e=>{
+
+
+
+const r=
+
+
+
+card.getBoundingClientRect();
+
+
+
+card.style.setProperty(
+
+
+
+"--mx",
+
+
+
+`${e.clientX-r.left}px`
+
+
+
+);
+
+
+
+card.style.setProperty(
+
+
+
+"--my",
+
+
+
+`${e.clientY-r.top}px`
+
+
+
+);
+
+
+
+const rotateY=
+
+
+
+((e.clientX-r.left)/r.width-.5)*14;
+
+
+
+const rotateX=
+
+
+
+-((e.clientY-r.top)/r.height-.5)*14;
+
+
+
+gsap.to(card,{
+
+
+
+rotateX,
+
+
+
+rotateY,
+
+
+
+transformPerspective:1200,
+
+
+
+duration:.35,
+
+
+
+ease:"power2.out"
+
+
+
+});
+
+
+
+}
+
+
+
+);
+
+
+
+card.addEventListener(
+
+
+
+"mouseleave",
+
+
+
+()=>{
+
+
+
+gsap.to(card,{
+
+
+
+rotateX:0,
+
+
+
+rotateY:0,
+
+
+
+duration:.6,
+
+
+
+ease:"power3.out"
+
+
+
+});
+
+
+
+}
+
+
+
+);
+
+
+
+});/* =====================================================
+
+
+
+PROJECT HOVER PARALLAX
+
+
+
+===================================================== */
+
+
+
+document.querySelectorAll(".project").forEach(project=>{
+
+
+
+const image=project.querySelector(".projectImage");
+
+
+
+const img=project.querySelector("img");
+
+
+
+project.addEventListener("mousemove",(e)=>{
+
+
+
+const rect=project.getBoundingClientRect();
+
+
+
+const x=e.clientX-rect.left;
+
+
+
+const y=e.clientY-rect.top;
+
+
+
+const px=(x/rect.width-.5)*35;
+
+
+
+const py=(y/rect.height-.5)*20;
+
+
+
+gsap.to(image,{
+
+
+
+x:px,
+
+
+
+y:py,
+
+
+
+duration:.45,
+
+
+
+ease:"power3.out"
+
+
+
+});
+
+
+
+gsap.to(img,{
+
+
+
+scale:1.12,
+
+
+
+rotation:px*.08,
+
+
+
+duration:.8,
+
+
+
+ease:"power3.out"
+
+
+
+});
+
+
+
+});
+
+
+
+project.addEventListener("mouseenter",()=>{
+
+
+
+gsap.to(project,{
+
+
+
+background:"rgba(255,255,255,.02)",
+
+
+
+duration:.4
+
+
+
+});
+
+
+
+});
+
+
+
+project.addEventListener("mouseleave",()=>{
+
+
+
+gsap.to(image,{
+
+
+
+x:0,
+
+
+
+y:0,
+
+
+
+duration:.8,
+
+
+
+ease:"power4.out"
+
+
+
+});
+
+
+
+gsap.to(img,{
+
+
+
+scale:1,
+
+
+
+rotation:0,
+
+
+
+duration:.8,
+
+
+
+ease:"power4.out"
+
+
+
+});
+
+
+
+gsap.to(project,{
+
+
+
+background:"transparent",
+
+
+
+duration:.5
+
+
+
+});
+
+
+
+});
+
+
+
+});
+
+
+
+/* =====================================================
+
+
+
+MODAL DATA
+
+
+
+===================================================== */
+
+
+
+const projectData={
+
+
+
+nexus:{
+
+
+
+title:"Nexus Alpha",
+
+
+
+image:"https://images.unsplash.com/photo-1642790106117-e829e14a795f?q=80&w=1600&auto=format&fit=crop",
+
+
+
+description:"A premium AI-powered autonomous trading platform combining agentic workflows, explainable AI, portfolio intelligence, live analytics, market prediction, and automated execution into one seamless experience.",
+
+
+
+stack:"Python • LangChain • OpenAI • FastAPI • React • PostgreSQL • Docker • Redis",
+
+
+
+highlights:[
+
+
+
+"Autonomous AI agents",
+
+
+
+"Explainable decisions",
+
+
+
+"Live portfolio analytics",
+
+
+
+"REST API architecture",
+
+
+
+"Multi-agent orchestration",
+
+
+
+"Real-time dashboards"
+
+
+
+]
+
+
+
+},
+
+
+
+mentar:{
+
+
+
+title:"MentAR",
+
+
+
+image:"https://z-cdn-media.chatglm.cn/files/4d143ce3-498e-4a7a-96b1-13d769656d70.png",
+
+
+
+description:"An AI-powered AR study mentor capable of contextual learning, voice interaction, 3D visualization, adaptive tutoring and immersive educational experiences.",
+
+
+
+stack:"Unity • ARKit • OpenCV • MediaPipe • Whisper • GPT",
+
+
+
+highlights:[
+
+
+
+"3D Avatar",
+
+
+
+"Gesture Interaction",
+
+
+
+"Voice Commands",
+
+
+
+"Spatial Computing",
+
+
+
+"Adaptive Learning",
+
+
+
+"Immersive Education"
+
+
+
+]
+
+
+
+},
+
+
+
+bistro:{
+
+
+
+title:"Neo Bistro",
+
+
+
+image:"https://z-cdn-media.chatglm.cn/files/05f199ae-aace-4cfc-b57b-cb26c4c4a87a.png",
+
+
+
+description:"A conversational restaurant ordering platform using speech recognition, intelligent menu recommendations and AI-driven customer interaction.",
+
+
+
+stack:"React • Flask • Whisper • GPT • Tailwind",
+
+
+
+highlights:[
+
+
+
+"Voice Ordering",
+
+
+
+"Natural Language",
+
+
+
+"Restaurant AI",
+
+
+
+"Menu Intelligence",
+
+
+
+"Live Ordering"
+
+
+
+]
+
+
+
+},
+
+
+
+emotion:{
+
+
+
+title:"Emotion AI",
+
+
+
+image:"https://z-cdn-media.chatglm.cn/files/4e50c0c3-3b8a-4545-b456-a002f513f69a.png",
+
+
+
+description:"Speech Emotion Recognition system using deep neural networks and advanced audio feature extraction.",
+
+
+
+stack:"Python • TensorFlow • CNN • Librosa • NumPy",
+
+
+
+highlights:[
+
+
+
+"Emotion Detection",
+
+
+
+"MFCC Features",
+
+
+
+"CNN Architecture",
+
+
+
+"Deep Learning",
+
+
+
+"Audio Processing"
+
+
+
+]
+
+
+
+},
+
+
+
+gesture:{
+
+
+
+title:"GestureCtrl",
+
+
+
+image:"https://z-cdn-media.chatglm.cn/files/a9259f21-f0e2-4466-84c9-f3ee0b0b281c.png",
+
+
+
+description:"Hand gesture recognition system enabling users to control applications using computer vision and AI.",
+
+
+
+stack:"Python • OpenCV • MediaPipe • CVZone",
+
+
+
+highlights:[
+
+
+
+"Gesture Recognition",
+
+
+
+"MediaPipe",
+
+
+
+"Computer Vision",
+
+
+
+"Virtual Mouse",
+
+
+
+"Real-Time Tracking"
+
+
+
+]
+
+
+
+}
+
+
+
+};
+
+
+
+/* =====================================================
+
+
+
+MODAL OPEN / CLOSE
+
+
+
+===================================================== */
+
+
+
+const modal=document.getElementById("modal");
+
+
+
+const modalTitle=document.getElementById("modalTitle");
+
+
+
+const modalImage=document.getElementById("modalImage");
+
+
+
+const modalDescription=document.getElementById("modalDescription");
+
+
+
+const modalStack=document.getElementById("modalStack");
+
+
+
+const modalHighlights=document.getElementById("modalHighlights");
+
+
+
+document.querySelectorAll(".project").forEach(project=>{
+
+
+
+project.addEventListener("click",()=>{
+
+
+
+const data=projectData[project.dataset.project];
+
+
+
+modal.style.display="flex";
+
+
+
+modal.classList.add("open");
+
+
+
+modalTitle.innerHTML=data.title;
+
+
+
+modalImage.src=data.image;
+
+
+
+modalDescription.innerHTML=data.description;
+
+
+
+modalStack.innerHTML=data.stack;
+
+
+
+modalHighlights.innerHTML="";
+
+
+
+data.highlights.forEach(item=>{
+
+
+
+modalHighlights.innerHTML+=`<li>${item}</li>`;
+
+
+
+});
+
+
+
+gsap.fromTo(
+
+
+
+".modalContent",
+
+
+
+{
+
+
+
+opacity:0,
+
+
+
+y:80,
+
+
+
+scale:.96
+
+
+
+},
+
+
+
+{
+
+
+
+opacity:1,
+
+
+
+y:0,
+
+
+
+scale:1,
+
+
+
+duration:.8,
+
+
+
+ease:"power4.out"
+
+
+
+}
+
+
+
+);
+
+
+
+});
+
+
+
+});
+
+
+
+document.querySelector(".close").onclick=()=>{
+
+
+
+gsap.to(".modalContent",{
+
+
+
+opacity:0,
+
+
+
+y:80,
+
+
+
+scale:.95,
+
+
+
+duration:.45,
+
+
+
+ease:"power2.in",
+
+
+
+onComplete:()=>{
+
+
+
+modal.style.display="none";
+
+
+
+modal.classList.remove("open");
+
+
+
+}
+
+
+
+});
+
+
+
+};
+
+
+
+modal.addEventListener("click",(e)=>{
+
+
+
+if(e.target===modal){
+
+
+
+document.querySelector(".close").click();
+
+
+
+}
+
+
+
+});
+
+
+
+/* =====================================================
+
+
+
+ODOMETER COUNTERS
+
+
+
+===================================================== */
+
+
+
+document.querySelectorAll("[data-count]").forEach(counter=>{
+
+
+
+const target=parseInt(counter.dataset.count);
+
+
+
+gsap.to(counter,{
+
+
+
+innerText:target,
+
+
+
+duration:2,
+
+
+
+snap:{innerText:1},
+
+
+
+ease:"power2.out",
+
+
+
+scrollTrigger:{
+
+
+
+trigger:counter,
+
+
+
+start:"top 90%"
+
+
+
+}
+
+
+
+});
+
+
+
+});/* =====================================================
+
+
+
+MANIFESTO WORD REVEAL
+
+
+
+===================================================== */
+
+
+
+const manifestoWords=document.querySelectorAll(".manifesto span");
+
+
+
+manifestoWords.forEach((word,index)=>{
+
+
+
+gsap.to(word,{
+
+
+
+opacity:1,
+
+
+
+y:0,
+
+
+
+duration:.8,
+
+
+
+delay:index*.03,
+
+
+
+ease:"power3.out",
+
+
+
+scrollTrigger:{
+
+
+
+trigger:".manifesto",
+
+
+
+start:"top 72%"
+
+
+
+}
+
+
+
+});
+
+
+
+});
+
+
+
+/* =====================================================
+
+
+
+HERO PARALLAX
+
+
+
+===================================================== */
+
+
+
+gsap.to(".heroGlow",{
+
+
+
+y:160,
+
+
+
+x:-90,
+
+
+
+rotation:35,
+
+
+
+ease:"none",
+
+
+
+scrollTrigger:{
+
+
+
+trigger:"#hero",
+
+
+
+start:"top top",
+
+
+
+end:"bottom top",
+
+
+
+scrub:true
+
+
+
+}
+
+
+
+});
+
+
+
+gsap.to(".heroTitle",{
+
+
+
+y:-140,
+
+
+
+ease:"none",
+
+
+
+scrollTrigger:{
+
+
+
+trigger:"#hero",
+
+
+
+start:"top top",
+
+
+
+end:"bottom top",
+
+
+
+scrub:true
+
+
+
+}
+
+
+
+});
+
+
+
+gsap.to(".heroSub",{
+
+
+
+y:-60,
+
+
+
+opacity:.25,
+
+
+
+ease:"none",
+
+
+
+scrollTrigger:{
+
+
+
+trigger:"#hero",
+
+
+
+start:"top top",
+
+
+
+end:"bottom top",
+
+
+
+scrub:true
+
+
+
+}
+
+
+
+});
+
+
+
+/* =====================================================
+
+
+
+SECTION PARALLAX
+
+
+
+===================================================== */
+
+
+
+gsap.utils.toArray(".sectionTitle").forEach(title=>{
+
+
+
+gsap.fromTo(
+
+
+
+title,
+
+
+
+{
+
+
+
+y:90
+
+
+
+},
+
+
+
+{
+
+
+
+y:0,
+
+
+
+duration:1.3,
+
+
+
+ease:"power4.out",
+
+
+
+scrollTrigger:{
+
+
+
+trigger:title,
+
+
+
+start:"top 82%"
+
+
+
+}
+
+
+
+}
+
+
+
+);
+
+
+
+});
+
+
+
+gsap.utils.toArray(".card").forEach((card,index)=>{
+
+
+
+gsap.from(card,{
+
+
+
+opacity:0,
+
+
+
+y:100,
+
+
+
+rotateX:18,
+
+
+
+duration:1,
+
+
+
+delay:index*.08,
+
+
+
+ease:"power4.out",
+
+
+
+scrollTrigger:{
+
+
+
+trigger:card,
+
+
+
+start:"top 86%"
+
+
+
+}
+
+
+
+});
+
+
+
+});
+
+
+
+/* =====================================================
+
+
+
+FLOATING ORBS
+
+
+
+===================================================== */
+
+
+
+const orbGreen=document.querySelector(".lightOrb");
+
+
+
+const orbBlue=document.querySelector(".lightOrb.blue");
+
+
+
+window.addEventListener("mousemove",(e)=>{
+
+
+
+const x=e.clientX/window.innerWidth;
+
+
+
+const y=e.clientY/window.innerHeight;
+
+
+
+gsap.to(orbGreen,{
+
+
+
+x:(x-.5)*160,
+
+
+
+y:(y-.5)*120,
+
+
+
+duration:1.2,
+
+
+
+ease:"power2.out"
+
+
+
+});
+
+
+
+gsap.to(orbBlue,{
+
+
+
+x:(.5-x)*220,
+
+
+
+y:(.5-y)*180,
+
+
+
+duration:1.8,
+
+
+
+ease:"power2.out"
+
+
+
+});
+
+
+
+});
+
+
+
+/* =====================================================
+
+
+
+SPOTLIGHT FOLLOW
+
+
+
+===================================================== */
+
+
+
+const spotlight=document.querySelector(".spotlight");
+
+
+
+window.addEventListener("mousemove",(e)=>{
+
+
+
+gsap.to(spotlight,{
+
+
+
+left:e.clientX-400,
+
+
+
+top:e.clientY-400,
+
+
+
+duration:.35,
+
+
+
+ease:"power2.out"
+
+
+
+});
+
+
+
+});
+
+
+
+/* =====================================================
+
+
+
+PROJECT IMAGE DEPTH
+
+
+
+===================================================== */
+
+
+
+document.querySelectorAll(".projectImage").forEach(image=>{
+
+
+
+gsap.to(image,{
+
+
+
+yPercent:-12,
+
+
+
+ease:"none",
+
+
+
+scrollTrigger:{
+
+
+
+trigger:image,
+
+
+
+scrub:true
+
+
+
+}
+
+
+
+});
+
+
+
+});
+
+
+
+/* =====================================================
+
+
+
+TIMELINE REVEAL
+
+
+
+===================================================== */
+
+
+
+document.querySelectorAll(".timelineItem").forEach((item,index)=>{
+
+
+
+gsap.from(item,{
+
+
+
+opacity:0,
+
+
+
+x:index%2===0?-80:80,
+
+
+
+duration:1,
+
+
+
+ease:"power4.out",
+
+
+
+scrollTrigger:{
+
+
+
+trigger:item,
+
+
+
+start:"top 82%"
+
+
+
+}
+
+
+
+});
+
+
+
+});
+
+
+
+/* =====================================================
+
+
+
+CONTACT TITLE
+
+
+
+===================================================== */
+
+
+
+gsap.from(".contactTitle",{
+
+
+
+scale:.85,
+
+
+
+opacity:0,
+
+
+
+duration:1.4,
+
+
+
+ease:"power4.out",
+
+
+
+scrollTrigger:{
+
+
+
+trigger:"#contact",
+
+
+
+start:"top 70%"
+
+
+
+}
+
+
+
+});
+
+
+
+/* =====================================================
+
+
+
+NAVBAR AUTO HIDE
+
+
+
+===================================================== */
+
+
+
+let lastScroll=0;
+
+
+
+window.addEventListener("scroll",()=>{
+
+
+
+const current=window.pageYOffset;
+
+
+
+if(current>lastScroll && current>200){
+
+
+
+gsap.to("nav",{
+
+
+
+y:-120,
+
+
+
+duration:.4,
+
+
+
+ease:"power2.out"
+
+
+
+});
+
+
+
+}else{
+
+
+
+gsap.to("nav",{
+
+
+
+y:0,
+
+
+
+duration:.4,
+
+
+
+ease:"power2.out"
+
+
+
+});
+
+
+
+}
+
+
+
+lastScroll=current;
+
+
+
+});
+
+
+
+/* =====================================================
+
+
+
+SCROLL DOTS
+
+
+
+===================================================== */
+
+
+
+const sections=document.querySelectorAll("section");
+
+
+
+const dots=document.querySelectorAll(".scrollDot");
+
+
+
+window.addEventListener("scroll",()=>{
+
+
+
+let currentSection=0;
+
+
+
+sections.forEach((section,index)=>{
+
+
+
+const top=section.offsetTop-250;
+
+
+
+if(window.scrollY>=top){
+
+
+
+currentSection=index;
+
+
+
+}
+
+
+
+});
+
+
+
+dots.forEach(dot=>dot.classList.remove("active"));
+
+
+
+if(dots[currentSection]){
+
+
+
+dots[currentSection].classList.add("active");
+
+
+
+}
+
+
+
+});
+
+
+
+/* =====================================================
+
+
+
+BACKGROUND GRADIENT SHIFT
+
+
+
+===================================================== */
+
+
+
+gsap.to("#gradientBG",{
+
+
+
+backgroundPosition:"200% 200%",
+
+
+
+duration:28,
+
+
+
+repeat:-1,
+
+
+
+yoyo:true,
+
+
+
+ease:"sine.inOut"
+
+
+
+});
+
+
+
+/* =====================================================
+
+
+
+FLOATING PARTICLE ANIMATION
+
+
+
+===================================================== */
+
+
+
+document.querySelectorAll(".heroParticles span").forEach((particle,i)=>{
+
+
+
+particle.style.top=Math.random()*100+"%";
+
+
+
+particle.style.animationDelay=(Math.random()*12)+"s";
+
+
+
+particle.style.opacity=Math.random();
+
+
+
+particle.style.width=(2+Math.random()*4)+"px";
+
+
+
+particle.style.height=particle.style.width;
+
+
+
+});/* =====================================================
+
+
+
+IMAGE LAZY LOADING
+
+
+
+===================================================== */
+
+
+
+document.querySelectorAll("img").forEach(img=>{
+
+
+
+if(img.complete) return;
+
+
+
+img.loading="lazy";
+
+
+
+img.decoding="async";
+
+
+
+img.addEventListener("load",()=>{
+
+
+
+gsap.fromTo(
+
+
+
+img,
+
+
+
+{
+
+
+
+opacity:0,
+
+
+
+scale:1.05,
+
+
+
+filter:"blur(10px)"
+
+
+
+},
+
+
+
+{
+
+
+
+opacity:1,
+
+
+
+scale:1,
+
+
+
+filter:"blur(0px)",
+
+
+
+duration:.8,
+
+
+
+ease:"power3.out"
+
+
+
+}
+
+
+
+);
+
+
+
+});
+
+
+
+});
+
+
+
+/* =====================================================
+
+
+
+KEYBOARD SHORTCUTS
+
+
+
+===================================================== */
+
+
+
+window.addEventListener("keydown",(e)=>{
+
+
+
+if(e.key==="Escape"){
+
+
+
+if(modal.style.display==="flex"){
+
+
+
+document.querySelector(".close").click();
+
+
+
+}
+
+
+
+}
+
+
+
+});
+
+
+
+/* =====================================================
+
+
+
+REDUCED MOTION SUPPORT
+
+
+
+===================================================== */
+
+
+
+const reduceMotion=window.matchMedia("(prefers-reduced-motion: reduce)");
+
+
+
+if(reduceMotion.matches){
+
+
+
+gsap.globalTimeline.timeScale(100);
+
+
+
+document.querySelectorAll("*").forEach(el=>{
+
+
+
+el.style.scrollBehavior="auto";
+
+
+
+});
+
+
+
+}
+
+
+
+/* =====================================================
+
+
+
+SECTION COLOR GRADING
+
+
+
+===================================================== */
+
+
+
+const gradeMap={
+
+
+
+hero:["#020202","#02120d"],
+
+
+
+about:["#020202","#061018"],
+
+
+
+metrics:["#020202","#061111"],
+
+
+
+capabilities:["#020202","#07151b"],
+
+
+
+work:["#020202","#08151a"],
+
+
+
+timeline:["#020202","#040404"],
+
+
+
+contact:["#020202","#07140e"]
+
+
+
+};
+
+
+
+Object.keys(gradeMap).forEach(id=>{
+
+
+
+const section=document.getElementById(id);
+
+
+
+if(!section) return;
+
+
+
+ScrollTrigger.create({
+
+
+
+trigger:section,
+
+
+
+start:"top center",
+
+
+
+end:"bottom center",
+
+
+
+onEnter:()=>{
+
+
+
+gsap.to("#gradientBG",{
+
+
+
+background:`
+
+
+
+radial-gradient(circle at 18% 22%, rgba(10,255,157,.14), transparent 28%),
+
+
+
+radial-gradient(circle at 84% 18%, rgba(80,170,255,.10), transparent 24%),
+
+
+
+linear-gradient(180deg, ${gradeMap[id][0]}, ${gradeMap[id][1]})
+
+
+
+`,
+
+
+
+duration:1.5,
+
+
+
+ease:"power2.out"
+
+
+
+});
+
+
+
+},
+
+
+
+onEnterBack:()=>{
+
+
+
+gsap.to("#gradientBG",{
+
+
+
+background:`
+
+
+
+radial-gradient(circle at 18% 22%, rgba(10,255,157,.14), transparent 28%),
+
+
+
+radial-gradient(circle at 84% 18%, rgba(80,170,255,.10), transparent 24%),
+
+
+
+linear-gradient(180deg, ${gradeMap[id][0]}, ${gradeMap[id][1]})
+
+
+
+`,
+
+
+
+duration:1.5,
+
+
+
+ease:"power2.out"
+
+
+
+});
+
+
+
+}
+
+
+
+});
+
+
+
+});
+
+
+
+/* =====================================================
+
+
+
+BUTTON RIPPLE EFFECT
+
+
+
+===================================================== */
+
+
+
+document.querySelectorAll(".contactButton,.tag,.magnetic").forEach(btn=>{
+
+
+
+btn.addEventListener("click",(e)=>{
+
+
+
+const ripple=document.createElement("span");
+
+
+
+ripple.style.position="absolute";
+
+
+
+ripple.style.borderRadius="50%";
+
+
+
+ripple.style.pointerEvents="none";
+
+
+
+ripple.style.background="rgba(255,255,255,.35)";
+
+
+
+ripple.style.width="20px";
+
+
+
+ripple.style.height="20px";
+
+
+
+ripple.style.left=(e.offsetX-10)+"px";
+
+
+
+ripple.style.top=(e.offsetY-10)+"px";
+
+
+
+ripple.style.transform="scale(0)";
+
+
+
+ripple.style.opacity="1";
+
+
+
+btn.style.position="relative";
+
+
+
+btn.style.overflow="hidden";
+
+
+
+btn.appendChild(ripple);
+
+
+
+gsap.to(ripple,{
+
+
+
+scale:18,
+
+
+
+opacity:0,
+
+
+
+duration:.9,
+
+
+
+ease:"power2.out",
+
+
+
+onComplete:()=>ripple.remove()
+
+
+
+});
+
+
+
+});
+
+
+
+});
+
+
+
+/* =====================================================
+
+
+
+FPS OPTIMIZATION
+
+
+
+===================================================== */
+
+
+
+let lastFrame=0;
+
+
+
+const maxFPS=60;
+
+
+
+const interval=1000/maxFPS;
+
+
+
+function optimizedRender(now){
+
+
+
+requestAnimationFrame(optimizedRender);
+
+
+
+if(now-lastFrame<interval) return;
+
+
+
+lastFrame=now-(now-lastFrame)%interval;
+
+
+
+}
+
+
+
+requestAnimationFrame(optimizedRender);
+
+
+
+/* =====================================================
+
+
+
+SMOOTH ANCHOR SCROLL
+
+
+
+===================================================== */
+
+
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+
+
+
+anchor.addEventListener("click",(e)=>{
+
+
+
+const target=document.querySelector(anchor.getAttribute("href"));
+
+
+
+if(!target) return;
+
+
+
+e.preventDefault();
+
+
+
+lenis.scrollTo(target,{
+
+
+
+offset:-60,
+
+
+
+duration:1.6
+
+
+
+});
+
+
+
+});
+
+
+
+});
+
+
+
+/* =====================================================
+
+
+
+INTRO LOADER
+
+
+
+===================================================== */
+
+
+
+const intro=document.createElement("div");
+
+
+
+intro.style.cssText=`
+
+
+
+position:fixed;
+
+inset:0;
+
+background:#020202;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+flex-direction:column;
+
+z-index:999999999;
+
+font-family:Syne,sans-serif;
+
+`;
+
+
+
+intro.innerHTML=`
+
+
+
+<h1 style="
+
+font-size:8vw;
+
+letter-spacing:-3px;
+
+margin-bottom:25px;
+
+">
+
+DHRUV
+
+</h1>
+
+
+
+<div style="
+
+width:260px;
+
+height:2px;
+
+background:#222;
+
+overflow:hidden;
+
+">
+
+
+
+<div id="loaderBar"
+
+style="
+
+height:100%;
+
+width:0%;
+
+background:#0aff9d;
+
+">
+
+</div>
+
+
+
+</div>
+
+
+
+<p style="
+
+margin-top:18px;
+
+font-size:11px;
+
+letter-spacing:4px;
+
+color:#666;
+
+">
+
+
+
+INITIALIZING EXPERIENCE
+
+
+
+</p>
+
+
+
+`;
+
+
+
+document.body.appendChild(intro);
+
+
+
+gsap.to("#loaderBar",{
+
+
+
+width:"100%",
+
+
+
+duration:1.8,
+
+
+
+ease:"power2.inOut",
+
+
+
+onComplete:()=>{
+
+
+
+gsap.to(intro,{
+
+
+
+opacity:0,
+
+
+
+duration:.8,
+
+
+
+delay:.25,
+
+
+
+onComplete:()=>{
+
+
+
+intro.remove();
+
+
+
+}
+
+
+
+});
+
+
+
+}
+
+
+
+});
+
+
+
+/* =====================================================
+
+
+
+INITIAL HERO TIMELINE
+
+
+
+===================================================== */
+
+
+
+const heroTL=gsap.timeline({delay:2.1});
+
+
+
+heroTL
+
+
+
+.from(".heroTitle",{
+
+
+
+y:180,
+
+
+
+opacity:0,
+
+
+
+stagger:.08,
+
+
+
+duration:1.3,
+
+
+
+ease:"power4.out"
+
+
+
+})
+
+
+
+.from(".heroSub",{
+
+
+
+y:60,
+
+
+
+opacity:0,
+
+
+
+duration:.9
+
+
+
+},"-=.6")
+
+
+
+.from(".status",{
+
+
+
+scale:.7,
+
+
+
+opacity:0,
+
+
+
+duration:.6
+
+
+
+},"-=.8")
+
+
+
+.from(".heroGlow",{
+
+
+
+scale:.5,
+
+
+
+opacity:0,
+
+
+
+duration:2,
+
+
+
+ease:"expo.out"
+
+
+
+},"<");
+
+
+
+/* =====================================================
+
+
+
+REFRESH GSAP
+
+
+
+===================================================== */
+
+
+
+window.addEventListener("load",()=>{
+
+
+
+ScrollTrigger.refresh();
+
+
+
+});
+
+
+
+/* =====================================================
+
+
+
+END
+
+
+
+===================================================== */
+
+
+
+</script>
+
+
+
 </body>
+
+
+
 </html>
